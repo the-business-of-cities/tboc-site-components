@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import React from "react";
 import R from "ramda";
 
@@ -32,5 +33,10 @@ const Arrow = ({ next, onClick, }) => (
 		</span>
 	</ArrowWrapper>
 );
+
+Arrow.propTypes = {
+	next: PropTypes.any,
+	onClick: PropTypes.any,
+};
 
 export default Arrow;

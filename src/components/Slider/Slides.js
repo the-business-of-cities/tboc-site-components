@@ -1,13 +1,15 @@
 import { MaybeLink, } from "../toolbox";
 import * as mixins from "codogo-utility-functions";
-import * as vars from "../../style/vars";
 
 import styled from "styled-components";
 import Carousel from "nuka-carousel";
+import PropTypes from "prop-types";
 import React from "react";
 import R from "ramda";
 
 // --------------------------------------------------
+
+import { theme, } from "../../styles";
 
 const padding = 1;
 const titleFontSize = 1.1;
@@ -38,7 +40,7 @@ const SlideInner = styled(MaybeLink)`
 const SlideTitle = styled.div`
 	font-weight: bold;
 	font-size: ${ titleFontSize }em;
-	font-family: ${ vars.font.heading };
+	font-family: ${ theme.font.heading };
 	display: block;
 	line-height: ${ titleLineHeight };
 	max-height: ${ 2 * titleLineHeight }em;
@@ -51,7 +53,7 @@ const SlideTitle = styled.div`
 
 const SlideText = styled.div`
 	font-size: ${ textFontSize }em;
-	font-family: ${ vars.font.paragraph };
+	font-family: ${ theme.font.paragraph };
 
 	& p {
 		margin: 0;
@@ -96,15 +98,18 @@ const Slides = ({ slideContents, sliderSettings, }) => (
 		{slideContents.map(
 			({ image, name, title, descriptionHtml, to, href, slug, }, i) => (
 				<div key = { slug } style = { { width: "100%", height: "30vh", } }>
-					<img
-						src = { image && image.url }
-						style = { {
-							width: "100%",
-							height: "100%",
-							objectFit: "cover",
-							position: "absolute",
-						} }
-					/>
+					{ image &&
+						<img
+							alt = { image.description }
+							src = { image.url }
+							style = { {
+								width: "100%",
+								height: "100%",
+								objectFit: "cover",
+								position: "absolute",
+							} }
+						/>
+					}
 
 					<SlideInner to = { to } href = { href }>
 						<SlideTitle>{title || name}</SlideTitle>
@@ -120,5 +125,10 @@ const Slides = ({ slideContents, sliderSettings, }) => (
 		)}
 	</Carousel>
 );
+
+Slides.propTypes = {
+	slideContents: PropTypes.any,
+	sliderSettings: PropTypes.any,
+};
 
 export default Slides;

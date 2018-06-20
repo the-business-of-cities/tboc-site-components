@@ -1,12 +1,14 @@
 import { Icon, } from "../toolbox";
 import * as mixins from "codogo-utility-functions";
-import * as vars from "../../style/vars";
 
+import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 import R from "ramda";
 
 // --------------------------------------------------
+
+import { theme, } from "../../styles";
 
 const Wrapper = styled.footer`
 	background-color: ${ R.path([ "theme", "footer", ]) };
@@ -18,14 +20,14 @@ const Wrapper = styled.footer`
 `;
 
 const Inner = styled.div`
-	${ mixins.bpEither("height", vars.dim.footer.height) };
-	${ mixins.bpEither("padding", vars.dim.nav.margin) };
+	${ mixins.bpEither("height", theme.dimensions.footer.height) };
+	${ mixins.bpEither("padding", theme.dimensions.nav.margin) };
 
 	align-items: center;
 	display: flex;
 	justify-content: space-between;
 	color: white;
-	max-width: ${ vars.bps.lg.min }px;
+	max-width: ${ theme.bps.lg.min }px;
 	margin: 0 auto;
 
 	${ mixins.xs`
@@ -84,20 +86,6 @@ const Social = styled(FooterSection)`
 	}
 `;
 
-const formatTelNumber = num => {
-	if (num.slice(0, 1) === "+" && num.length === 13) {
-		return `${ num.slice(0, 3) } (0)${ num.slice(3, 6) } ${ num.slice(
-			6,
-			9,
-		) } ${ num.slice(9, 13) }`;
-	}
-	if (num.slice(0, 1) === "0" && num.length === 11) {
-		return `${ num.slice(0, 4) } ${ num.slice(4, 7) } ${ num.slice(7, 11) }`;
-	} else {
-		return num;
-	}
-};
-
 const socialIcons = {
 	newsletter: "envelope",
 	podcasts: "podcast",
@@ -112,7 +100,7 @@ const Footer = ({ footerText, socialLinks, }) => {
 
 				<Social>
 					{ socialLinks.map( link =>
-						<a
+						(<a
 							key = { `footer-${ link.type }` }
 							href = { link.link }
 							style = {
@@ -127,12 +115,17 @@ const Footer = ({ footerText, socialLinks, }) => {
 							}
 						>
 							<Icon type = { socialIcons[link.type] || link.type } />
-						</a>
+						</a>)
 					) }
 				</Social>
 			</Inner>
 		</Wrapper>
 	);
+};
+
+Footer.propTypes = {
+	footerText: PropTypes.object,
+	socialLinks: PropTypes.object,
 };
 
 export default Footer;

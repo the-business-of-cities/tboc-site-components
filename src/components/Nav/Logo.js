@@ -1,6 +1,7 @@
 import * as mixins from "codogo-utility-functions";
 
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import React from "react";
 import Link from "gatsby-link";
 
@@ -46,5 +47,10 @@ const Logo = props => (
 		)}
 	</LogoWrapper>
 );
+
+Logo.propTypes = {
+	logo: PropTypes.string,
+	text: PropTypes.string,
+};
 
 export default Logo;

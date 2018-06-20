@@ -1,23 +1,21 @@
 import { compose, } from "recompose";
-import * as vars from "../../style/vars";
+
 
 import Arrow from "./Arrow";
 import Slides from "./Slides";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import React from "react";
+import { theme, } from "../../styles";
 
 // --------------------------------------------------
 
-const snapshotting =
-	window.location.host.includes("localhost:") &&
-	parseInt(window.location.host.replace("localhost:", ""), 10) > 9999;
-
-// --------------------------------------------------
+const snapshotting = false;
 
 const Wrapper = styled.div`
 	transition: 0.1s linear all;
 	max-height: 21.4em;
-	background-color: ${ snapshotting ? vars.colors.bgdark : "transparent" };
+	background-color: ${ snapshotting ? theme.colors.bgdark : "transparent" };
 
 	& > div {
 		opacity: ${ snapshotting ? 0 : 1 };
@@ -63,5 +61,9 @@ const Slider = ({ slideContents, }) => (
 );
 
 const enhance = compose();
+
+Slider.propTypes = {
+	slideContents: PropTypes.any,
+};
 
 export default enhance(Slider);

@@ -1,13 +1,16 @@
 import styled, { css, } from "styled-components";
 import { NavLink, } from "react-router-dom";
 import * as mixins from "codogo-utility-functions";
-import * as vars from "../../style/vars";
+
 
 import R from "ramda";
+import PropTypes from "prop-types";
 import React from "react";
 import Link from "gatsby-link";
 
 // --------------------------------------------------
+
+import { theme, } from "../../styles";
 
 const wrapperStyle = [
 	css`
@@ -16,17 +19,17 @@ const wrapperStyle = [
 		${ mixins.shadow(2) } position: absolute;
 		left: 0;
 		right: 0;
-		top: ${ vars.dim.nav.height.xs };
+		top: ${ theme.dimensions.nav.height.xs };
 		background-color: ${ props => props.theme.colors.nav };
 		align-items: center;
 	`,
 
 	`
 		position: absolute;
-		right: ${ vars.dim.nav.margin.other };
-		left: ${ vars.dim.nav.margin.other };
+		right: ${ theme.dimensions.nav.margin.other };
+		left: ${ theme.dimensions.nav.margin.other };
 		bottom: 0;
-		height: ${ vars.dim.nav.linksHeight };
+		height: ${ theme.dimensions.nav.linksHeight };
 		display: flex;
 		align-items: center;
 	`,
@@ -41,7 +44,7 @@ const Wrapper = styled.div`
 const buttonStyle = [
 	css`
 		display: block;
-		padding: 0.9em ${ vars.dim.nav.margin.xs };
+		padding: 0.9em ${ theme.dimensions.nav.margin.xs };
 		font-size: 0.9em;
 
 		content: ${ R.pipe(R.path([ "theme", "nav", ])) };
@@ -50,15 +53,15 @@ const buttonStyle = [
 		&.active {
 			font-weight: bold;
 			background-color: ${ R.pipe(R.path([ "theme", "nav", ]), color =>
-				mixins.lightenColor(color, 0.1),
-			) };
+		mixins.lightenColor(color, 0.1),
+	) };
 		}
 	`,
 
 	`
 		display: inline-block;
-		height: ${ vars.dim.nav.linksHeight };
-		line-height: ${ vars.dim.nav.linksHeight };
+		height: ${ theme.dimensions.nav.linksHeight };
+		line-height: ${ theme.dimensions.nav.linksHeight };
 		padding: 0 0.75em;
 		font-size: 0.8em;
 		text-transform: uppercase;
@@ -79,8 +82,8 @@ const LinkWrapper = styled.div`
 	${ mixins.xs`
 		border-top: 1px solid;
 		${ R.pipe(R.path([ "theme", "nav", ]), color =>
-			mixins.darkenColor(color, 0.2),
-		) };
+		mixins.darkenColor(color, 0.2),
+	) };
 	
 		&:first-child {
 			}
@@ -111,7 +114,7 @@ const DropdownLinks = styled.div`
 		display: none;
 		background: ${ R.pipe(R.path([ "theme", "nav", ]), mixins.lightenColor) };
 		position: absolute;
-		top: ${ vars.dim.nav.linksHeight };
+		top: ${ theme.dimensions.nav.linksHeight };
 		left: 0;
 		width: 22em;
 
@@ -133,7 +136,7 @@ const DropdownArrow = styled.span`
 
 // --------------------------------------------------
 
-export default ({ links, close, open, ...props, }) => (
+export default ({ links, close, open, ...props }) => (
 	<Wrapper open = { open }>
 		{
 			links && links.map( link => {
@@ -163,7 +166,7 @@ export default ({ links, close, open, ...props, }) => (
 							)
 						}
 					</LinkWrapper>
-				)
+				);
 			})
 		}
 	</Wrapper>

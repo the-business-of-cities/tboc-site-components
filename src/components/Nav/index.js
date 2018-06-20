@@ -1,14 +1,16 @@
-import { Fade, } from "../toolbox";
 import { compose, withState, withHandlers, } from "recompose";
 
 import * as mixins from "codogo-utility-functions";
-import * as vars from "../../style/vars";
+
 
 import Links from "./Links";
 import Logo from "./Logo";
 import Burger from "./Burger";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import React from "react";
+
+import { theme, } from "../../styles";
 
 // --------------------------------------------------
 
@@ -33,18 +35,13 @@ const Inner = styled.div`
 	width: 100%;
 	height: 100%;
 	position: relative;
-	max-width: ${ vars.bps.lg.min }px;
+	max-width: ${ theme.bps.lg.min }px;
 	margin: 0 auto;
 `;
 
 const MobileStuff = styled.div`
 	${ mixins.bp.sm.min`display: none;` };
 	${ mixins.contained() };
-`;
-
-const Dark = styled.div`
-	${ mixins.contained() } position: fixed;
-	background: ${ mixins.transparent(0.5) };
 `;
 
 const Overlay = styled.div`
@@ -91,8 +88,8 @@ const BackgroundColorHack = styled.div`
 	position: fixed;
 	left: 0;
 	right: 0;
-	height: ${ mixins.num(vars.dim.nav.height.other) -
-		mixins.num(vars.dim.nav.linksHeight) }px;
+	height: ${ mixins.num(theme.dimensions.nav.height.other) -
+		mixins.num(theme.dimensions.nav.linksHeight) }px;
 	top: 0;
 `;
 
@@ -107,15 +104,9 @@ const enhance = compose(
 	}),
 );
 
-const Nav = ({ links, ...props, }) => (
+const Nav = ({ links, ...props }) => (
 	<Wrapper>
 		<Inner>
-			<MobileStuff>
-				<Fade visible = { props.open }>
-					<Dark onClick = { props.closeMenu } />
-				</Fade>
-			</MobileStuff>
-
 			<BackgroundColorHack />
 
 			<Links close = { props.closeMenu } open = { props.open } links = { links }/>
@@ -126,8 +117,8 @@ const Nav = ({ links, ...props, }) => (
 				<BurgerWrapper onClick = { props.toggleMenu }>
 					<Burger
 						open = { props.open }
-						padding = { mixins.num(vars.dim.nav.margin.xs) }
-						color = { vars.colors.nav }
+						padding = { mixins.num(theme.dimensions.nav.margin.xs) }
+						color = { theme.colors.nav }
 					/>
 				</BurgerWrapper>
 			</MobileStuff>
@@ -138,5 +129,12 @@ const Nav = ({ links, ...props, }) => (
 		<Line />
 	</Wrapper>
 );
+
+Nav.propTypes = {
+	closeMenu: PropTypes.func,
+	links: PropTypes.object,
+	open: PropTypes.bool,
+	toggleMenu: PropTypes.func,
+};
 
 export default enhance(Nav);
