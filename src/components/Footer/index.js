@@ -6,8 +6,6 @@ import React from "react";
 import styled from "styled-components";
 import R from "ramda";
 
-import React from "react";
-
 // --------------------------------------------------
 
 const Wrapper = styled.footer`

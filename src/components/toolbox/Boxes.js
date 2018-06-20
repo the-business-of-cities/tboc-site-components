@@ -3,7 +3,6 @@ import * as vars from "../../style/vars";
 
 import styled from "styled-components";
 import R from "ramda";
-
 import React from "react";
 
 // --------------------------------------------------

@@ -95,7 +95,7 @@ const LinkWrapper = styled.div`
 	` };
 `;
 
-const Link = styled(NavLink)`
+const StyledLink = styled(NavLink)`
 	color: ${ props => props.theme.colors.logo1 };
 
 	${ mixins.xs`${ buttonStyle[0] }` };
@@ -150,13 +150,13 @@ export default ({ links, close, open, ...props, }) => (
 									{link.dropdown
 										.map(({ title, path, }) => (
 											<LinkWrapper key = { path }>
-												<Link
+												<StyledLink
 													to = { path }
 													activeClassName = "active"
 													exact
 												>
 													{title}
-												</Link>
+												</StyledLink>
 											</LinkWrapper>
 										))}
 								</DropdownLinks>

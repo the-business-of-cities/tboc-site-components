@@ -3,8 +3,6 @@ import styled from "styled-components";
 
 import R from "ramda";
 
-import React from "react";
-
 // --------------------------------------------------
 
 const Burger = props => (

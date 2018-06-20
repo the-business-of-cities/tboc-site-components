@@ -60,6 +60,6 @@ const Import = props => (
 
 const EnhancedImport = enhance(Import);
 
-export const ImportFunction () => (
+export const ImportFunction = () => (
 	<Route path = "/import/:spaceId/:accessToken" component = { EnhancedImport } />
 );

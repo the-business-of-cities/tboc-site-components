@@ -2,8 +2,6 @@ import React from "react";
 import ReactTransitionGroup from "react-addons-transition-group";
 import Velocity from "velocity-animate";
 
-import React from "react";
-
 // --------------------------------------------------
 
 export class Fader extends React.Component {
