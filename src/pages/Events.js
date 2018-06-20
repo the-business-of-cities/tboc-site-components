@@ -5,14 +5,13 @@ import {
 	PageBody,
 	Container,
 	TextCell,
-} from "src/components/common/toolbox";
+} from "../components/toolbox";
 
-import * as vars from "src/components/style/vars";
+import * as vars from "../style/vars";
 
 import styled from "styled-components";
 import Moment from "moment";
-import Head from "src/components/common/Head";
-import Data from "src/data";
+import React from "react";
 
 // --------------------------------------------------
 
@@ -80,62 +79,60 @@ const orderEvents = (events, future) => {
 		);
 };
 
-const pastEvents = orderEvents(Data.events, false, true);
-const upcomingEvents = orderEvents(Data.events, true, false);
+export const Events = ({ title, html, events, }) => {
+	const pastEvents = orderEvents(events, false, true);
+	const upcomingEvents = orderEvents(events, true, false);
 
-const PastEvents = pastEvents.map(event => <Event { ...event } condensed />);
-const UpcomingEvents = upcomingEvents.map(event => <Event { ...event } />);
+	const PastEvents = pastEvents.map(event => <Event { ...event } condensed />);
+	const UpcomingEvents = upcomingEvents.map(event => <Event { ...event } />);
 
-const Events = () => (
-	<PageWrapper>
-		<Head pageData = { Data.pagesMap.events } />
+	return (
+		<PageWrapper>
+			<Container>
+				<TextCell>
+					<PageBody>
+						<h1>{title}</h1>
 
-		<Container>
-			<TextCell>
-				<PageBody>
-					<h1>{Data.pagesMap.events.title}</h1>
+						<div
+							dangerouslySetInnerHTML = { {
+								__html: html,
+							} }
+						/>
 
-					<div
-						dangerouslySetInnerHTML = { {
-							__html: Data.pagesMap.events.html,
-						} }
-					/>
+						{upcomingEvents.length ? (
+							<div>
+								<h2>Upcoming events</h2>
 
-					{upcomingEvents.length ? (
-						<div>
-							<h2>Upcoming events</h2>
+								<EventTable>
+									<thead>
+										<td>Event</td>
+										<td>Role</td>
+										<td>Where</td>
+										<td>When</td>
+									</thead>
 
-							<EventTable>
-								<thead>
-									<td>Event</td>
-									<td>Role</td>
-									<td>Where</td>
-									<td>When</td>
-								</thead>
+									{UpcomingEvents}
+								</EventTable>
+							</div>
+						) : null}
 
-								{UpcomingEvents}
-							</EventTable>
-						</div>
-					) : null}
-
-					{pastEvents.length ? (
-						<div>
-							<h2>Past events</h2>
-							<EventTable>
-								<thead>
-									<td>Event</td>
-									<td>Role</td>
-									<td>Where</td>
-									<td>When</td>
-								</thead>
-								{PastEvents}
-							</EventTable>
-						</div>
-					) : null}
-				</PageBody>
-			</TextCell>
-		</Container>
-	</PageWrapper>
-);
-
-export default Events;
+						{pastEvents.length ? (
+							<div>
+								<h2>Past events</h2>
+								<EventTable>
+									<thead>
+										<td>Event</td>
+										<td>Role</td>
+										<td>Where</td>
+										<td>When</td>
+									</thead>
+									{PastEvents}
+								</EventTable>
+							</div>
+						) : null}
+					</PageBody>
+				</TextCell>
+			</Container>
+		</PageWrapper>
+	);
+};

@@ -1,13 +1,11 @@
-import { Container, TileWrapper, Boxes, } from "src/components/common/toolbox";
-
+import { Container, TileWrapper, Boxes, } from "../../components/toolbox";
 import * as mixins from "codogo-utility-functions";
-import * as vars from "src/components/style/vars";
+import * as vars from "../../style/vars";
 
-import Data from "src/data";
-import Head from "src/components/common/Head";
-import Slider from "./Slider";
+import React from "react";
+import Slider from "../../components/Slider";
 import styled from "styled-components";
-import SubscribeBanner from "./SubscribeBanner";
+import SubscribeBanner from "../../components/SubscribeBanner";
 
 // --------------------------------------------------
 
@@ -56,24 +54,16 @@ const HomePageWrapper = styled.div`
 
 // --------------------------------------------------
 
-const Home = () => (
+export const Home = ({ html, intro, slideContents, }) => (
 	<HomePageWrapper>
-		<Head />
-
-		<Slider />
+		{slideContents && <Slider />}
 
 		<OneTwoWrapper>
 			<TileWrapper>
-				<h2>
-					We advise decision-makers on their urban strategies.<br />
-					We make sense of global complexity.<br />
-					We benchmark cities on the metrics that matter.<br />
-					We write leading edge reports.<br />
-					We chair and speak at global events.
-				</h2>
+				<h2>{intro}</h2>
 			</TileWrapper>
 
-			<TileWrapper dangerouslySetInnerHTML = { { __html: Data.homeHtml, } } />
+			<TileWrapper dangerouslySetInnerHTML = { { __html: html, } } />
 		</OneTwoWrapper>
 
 		<Container>
@@ -83,5 +73,3 @@ const Home = () => (
 		<SubscribeBanner />
 	</HomePageWrapper>
 );
-
-export default Home;

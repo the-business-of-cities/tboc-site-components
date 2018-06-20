@@ -1,29 +1,29 @@
 import { Fade, } from "../toolbox";
-import { Link, } from "react-router-dom";
 import { compose, withState, withHandlers, } from "recompose";
 
 import * as mixins from "codogo-utility-functions";
-import * as vars from "src/components/style/vars";
-import { objMap, } from "src/lib/util";
+import * as vars from "../../style/vars";
 
 import Links from "./Links";
+import Logo from "./Logo";
 import Burger from "./Burger";
 import styled from "styled-components";
 
-import Data from "src/data";
+import React from "react";
 
 // --------------------------------------------------
 
 const Wrapper = styled.nav`
 	${ mixins.bp.xs.min`${ mixins.shadow(0) }` } 
-	${ mixins.bpEither("height", vars.dim.nav.height) }
-	background-color: ${ R.path([ "theme", "nav", ]) };
+	${ props => mixins.bpEither("height", props.theme.dimensions.nav.height) }
+	background: black;
+	background-color: ${ props => props.theme.colors.nav };
+	color: white;
 	left: 0;
-	position: fixed;
+
 	right: 0;
 	top: 0;
 	z-index: 10;
-	color: white;
 
 	& a {
 		color: white !important;
@@ -39,7 +39,8 @@ const Inner = styled.div`
 `;
 
 const MobileStuff = styled.div`
-	${ mixins.bp.sm.min`display: none;` } ${ mixins.contained() };
+	${ mixins.bp.sm.min`display: none;` };
+	${ mixins.contained() };
 `;
 
 const Dark = styled.div`
@@ -48,9 +49,10 @@ const Dark = styled.div`
 `;
 
 const Overlay = styled.div`
-	${ mixins.contained() } ${ ({ open, }) =>
-	open || true ? mixins.shadow(1) : "" } transition: 0.3s all ease-out;
-	background-color: ${ R.path([ "theme", "bg", ]) };
+	${ mixins.contained() };
+	${ ({ open, }) => open || true ? mixins.shadow(1) : "" };
+	transition: 0.3s all ease-out;
+	background-color: ${ props => props.theme.colors.bg };
 `;
 
 const BurgerWrapper = styled.div`
@@ -64,60 +66,29 @@ const BurgerWrapper = styled.div`
 	z-index: 1;
 `;
 
-const IndexLink = props => <Link to = "/" { ...props } />;
+// -----------------------------
 
-const LogoWrapper = styled(IndexLink)`
-	position: absolute;
-	top: 0;
-	${ mixins.bpEither("left", vars.dim.nav.margin) } display: flex;
-	flex-direction: row;
-	align-items: center;
 
-	${ mixins.xs`
-		bottom: 0;
-	` } ${ mixins.bp.sm.min`
-		bottom: ${ vars.dim.nav.linksHeight };
-	` };
-`;
-
-const LogoText = styled.div`
-	font-size: 2em;
-	font-family: ${ vars.font.title.family };
-	text-transform: uppercase;
-`;
-
-const LogoImage = styled.img`
-	height: 80%;
-	width: auto;
-`;
-
-const Logo = props => (
-	<LogoWrapper to = "/">
-		{Data.logo ? (
-			<LogoImage src = { Data.logo.url } />
-		) : (
-			<LogoText>The Business of Cities</LogoText>
-		)}
-	</LogoWrapper>
-);
+// -----------------------------
 
 const Line = styled.div`
 	${ mixins.xs`
 		display: none;
-	` } height: 1.5px;
+	` };
+	height: 1.5px;
 	background: white;
 	position: absolute;
 	left: 0;
 	right: 0;
-	bottom: ${ vars.dim.nav.linksHeight };
+	bottom: ${ props => props.theme.dimensions.nav.linksHeight };
 	display: none;
 `;
 
 const BackgroundColorHack = styled.div`
 	${ mixins.xs`
 		display: none;
-	` }
-	background-color: ${ R.path([ "theme", "bg", ]) };
+	` };
+	background-color: ${ props => props.theme.colors.bg };
 	position: fixed;
 	left: 0;
 	right: 0;
@@ -137,25 +108,25 @@ const enhance = compose(
 	}),
 );
 
-const Nav = ({ open, closeMenu, toggleMenu, }) => (
+const Nav = ({ links, ...props, }) => (
 	<Wrapper>
 		<Inner>
 			<MobileStuff>
-				<Fade visible = { open }>
-					<Dark onClick = { closeMenu } />
+				<Fade visible = { props.open }>
+					<Dark onClick = { props.closeMenu } />
 				</Fade>
 			</MobileStuff>
 
 			<BackgroundColorHack />
 
-			<Links close = { closeMenu } open = { open } />
+			<Links close = { props.closeMenu } open = { props.open } links = { links }/>
 
 			<MobileStuff>
-				<Overlay open = { open } />
+				<Overlay open = { props.open } />
 
-				<BurgerWrapper onClick = { toggleMenu }>
+				<BurgerWrapper onClick = { props.toggleMenu }>
 					<Burger
-						open = { open }
+						open = { props.open }
 						padding = { mixins.num(vars.dim.nav.margin.xs) }
 						color = { vars.colors.nav }
 					/>

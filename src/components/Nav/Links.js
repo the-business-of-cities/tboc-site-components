@@ -1,9 +1,11 @@
 import styled, { css, } from "styled-components";
 import { NavLink, } from "react-router-dom";
-
-import routesConfig from "src/routesConfig";
 import * as mixins from "codogo-utility-functions";
-import * as vars from "src/components/style/vars";
+import * as vars from "../../style/vars";
+
+import R from "ramda";
+import React from "react";
+import Link from "gatsby-link";
 
 // --------------------------------------------------
 
@@ -15,7 +17,7 @@ const wrapperStyle = [
 		left: 0;
 		right: 0;
 		top: ${ vars.dim.nav.height.xs };
-		background-color: ${ R.path([ "theme", "nav", ]) };
+		background-color: ${ props => props.theme.colors.nav };
 		align-items: center;
 	`,
 
@@ -31,7 +33,8 @@ const wrapperStyle = [
 ];
 
 const Wrapper = styled.div`
-	${ mixins.xs`${ wrapperStyle[0] }` } ${ mixins.bp.sm.min`${ wrapperStyle[1] }` };
+	${ mixins.xs`${ wrapperStyle[0] }` };
+	${ mixins.bp.sm.min`${ wrapperStyle[1] }` };
 	margin: auto;
 `;
 
@@ -47,8 +50,8 @@ const buttonStyle = [
 		&.active {
 			font-weight: bold;
 			background-color: ${ R.pipe(R.path([ "theme", "nav", ]), color =>
-		mixins.lightenColor(color, 0.1),
-	) };
+				mixins.lightenColor(color, 0.1),
+			) };
 		}
 	`,
 
@@ -74,12 +77,16 @@ const LinkWrapper = styled.div`
 	position: relative;
 
 	${ mixins.xs`
-		border-top: 1px solid ${ R.pipe(R.path([ "theme", "nav", ]), color =>
-		mixins.darkenColor(color, 0.2),
-	) };
+		border-top: 1px solid;
+		${ R.pipe(R.path([ "theme", "nav", ]), color =>
+			mixins.darkenColor(color, 0.2),
+		) };
+	
 		&:first-child {
-		}
-	` } ${ mixins.bp.sm.min`
+			}
+	` };
+
+	${ mixins.bp.sm.min`
 		&:hover {
 			> div {
 				display: block;
@@ -89,9 +96,10 @@ const LinkWrapper = styled.div`
 `;
 
 const Link = styled(NavLink)`
-	color: ${ R.path([ "theme", "logo1", ]) };
+	color: ${ props => props.theme.colors.logo1 };
 
-	${ mixins.xs`${ buttonStyle[0] }` } ${ mixins.bp.sm.min`${ buttonStyle[1] }` };
+	${ mixins.xs`${ buttonStyle[0] }` };
+	${ mixins.bp.sm.min`${ buttonStyle[1] }` };
 `;
 
 const DropdownLinks = styled.div`
@@ -125,33 +133,38 @@ const DropdownArrow = styled.span`
 
 // --------------------------------------------------
 
-export default ({ close, open, }) => (
+export default ({ links, close, open, ...props, }) => (
 	<Wrapper open = { open }>
-		{routesConfig.filter(R.prop("show")).map(({ title, path, }) => (
-			<LinkWrapper key = { path } onClick = { close }>
-				<Link to = { path } activeClassName = "active" exact>
-					{title}{" "}
-					{path === "/work" && <DropdownArrow>▼</DropdownArrow>}
-				</Link>
+		{
+			links && links.map( link => {
+				console.log(link),
+				(
+					<LinkWrapper key = { link.to } onClick = { close }>
+						<Link to = { link.to } activeClassName = "active" exact>
+							{ link.content } { link.dropdown && <DropdownArrow>▼</DropdownArrow> }
+						</Link>
 
-				{path === "/work" ? (
-					<DropdownLinks>
-						{routesConfig
-							.filter(R.prop("service"))
-							.map(({ title, path, }) => (
-								<LinkWrapper key = { path }>
-									<Link
-										to = { path }
-										activeClassName = "active"
-										exact
-									>
-										{title}
-									</Link>
-								</LinkWrapper>
-							))}
-					</DropdownLinks>
-				) : null}
-			</LinkWrapper>
-		))}
+						{ 
+							false && (
+								<DropdownLinks>
+									{link.dropdown
+										.map(({ title, path, }) => (
+											<LinkWrapper key = { path }>
+												<Link
+													to = { path }
+													activeClassName = "active"
+													exact
+												>
+													{title}
+												</Link>
+											</LinkWrapper>
+										))}
+								</DropdownLinks>
+							)
+						}
+					</LinkWrapper>
+				)
+			})
+		}
 	</Wrapper>
 );

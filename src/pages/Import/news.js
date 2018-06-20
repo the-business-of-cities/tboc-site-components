@@ -1,7 +1,7 @@
 import convert from "xml-js";
 import toMarkdown from "to-markdown";
 
-import { plog, } from "src/lib/util";
+import { plog, } from "./lib/util";
 
 const lang = "en-US";
 const addLangKeys = R.map(val => ({

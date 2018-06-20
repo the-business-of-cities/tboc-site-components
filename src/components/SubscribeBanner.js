@@ -1,10 +1,11 @@
-import styled from "styled-components";
-import { compose, withState, withHandlers, } from "recompose";
-import fetchJsonp from "fetch-jsonp";
-
-import { Icon, Button, } from "src/components/common/toolbox";
-
 import * as mixins from "codogo-utility-functions";
+import { compose, withState, withHandlers, } from "recompose";
+import { Icon, Button, } from "./toolbox";
+
+import fetchJsonp from "fetch-jsonp";
+import React from "react";
+import styled from "styled-components";
+import R from "ramda";
 
 // --------------------------------------------------
 
@@ -138,6 +139,7 @@ const Comp = ({
 }) => (
 	<Wrapper visible = { visible }>
 		<Text>Sign up to our newsletter for weekly updates:</Text>
+		
 		<div>
 			<Input
 				placeholder = "Your email address"
@@ -145,6 +147,7 @@ const Comp = ({
 				onKeyDown = { onKeyDownEmail }
 				value = { email }
 			/>
+			
 			<Button color = "white" onClick = { submit }>
 				Subscribe
 			</Button>

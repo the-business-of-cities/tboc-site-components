@@ -1,13 +1,13 @@
-import { Boxes, } from "src/components/common/toolbox";
+import { Boxes, } from "../components/toolbox";
 
 import Generic from "./Generic";
 
+import React from "react";
+
 // --------------------------------------------------
 
-const Comp = props => (
+export const WorkStream = props => (
 	<Generic { ...props }>
 		<Boxes />
 	</Generic>
 );
-
-export default Comp;

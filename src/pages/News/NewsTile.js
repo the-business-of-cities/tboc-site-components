@@ -6,7 +6,9 @@ import {
 	TileTitle,
 	TileImage,
 	TileContent,
-} from "src/components/common/toolbox";
+} from "../../components/toolbox";
+
+import React from "react";
 
 // --------------------------------------------------
 

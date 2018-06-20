@@ -1,11 +1,11 @@
-import { Link, } from "react-router-dom";
-
-import { TileWrapper, Icon, AntiGridCell, } from "src/components/common/toolbox";
-
-import styled from "styled-components";
 import * as mixins from "codogo-utility-functions";
+import { Link, } from "react-router-dom";
+import { TileWrapper, Icon, AntiGridCell, } from "../components/toolbox";
+
 import Generic from "./Generic";
-import routesConfig from "src/routesConfig";
+import styled from "styled-components";
+
+import React from "react";
 
 // --------------------------------------------------
 
@@ -34,24 +34,20 @@ const ArrowIcon = () => (
 	<Icon type = "arrow-right" size = "0.9em" marginLeft = "0.1em" />
 );
 
-const Comp = props => (
+export const Work = props => (
 	<Generic { ...props }>
 		<ThirdsWrapper>
-			{routesConfig.filter(R.prop("service")).map(page => (
-				<TileWrapper>
-					<h3>{page.title}</h3>
+			<TileWrapper>
+				<h3>{props.title}</h3>
 
-					<p>{page.description}</p>
+				<p>{props.description}</p>
 
-					<p>
-						<Link to = { page.slug }>
-							Find out more <ArrowIcon />
-						</Link>
-					</p>
-				</TileWrapper>
-			))}
+				<p>
+					<Link to = { props.slug }>
+						Find out more <ArrowIcon />
+					</Link>
+				</p>
+			</TileWrapper>
 		</ThirdsWrapper>
 	</Generic>
 );
-
-export default Comp;

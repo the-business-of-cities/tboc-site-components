@@ -1,12 +1,10 @@
 import { compose, } from "recompose";
-
-import * as vars from "src/components/style/vars";
+import * as vars from "../../style/vars";
 
 import Arrow from "./Arrow";
 import Slides from "./Slides";
-
 import styled from "styled-components";
-import Data from "src/data";
+import React from "react";
 
 // --------------------------------------------------
 
@@ -58,28 +56,7 @@ const sliderSettings = {
 	prevArrow: <Arrow prev />,
 };
 
-const slideContents = Data.homeBanner.map(({ slug, contentType, link, }) => {
-	if (contentType === "event") {
-		return {
-			...Data.eventsMap[slug],
-			to: "/events/" + slug,
-		};
-	} else if (contentType === "news") {
-		return {
-			...Data.newsMap[slug],
-			to: "/blog/" + slug,
-		};
-	} else if (contentType === "publication") {
-		return {
-			...Data.publicationsMap[slug],
-			href: link,
-		};
-	} else {
-		return {};
-	}
-});
-
-const Slider = () => (
+const Slider = ({ slideContents, }) => (
 	<Wrapper>
 		<Slides sliderSettings = { sliderSettings } slideContents = { slideContents } />
 	</Wrapper>

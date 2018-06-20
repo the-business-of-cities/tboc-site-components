@@ -1,12 +1,12 @@
-import { objMap, } from "src/lib/util";
-import { Icon, } from "src/components/common/toolbox";
-
+import { Icon, } from "../toolbox";
 import * as mixins from "codogo-utility-functions";
-import * as vars from "src/components/style/vars";
+import * as vars from "../../style/vars";
 
-import data from "src/data";
 import React from "react";
 import styled from "styled-components";
+import R from "ramda";
+
+import React from "react";
 
 // --------------------------------------------------
 
@@ -100,57 +100,41 @@ const formatTelNumber = num => {
 	}
 };
 
-const socialLinks = [
-	"email",
-	"phone",
-	"twitter",
-	"facebook",
-	"youtube",
-	"linkedin",
-	"podcasts",
-	"newsletter",
-];
 const socialIcons = {
 	newsletter: "envelope",
 	podcasts: "podcast",
 	email: "at",
 };
 
-const socialLinksData = {
-	...data,
-	emailLink: "mailto:" + data.email,
-	phoneLink: "tel:" + data.telephone,
+const Footer = ({ footerText, socialLinks, }) => {
+	return (
+		<Wrapper>
+			<Inner>
+				<Contact>{ footerText }</Contact>
+
+				<Social>
+					{ socialLinks.map( link =>
+						<a
+							key = { `footer-${ link.type }` }
+							href = { link.link }
+							style = {
+								link.type === "phone"
+									? {
+										marginRight: "0.5em",
+										paddingRight: "0.75em",
+										borderRight:
+												"1px solid white",
+									  }
+									: undefined
+							}
+						>
+							<Icon type = { socialIcons[link.type] || link.type } />
+						</a>
+					) }
+				</Social>
+			</Inner>
+		</Wrapper>
+	);
 };
-
-const Footer = () => (
-	<Wrapper>
-		<Inner>
-			<Contact>{data.footerText}</Contact>
-
-			<Social>
-				{socialLinks.map(
-					str =>
-						socialLinksData[str + "Link"] ? (
-							<a
-								key = { str }
-								href = { socialLinksData[str + "Link"] }
-								style = {
-									str === "phone"
-										? {
-											marginRight: "0.5em",
-											paddingRight: "0.75em",
-											borderRight: "1px solid white",
-										  }
-										: undefined
-								}
-							>
-								<Icon type = { socialIcons[str] || str } />
-							</a>
-						) : null,
-				)}
-			</Social>
-		</Inner>
-	</Wrapper>
-);
 
 export default Footer;

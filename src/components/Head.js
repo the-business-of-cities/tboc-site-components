@@ -1,8 +1,10 @@
 import Helmet from "react-helmet";
 
-import * as vars from "src/components/style/vars";
+import * as vars from "../style/vars";
 
-import Data from "src/data";
+import Data from "./data";
+
+import React from "react";
 
 // --------------------------------------------------
 

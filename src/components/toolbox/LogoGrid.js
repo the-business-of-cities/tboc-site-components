@@ -1,5 +1,9 @@
-import styled from "styled-components";
 import * as mixins from "codogo-utility-functions";
+
+import R from "ramda";
+import styled from "styled-components";
+
+import React from "react";
 
 // --------------------------------------------------
 
@@ -37,21 +41,20 @@ const LogoImage = styled.div`
 	background-position: center center;
 `;
 
+// --------------------------------------------------
+
 export const LogoGrid = ({ logos, }) => (
 	<LogoGridWrapper>
-		{
-			(console.log(logos),
-			(logos || []).map(({ image, link, }, i) => (
-				<LogoWrapper key = { i } href = { link }>
-					<LogoInner>
-						<LogoImage
-							src = { `http://res.cloudinary.com/codogo/image/fetch/h_500,c_fill,g_face,f_auto/https:${ (image &&
-								image.url) ||
-								image.fields.file.url }` }
-						/>
-					</LogoInner>
-				</LogoWrapper>
-			)))
-		}
+		{(logos || []).map(({ image, link, }, i) => (
+			<LogoWrapper key = { i } href = { link }>
+				<LogoInner>
+					<LogoImage
+						src = { `http://res.cloudinary.com/codogo/image/fetch/h_500,c_fill,g_face,f_auto/https:${ (image &&
+							image.url) ||
+							image.fields.file.url }` }
+					/>
+				</LogoInner>
+			</LogoWrapper>
+		))}
 	</LogoGridWrapper>
 );

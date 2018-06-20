@@ -1,9 +1,10 @@
-import { Icon, } from "src/components/common/toolbox";
+import { Icon, } from "../components/toolbox";
 
 import styled from "styled-components";
 import * as mixins from "codogo-utility-functions";
-import data from "src/data";
 import Generic from "./Generic";
+
+import React from "react";
 
 // --------------------------------------------------
 
@@ -106,10 +107,8 @@ const TeamMember = ({
 
 // --------------------------------------------------
 
-const Comp = props => (
+export const About = props => (
 	<Generic { ...props }>
-		{data.teamMembers.map(o => <TeamMember { ...o } key = { o.name } />)}
+		{props.data.teamMembers.map(o => <TeamMember { ...o } key = { o.name } />)}
 	</Generic>
 );
-
-export default Comp;

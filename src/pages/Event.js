@@ -3,11 +3,12 @@ import {
 	PageBody,
 	Container,
 	TextCell,
-} from "src/components/common/toolbox";
+} from "../components/toolbox";
 
 import styled from "styled-components";
 import Moment from "moment";
-import Head from "src/components/common/Head";
+
+import React from "react";
 
 // --------------------------------------------------
 
@@ -24,10 +25,8 @@ const EventRole = styled.div`
 
 // --------------------------------------------------
 
-const Event = ({ event, title, }) => (
+export const Event = ({ event, }) => (
 	<PageWrapper>
-		<Head pageData = { null } />
-
 		<Container>
 			<TextCell>
 				<PageBody>
@@ -39,8 +38,6 @@ const Event = ({ event, title, }) => (
 					</EventDate>
 
 					<EventRole>{event.role}</EventRole>
-
-					{/*<p>{ event.description }</p>*/}
 
 					<p>{event.content}</p>
 				</PageBody>

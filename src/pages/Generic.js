@@ -3,9 +3,11 @@ import {
 	PageBody,
 	Container,
 	TextCell,
-} from "src/components/common/toolbox";
+} from "../components/toolbox";
 import * as mixins from "codogo-utility-functions";
 
+import marked from "marked";
+import React from "react";
 import styled from "styled-components";
 
 // --------------------------------------------------
@@ -25,30 +27,30 @@ const Image = styled.div`
 `;
 // --------------------------------------------------
 
-const Generic = ( {fullTitle, title, secondaryImage, html, children,}) => (
+export const Generic = ({ title, secondaryImage, description, content, }) => (
 	<PageWrapper>
 		<Container>
 			<TextCell>
 				<PageBody>
-					<h1>{fullTitle || title}</h1>
+					<h1>{ title }</h1>
 
 					{secondaryImage && (
 						<ImageWrapper>
-							<Image src = { secondaryImage.url } />
+							<Image src = { secondaryImage.file.url } />
 						</ImageWrapper>
 					)}
 
+					<div><em>{ description }</em></div>
+
 					<div
 						dangerouslySetInnerHTML = { {
-							__html: html,
+							__html: marked(
+								content,
+							),
 						} }
 					/>
-
-					{children}
 				</PageBody>
 			</TextCell>
 		</Container>
 	</PageWrapper>
 );
-
-export default Generic;

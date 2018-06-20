@@ -1,6 +1,10 @@
-import styled from "styled-components";
 import * as mixins from "codogo-utility-functions";
-import * as vars from "src/components/style/vars";
+import * as vars from "../../style/vars";
+
+import styled from "styled-components";
+import R from "ramda";
+
+import React from "react";
 
 // --------------------------------------------------
 

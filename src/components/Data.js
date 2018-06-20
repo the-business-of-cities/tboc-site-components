@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
-import { printObj, } from "src/lib/util";
-import { Container, } from "src/components/common/toolbox";
+import { Container, } from "./toolbox";
+
+import React from "react";
 
 // --------------------------------------------------
 
@@ -12,10 +13,4 @@ const Wrapper = styled(Container)`
 	font-family: monospace;
 `;
 
-export default data => () => (
-	<Wrapper>
-		{printObj(data)}
-
-		{console.log(data)}
-	</Wrapper>
-);
+export default data => () => <Wrapper>{console.log(data)}</Wrapper>;

@@ -3,9 +3,11 @@ import { compose, lifecycle, withHandlers, withState, } from "recompose";
 import { Route, } from "react-router-dom";
 import styled from "styled-components";
 
-import { Container, GridCell, } from "src/components/common/toolbox";
+import { Container, GridCell, } from "../components/toolbox";
 import { createPublication, onSubmitPublicationsXml, } from "./publications";
 import { createNews, onSubmitNewsXml, } from "./news";
+
+import React from "react";
 
 // --------------------------------------------------
 
@@ -58,6 +60,6 @@ const Import = props => (
 
 const EnhancedImport = enhance(Import);
 
-export default () => (
+export const ImportFunction () => (
 	<Route path = "/import/:spaceId/:accessToken" component = { EnhancedImport } />
 );

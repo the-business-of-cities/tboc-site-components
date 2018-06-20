@@ -6,16 +6,16 @@ import {
 	GridCell,
 	AntiGridCell,
 	SmartImg,
-} from "src/components/common/toolbox";
-
+} from "../components/toolbox";
 import { lifecycle, } from "recompose";
+import * as mixins from "codogo-utility-functions";
+import * as vars from "../style/vars";
 
 import styled from "styled-components";
 import masonry from "masonry-layout";
-import Data from "src/data";
-import Head from "src/components/common/Head";
-import * as mixins from "codogo-utility-functions";
-import * as vars from "src/components/style/vars";
+import Head from "../components/Head";
+
+import React from "react";
 
 // --------------------------------------------------
 
@@ -79,25 +79,25 @@ const PublicationTile = ({ image, title, link, description, }) => (
 	</a>
 );
 
-const Publications = () => (
+const Publications = ({ data, }) => (
 	<PageWrapper>
-		<Head pageData = { Data.pagesMap.publications } />
+		<Head pageData = { data.pagesMap.publications } />
 
 		<Container>
 			<TextCell>
 				<PageBody>
-					<h1>{Data.pagesMap.publications.title}</h1>
+					<h1>{data.pagesMap.publications.title}</h1>
 
 					<div
 						dangerouslySetInnerHTML = { {
-							__html: Data.pagesMap.publications.html,
+							__html: data.pagesMap.publications.html,
 						} }
 					/>
 
 					<h2>Recent Publications</h2>
 
 					<PubsWrapper className = "masonry-items">
-						{Data.publications.map((props, i) => (
+						{data.publications.map((props, i) => (
 							<PublicationTile { ...props } key = { props.slug + i } />
 						))}
 					</PubsWrapper>
@@ -107,4 +107,4 @@ const Publications = () => (
 	</PageWrapper>
 );
 
-export default enhance(Publications);
+export const PublicationPage =  enhance(Publications);

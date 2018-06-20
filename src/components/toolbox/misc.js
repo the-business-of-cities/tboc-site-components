@@ -1,10 +1,12 @@
 import styled, { css, } from "styled-components";
 import { Link, } from "react-router-dom";
-import { objMap, } from "src/lib/util";
 
 import MQ from "react-responsive";
 import * as mixins from "codogo-utility-functions";
-import * as vars from "src/components/style/vars";
+import * as vars from "../../style/vars";
+import R from "ramda";
+
+import React from "react";
 
 // --------------------------------------------------
 
@@ -20,7 +22,10 @@ export const AntiGridCell = styled.div`
 
 // --------------------------------------------------
 
-const textBoxMargins = objMap(vars.font.size, (key, val) => `-${ val } auto`);
+const textBoxMargins = mixins.objectMap(
+	vars.font.size,
+	(key, val) => `-${ val } auto`,
+);
 
 export const TextBox = styled.div`
 	${ mixins.bpEach("margin", textBoxMargins) } 
@@ -210,7 +215,7 @@ export const PSpacing = styled.div`
 	${ mixins.bpEach("height", vars.font.size) };
 `;
 
-export const Only = objMap(vars.bps, (key, val) => ({ children, }) => (
+export const Only = mixins.objectMap(vars.bps, (key, val) => ({ children, }) => (
 	<MQ
 		query = { `(min-width: ${ val.min }px) and (max-width: ${ val.max }px)` }
 		children = { children }

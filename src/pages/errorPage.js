@@ -3,11 +3,13 @@ import {
 	PageBody,
 	Container,
 	TextCell,
-} from "src/components/common/toolbox";
+} from "../components/toolbox";
+
+import React from "react";
 
 // ----------------------
 
-export const errorPage = () => (
+export const ErrorPage = () => (
 	<PageWrapper>
 		<Container>
 			<TextCell>
