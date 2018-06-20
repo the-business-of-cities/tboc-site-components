@@ -1,12 +1,12 @@
 {
   "name": "tboc-site-components",
-  "description": "Let's try again Josh",
+  "description": "Centralised package for components used across tboc family sites",
   "version": "0.1.1",
   "author": "Max Clayton Clowes <maxcc@me.com>",
   "main": "lib/index.js",
   "babel": {
     "presets": [
-      "codogo"
+      "mcclowes"
     ]
   },
   "dependencies": {
@@ -27,26 +27,23 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
-    "codogo-scripts": "3.2.15",
     "eslint": "^4.18.2",
+    "mcclowes-scripts": "^0.3.5",
     "prettier": "^1.11.1"
   },
   "eslintConfig": {
-    "extends": "codogo"
+    "extends": "mcclowes"
   },
   "files": [
     "lib"
   ],
   "keywords": [
-    "navigation",
-    "bar",
-    "nav",
-    "codogo"
+    "the business of cities"
   ],
   "license": "MIT",
   "scripts": {
-    "build": "codogo-scripts build",
-    "watch": "codogo-scripts watch",
-    "format": "codogo-scripts format"
+    "build": "mcclowes-scripts build",
+    "watch": "mcclowes-scripts watch",
+    "format": "mcclowes-scripts format"
   }
 }
