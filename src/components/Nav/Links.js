@@ -1,5 +1,4 @@
 import styled, { css, } from "styled-components";
-import { NavLink, } from "react-router-dom";
 import * as mixins from "codogo-utility-functions";
 
 
@@ -46,7 +45,6 @@ const buttonStyle = [
 		display: block;
 		padding: 0.9em ${ theme.dimensions.nav.margin.xs };
 		font-size: 0.9em;
-
 		content: ${ R.pipe(R.path([ "theme", "nav", ])) };
 		line-height: 1;
 
@@ -98,7 +96,7 @@ const LinkWrapper = styled.div`
 	` };
 `;
 
-const StyledLink = styled(NavLink)`
+const StyledLink = styled(Link)`
 	color: ${ props => props.theme.colors.logo1 };
 
 	${ mixins.xs`${ buttonStyle[0] }` };
@@ -142,11 +140,11 @@ const Links = ({ links, close, open, }) => (
 			links && links.map( link => {
 				return (
 					<LinkWrapper key = { link.to } onClick = { close }>
-						<Link to = { link.to } activeClassName = "active" exact>
+						<StyledLink to = { link.to } activeClassName = "active" exact>
 							{ link.content } 
 
 							{ link.dropdown && <DropdownArrow>▼</DropdownArrow> }
-						</Link>
+						</StyledLink>
 
 						{ 
 							false && (

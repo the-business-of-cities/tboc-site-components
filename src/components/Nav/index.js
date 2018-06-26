@@ -14,17 +14,18 @@ import { theme, } from "../../styles";
 
 // --------------------------------------------------
 
-const Wrapper = styled.nav`
-	${ mixins.bp.xs.min`${ mixins.shadow(0) }` } 
-	${ props => mixins.bpEither("height", props.theme.dimensions.nav.height) }
-	background: black;
+const NavWrapper = styled.nav`
 	background-color: ${ props => props.theme.colors.nav };
+	background: black;
 	color: white;
 	left: 0;
-
 	right: 0;
+	position: relative;
 	top: 0;
 	z-index: 10;
+
+	${ mixins.bp.xs.min`${ mixins.shadow(0) }` } 
+	${ props => mixins.bpEither("height", props.theme.dimensions.nav.height) }
 
 	& a {
 		color: white !important;
@@ -105,7 +106,7 @@ const enhance = compose(
 );
 
 const Nav = ({ links, logo, open, closeMenu, toggleMenu, }) => (
-	<Wrapper>
+	<NavWrapper>
 		<Inner>
 			<BackgroundColorHack />
 
@@ -131,7 +132,7 @@ const Nav = ({ links, logo, open, closeMenu, toggleMenu, }) => (
 		</Inner>
 
 		<Line />
-	</Wrapper>
+	</NavWrapper>
 );
 
 Nav.propTypes = {

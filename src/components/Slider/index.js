@@ -10,11 +10,13 @@ import { theme, } from "../../styles";
 
 // --------------------------------------------------
 
-const snapshotting = false;
+const snapshotting = window.location.host.includes("localhost:") &&
+	parseInt(window.location.host.replace("localhost:", ""), 10) > 9999;
 
 const Wrapper = styled.div`
 	transition: 0.1s linear all;
 	max-height: 21.4em;
+	width: 100%;
 	background-color: ${ snapshotting ? theme.colors.bgdark : "transparent" };
 
 	& > div {
@@ -22,48 +24,16 @@ const Wrapper = styled.div`
 	}
 `;
 
-const sliderSettings = {
-	dots: true,
-	speed: 500,
-	slidesToScroll: 1,
-	arrows: true,
-	swipe: true,
-	focusOnSelect: true,
-	centerMode: true,
-	centerPadding: 0,
-	...(snapshotting
-		? { slidesToShow: 1, }
-		: {
-			responsive: [
-				{
-					breakpoint: 768,
-					settings: {
-						slidesToShow: 1,
-					},
-				},
-				{
-					breakpoint: 100000,
-					settings: {
-						slidesToShow: 3,
-					},
-				},
-			],
-		  }),
-	infinite: true,
-	nextArrow: <Arrow next />,
-	prevArrow: <Arrow prev />,
-};
-
-const Slider = ({ slideContents, }) => (
+const Slider = ( { sliderContents, }, ) => (
 	<Wrapper>
-		<Slides sliderSettings = { sliderSettings } slideContents = { slideContents } />
+		<Slides sliderContents = { sliderContents } />
 	</Wrapper>
 );
 
 const enhance = compose();
 
 Slider.propTypes = {
-	slideContents: PropTypes.any,
+	sliderContents: PropTypes.any,
 };
 
 export default enhance(Slider);
