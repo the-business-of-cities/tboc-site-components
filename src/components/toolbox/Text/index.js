@@ -41,6 +41,10 @@ export const TextBox = styled.div`
 	${ p => (p.align ? `text-align: ${ p.align };` : "") };
 `;
 
+const GridCell = styled.div`
+	font-weight: bold;
+`;
+
 export const TextCell = props => (
 	<GridCell { ...props }>
 		<TextBox { ...R.pick([ "bold", "align", ])(props) }>
