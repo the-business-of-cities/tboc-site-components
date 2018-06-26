@@ -35,7 +35,7 @@ const Inner = styled.div`
 	width: 100%;
 	height: 100%;
 	position: relative;
-	max-width: ${ theme.bps.lg.min }px;
+	max-width: ${ theme.breakpoints.lg.min }px;
 	margin: 0 auto;
 `;
 
@@ -104,26 +104,30 @@ const enhance = compose(
 	}),
 );
 
-const Nav = ({ links, ...props }) => (
+const Nav = ({ links, logo, open, closeMenu, toggleMenu, }) => (
 	<Wrapper>
 		<Inner>
 			<BackgroundColorHack />
 
-			<Links close = { props.closeMenu } open = { props.open } links = { links }/>
+			<Links 
+				close = { closeMenu } 
+				open = { open } 
+				links = { links }
+			/>
 
 			<MobileStuff>
-				<Overlay open = { props.open } />
+				<Overlay open = { open } />
 
-				<BurgerWrapper onClick = { props.toggleMenu }>
+				<BurgerWrapper onClick = { toggleMenu }>
 					<Burger
-						open = { props.open }
+						open = { open }
 						padding = { mixins.num(theme.dimensions.nav.margin.xs) }
 						color = { theme.colors.nav }
 					/>
 				</BurgerWrapper>
 			</MobileStuff>
 
-			<Logo />
+			<Logo logo = { logo }/>
 		</Inner>
 
 		<Line />
@@ -132,7 +136,8 @@ const Nav = ({ links, ...props }) => (
 
 Nav.propTypes = {
 	closeMenu: PropTypes.func,
-	links: PropTypes.object,
+	links: PropTypes.array,
+	logo: PropTypes.object,
 	open: PropTypes.bool,
 	toggleMenu: PropTypes.func,
 };

@@ -136,15 +136,16 @@ const DropdownArrow = styled.span`
 
 // --------------------------------------------------
 
-export default ({ links, close, open, ...props }) => (
+const Links = ({ links, close, open, }) => (
 	<Wrapper open = { open }>
 		{
 			links && links.map( link => {
-				console.log(link),
-				(
+				return (
 					<LinkWrapper key = { link.to } onClick = { close }>
 						<Link to = { link.to } activeClassName = "active" exact>
-							{ link.content } { link.dropdown && <DropdownArrow>▼</DropdownArrow> }
+							{ link.content } 
+
+							{ link.dropdown && <DropdownArrow>▼</DropdownArrow> }
 						</Link>
 
 						{ 
@@ -171,3 +172,11 @@ export default ({ links, close, open, ...props }) => (
 		}
 	</Wrapper>
 );
+
+Links.propTypes = {
+	close: PropTypes.func,
+	links: PropTypes.array,
+	open: PropTypes.bool,
+};
+
+export default Links;

@@ -38,19 +38,21 @@ const LogoImage = styled.img`
 
 // --------------------------------------------------
 
-const Logo = props => (
+const Logo = ( { logo, }, ) => (
 	<LogoWrapper to = "/">
-		{props.logo ? (
-			<LogoImage src = { props.logo.url } />
+		{ logo.url ? (
+			<LogoImage src = {  logo.url } />
 		) : (
-			<LogoText>{props.text}</LogoText>
+			<LogoText>{  logo.text }</LogoText>
 		)}
 	</LogoWrapper>
 );
 
 Logo.propTypes = {
-	logo: PropTypes.string,
-	text: PropTypes.string,
+	logo: PropTypes.shape({
+		url: PropTypes.string,
+		text: PropTypes.string,
+	}),
 };
 
 export default Logo;

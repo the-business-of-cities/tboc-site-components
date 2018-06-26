@@ -3,7 +3,7 @@ import { compose, lifecycle, withHandlers, withState, } from "recompose";
 import { Route, } from "react-router-dom";
 import styled from "styled-components";
 
-import { Container, GridCell, } from "../components/toolbox";
+import { Container, GridCell, } from "../../components/toolbox";
 import { createPublication, onSubmitPublicationsXml, } from "./publications";
 import { createNews, onSubmitNewsXml, } from "./news";
 

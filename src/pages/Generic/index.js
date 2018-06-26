@@ -1,15 +1,16 @@
 import {
 	Page, Section, Container, Row, Column, SecondaryImage,
-} from "../components/toolbox";
+} from "../../components/toolbox";
 
 import marked from "marked";
+import PropTypes from "prop-types";
 import React from "react";
 
 // --------------------------------------------------
 
 // --------------------------------------------------
 
-export const Generic = ({ title, secondaryImage, description, content, }) => (
+const Generic = ({ title, secondaryImage, description, content, }) => (
 	<Page>
 		<Section>
 			<Container>
@@ -44,4 +45,11 @@ export const Generic = ({ title, secondaryImage, description, content, }) => (
 	</Page>
 );
 
+Generic.propTypes = {
+	content: PropTypes.any,
+	description: PropTypes.any,
+	secondaryImage: PropTypes.any,
+	title: PropTypes.any,
+};
 
+export { Generic, };

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { Container, } from "./toolbox";
+import { Container, } from "../../components/toolbox";
 
 import React from "react";
 

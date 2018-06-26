@@ -27,7 +27,7 @@ const Inner = styled.div`
 	display: flex;
 	justify-content: space-between;
 	color: white;
-	max-width: ${ theme.bps.lg.min }px;
+	max-width: ${ theme.breakpoints.lg.min }px;
 	margin: 0 auto;
 
 	${ mixins.xs`

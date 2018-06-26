@@ -1,6 +1,6 @@
 import {
 	Page, Section, Container, Row, Column, SecondaryImage,
-} from "../components/toolbox";
+} from "../../components/toolbox";
 
 import React from "react";
 
