@@ -20,7 +20,7 @@ Burger.defaultProps = {
 	layerWidth: 30,
 	layerHeight: 3,
 	layerSpacing: 6,
-	color: "#fff",
+	color: "#000",
 	borderRadius: 4,
 	transitionDuration: 0.4,
 };

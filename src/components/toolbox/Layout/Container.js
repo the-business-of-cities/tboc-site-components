@@ -18,7 +18,9 @@ const Container = styled.div`
 	justify-content: center;
 	width: 100%;
 
-	${ props => props.restrict && `max-width: 800px` };
+	${ props => props.restrict && "max-width: 900px" };
+
+	${ props => props.narrow && "max-width: 750px" };
 
 	${ mixins.bp.sm.max`
 		flex-basis: 100%;

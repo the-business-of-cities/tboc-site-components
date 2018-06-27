@@ -4,25 +4,41 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import React from "react";
 import Link from "gatsby-link";
+import { theme, } from "../../styles";
 
 // --------------------------------------------------
 
+const LogoWrapper = styled.div`
+	background: white;
+	bottom: 0;
+	display: flex;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	align-items: center;
+	justify-content: center;
+
+	${ mixins.bp.sm.min`
+		bottom: ${ theme.dimensions.nav.linksHeight };
+	` };
+`;
+
+const LogoContainer = styled.div`
+	display: flex;
+	width: 100%;	
+	height: 100%;
+	max-width: ${ theme.breakpoints.lg.min }px;
+	padding: 0 ${ theme.dimensions.nav.margin.xs };
+`;
+
 const IndexLink = props => <Link to = "/" { ...props } />;
 
-const LogoWrapper = styled(IndexLink)`
-	position: absolute;
-	top: 0;
-	${ props => mixins.bpEither("left", props.theme.dimensions.nav.margin ) };
+const LogoLink = styled(IndexLink)`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-
-	${ mixins.xs`
-		bottom: 0;
-	` };
-	${ mixins.bp.sm.min`
-		bottom: ${ props => props.theme.dimensions.nav.linksHeight };
-	` };
+	flex: 1;
 `;
 
 const LogoText = styled.div`
@@ -34,17 +50,23 @@ const LogoText = styled.div`
 const LogoImage = styled.img`
 	height: 80%;
 	width: auto;
+	object-fit: contain;
+	object-position: left;
 `;
 
 // --------------------------------------------------
 
 const Logo = ( { logo, }, ) => (
-	<LogoWrapper to = "/">
-		{ logo.url ? (
-			<LogoImage src = {  logo.url } />
-		) : (
-			<LogoText>{  logo.text }</LogoText>
-		)}
+	<LogoWrapper>
+		<LogoContainer>
+			<LogoLink to = "/">
+				{ logo.url ? (
+					<LogoImage src = {  logo.url } />
+				) : (
+					<LogoText>{  logo.text }</LogoText>
+				)}
+			</LogoLink>
+		</LogoContainer>
 	</LogoWrapper>
 );
 

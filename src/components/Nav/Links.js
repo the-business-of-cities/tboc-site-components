@@ -11,33 +11,41 @@ import Link from "gatsby-link";
 
 import { theme, } from "../../styles";
 
-const wrapperStyle = [
-	css`
+const LinksWrapper = styled.div`
+	align-items: center;
+	left: 0;
+	margin: auto;
+	position: absolute;
+	right: 0;
+	justify-content: center;
+
+	${ mixins.xs`
+		background-color: ${ props => props.theme.colors.nav.background };
+		top: ${ theme.dimensions.nav.height.xs };
 		transform: translateY(${ props => (props.open ? 0 : -110) }%);
 		transition: 0.3s all ease-out;
-		${ mixins.shadow(2) } position: absolute;
-		left: 0;
-		right: 0;
-		top: ${ theme.dimensions.nav.height.xs };
-		background-color: ${ props => props.theme.colors.nav };
-		align-items: center;
-	`,
 
-	`
-		position: absolute;
-		right: ${ theme.dimensions.nav.margin.other };
-		left: ${ theme.dimensions.nav.margin.other };
+		${ mixins.shadow(2) };
+	` };
+
+	${ mixins.bp.sm.min`
+		display: flex;
 		bottom: 0;
 		height: ${ theme.dimensions.nav.linksHeight };
-		display: flex;
-		align-items: center;
-	`,
-];
+	` };
+`;
 
-const Wrapper = styled.div`
-	${ mixins.xs`${ wrapperStyle[0] }` };
-	${ mixins.bp.sm.min`${ wrapperStyle[1] }` };
-	margin: auto;
+const LinksContainer = styled.div`
+	display: flex;
+	bottom: 0;
+	width: 100%;
+	max-width: ${ theme.breakpoints.lg.min }px;
+	flex-direction: column;
+
+	${ mixins.bp.sm.min`
+		flex-direction: row;
+		padding: 0 ${ theme.dimensions.nav.margin.xs };
+	` };
 `;
 
 const buttonStyle = [
@@ -82,9 +90,6 @@ const LinkWrapper = styled.div`
 		${ R.pipe(R.path([ "theme", "nav", ]), color =>
 		mixins.darkenColor(color, 0.2),
 	) };
-	
-		&:first-child {
-			}
 	` };
 
 	${ mixins.bp.sm.min`
@@ -135,40 +140,42 @@ const DropdownArrow = styled.span`
 // --------------------------------------------------
 
 const Links = ({ links, close, open, }) => (
-	<Wrapper open = { open }>
-		{
-			links && links.map( link => {
-				return (
-					<LinkWrapper key = { link.to } onClick = { close }>
-						<StyledLink to = { link.to } activeClassName = "active" exact>
-							{ link.content } 
+	<LinksWrapper open = { open }>
+		<LinksContainer>
+			{
+				links && links.map( link => {
+					return (
+						<LinkWrapper key = { link.to } onClick = { close }>
+							<StyledLink to = { link.to } activeClassName = "active" exact>
+								{ link.content } 
 
-							{ link.dropdown && <DropdownArrow>▼</DropdownArrow> }
-						</StyledLink>
+								{ link.dropdown && <DropdownArrow>▼</DropdownArrow> }
+							</StyledLink>
 
-						{ 
-							false && (
-								<DropdownLinks>
-									{link.dropdown
-										.map(({ title, path, }) => (
-											<LinkWrapper key = { path }>
-												<StyledLink
-													to = { path }
-													activeClassName = "active"
-													exact
-												>
-													{title}
-												</StyledLink>
-											</LinkWrapper>
-										))}
-								</DropdownLinks>
-							)
-						}
-					</LinkWrapper>
-				);
-			})
-		}
-	</Wrapper>
+							{ 
+								false && (
+									<DropdownLinks>
+										{link.dropdown
+											.map(({ title, path, }) => (
+												<LinkWrapper key = { path }>
+													<StyledLink
+														to = { path }
+														activeClassName = "active"
+														exact
+													>
+														{title}
+													</StyledLink>
+												</LinkWrapper>
+											))}
+									</DropdownLinks>
+								)
+							}
+						</LinkWrapper>
+					);
+				})
+			}
+		</LinksContainer>
+	</LinksWrapper>
 );
 
 Links.propTypes = {

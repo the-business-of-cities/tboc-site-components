@@ -15,14 +15,14 @@ import { theme, } from "../../styles";
 // --------------------------------------------------
 
 const NavWrapper = styled.nav`
-	background-color: ${ props => props.theme.colors.nav };
+	background-color: ${ props => props.theme.colors.nav.alt };
 	background: black;
 	color: white;
 	left: 0;
 	right: 0;
-	position: relative;
 	top: 0;
 	z-index: 10;
+	position: relative;
 
 	${ mixins.bp.xs.min`${ mixins.shadow(0) }` } 
 	${ props => mixins.bpEither("height", props.theme.dimensions.nav.height) }
@@ -30,14 +30,6 @@ const NavWrapper = styled.nav`
 	& a {
 		color: white !important;
 	}
-`;
-
-const Inner = styled.div`
-	width: 100%;
-	height: 100%;
-	position: relative;
-	max-width: ${ theme.breakpoints.lg.min }px;
-	margin: 0 auto;
 `;
 
 const MobileStuff = styled.div`
@@ -63,37 +55,6 @@ const BurgerWrapper = styled.div`
 	z-index: 1;
 `;
 
-// -----------------------------
-
-
-// -----------------------------
-
-const Line = styled.div`
-	${ mixins.xs`
-		display: none;
-	` };
-	height: 1.5px;
-	background: white;
-	position: absolute;
-	left: 0;
-	right: 0;
-	bottom: ${ props => props.theme.dimensions.nav.linksHeight };
-	display: none;
-`;
-
-const BackgroundColorHack = styled.div`
-	${ mixins.xs`
-		display: none;
-	` };
-	background-color: ${ props => props.theme.colors.bg };
-	position: fixed;
-	left: 0;
-	right: 0;
-	height: ${ mixins.num(theme.dimensions.nav.height.other) -
-		mixins.num(theme.dimensions.nav.linksHeight) }px;
-	top: 0;
-`;
-
 // --------------------------------------------------
 
 const enhance = compose(
@@ -107,31 +68,25 @@ const enhance = compose(
 
 const Nav = ({ links, logo, open, closeMenu, toggleMenu, }) => (
 	<NavWrapper>
-		<Inner>
-			<BackgroundColorHack />
+		<Links 
+			close = { closeMenu } 
+			open = { open } 
+			links = { links }
+		/>
 
-			<Links 
-				close = { closeMenu } 
-				open = { open } 
-				links = { links }
-			/>
+		<MobileStuff>
+			<Overlay open = { open } />
 
-			<MobileStuff>
-				<Overlay open = { open } />
+			<BurgerWrapper onClick = { toggleMenu }>
+				<Burger
+					open = { open }
+					padding = { mixins.num(theme.dimensions.nav.margin.xs) }
+					color = { theme.colors.nav.background }
+				/>
+			</BurgerWrapper>
+		</MobileStuff>
 
-				<BurgerWrapper onClick = { toggleMenu }>
-					<Burger
-						open = { open }
-						padding = { mixins.num(theme.dimensions.nav.margin.xs) }
-						color = { theme.colors.nav }
-					/>
-				</BurgerWrapper>
-			</MobileStuff>
-
-			<Logo logo = { logo }/>
-		</Inner>
-
-		<Line />
+		<Logo logo = { logo }/>
 	</NavWrapper>
 );
 

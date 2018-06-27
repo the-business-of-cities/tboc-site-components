@@ -12,7 +12,7 @@ const Column = styled.div`
 	align-items: flex-start;
 	display: flex;
 	flex-direction: column;
-	padding: 0.25em;
+	padding: 1em;
 	flex: 1;
 
 	${ mixins.bp.sm.max`

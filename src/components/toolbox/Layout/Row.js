@@ -15,6 +15,8 @@ const Row = styled.div`
 	padding-bottom: 1em;
 	width: 100%;
 
+	${ props => props.reverse && "flex-direction: row-reverse" };
+
 	${ mixins.bp.sm.max`
 		flex-wrap: wrap;
 	` };

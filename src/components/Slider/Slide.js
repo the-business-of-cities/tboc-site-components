@@ -1,7 +1,7 @@
 import { MaybeLink, } from "../toolbox";
 import * as mixins from "codogo-utility-functions";
 
-import marked from "marked"
+import marked from "marked";
 import PropTypes from "prop-types";
 import R from "ramda";
 import React from "react";

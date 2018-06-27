@@ -10,16 +10,17 @@ import { Icon, } from "../Images";
 // --------------------------------------------------
 
 export const ButtonWrapper = styled.div`
-	display: inline-block;
-	padding: 0 1em;
-	line-height: 1;
-	height: 2.6em;
-	transition: 0.1s linear background;
-	cursor: pointer;
-	${ props => (props.margin ? "margin: 0.3em;" : "") } display: inline-flex;
-	flex-direction: row;
-	justify-content: center;
 	align-items: center;
+	cursor: pointer;
+	display: inline-flex;
+	flex-direction: row;
+	height: 2.6em;
+	justify-content: center;
+	line-height: 1;
+	padding: 0 1em;
+	transition: 0.1s linear background;
+
+	${ props => (props.margin ? "margin: 0.3em;" : "") };
 
 	&:hover,
 	&:visited,

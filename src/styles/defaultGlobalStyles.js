@@ -101,7 +101,7 @@ const defaultGlobalStyles = ( customTheme ) => {
 			border-top: 0.4em solid ${ activeTheme.colors.bgdark };
 			margin: 2em 0;
 		}
-	`
+	`;
 };
 
 export default defaultGlobalStyles;
