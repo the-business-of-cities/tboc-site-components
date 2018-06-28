@@ -10,7 +10,6 @@ const Row = styled.div`
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	padding-bottom: 1em;
 	width: 100%;
 	align-items: center;
 

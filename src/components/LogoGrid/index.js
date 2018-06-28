@@ -7,22 +7,11 @@ import styled from "styled-components";
 
 // --------------------------------------------------
 
-
-/*
-	Usage
-	<LogoGrid
-		logos = { cat.partner.map(partner => ({
-			image: partner.fields.image,
-			link: partner.fields.website,
-		})) }
-	/>
-*/
-
 const logosPerRow = {
-	xs: 3,
-	sm: 4,
-	md: 5,
-	lg: 5,
+	xs: 2,
+	sm: 3,
+	md: 3,
+	lg: 4,
 };
 
 const gridColumns = R.map(n => `repeat(${ n }, 1fr)`)(logosPerRow);
@@ -54,26 +43,27 @@ const LogoImage = styled.div`
 
 // --------------------------------------------------
 
-const LogoGrid = ({ logos, }) => (
-	<LogoGridWrapper>
-		{
-			(logos || []).map( ( { image, link, } ) => (
-				<LogoWrapper key = { `logo-${ image.url }` } href = { link }>
-					<LogoInner>
-						<LogoImage
-							src = { `http://res.cloudinary.com/codogo/image/fetch/h_500,c_fill,g_face,f_auto/https:${ (image &&
-								image.url) ||
-								image.fields.file.url }` }
-						/>
-					</LogoInner>
-				</LogoWrapper>
-			) )
-		}
-	</LogoGridWrapper>
-);
-
-LogoGrid.propTypes = {
-	logos: PropTypes.object,
+const LogoGrid = ( props ) => {
+	return (
+		<LogoGridWrapper>
+			{
+				(props.logos || []).map( ( { image, link, } ) => (
+					<LogoWrapper key = { `logo-${ image.file.url }` } href = { link }>
+						<LogoInner>
+							<LogoImage
+								src = { `http://res.cloudinary.com/codogo/image/fetch/h_500,c_fill,g_face,f_auto/https:${ image &&
+									image.file.url }` }
+							/>
+						</LogoInner>
+					</LogoWrapper>
+				) )
+			}
+		</LogoGridWrapper>
+	);
 };
 
-export { LogoGrid, };
+LogoGrid.propTypes = {
+	logos: PropTypes.array,
+};
+
+export default LogoGrid;

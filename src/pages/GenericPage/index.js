@@ -1,7 +1,8 @@
 import {
-	Page, Section, Container, Row, Column, SecondaryImage,
+	SecondaryImage,
 } from "../../components/toolbox";
 
+import BlankPage from "../BlankPage";
 import marked from "marked";
 import PropTypes from "prop-types";
 import React from "react";
@@ -12,54 +13,43 @@ import React from "react";
 
 class GenericPage extends React.Component {
 	render () {
-		const { title, secondaryImage, description, introduction, } = this.props;
+		const { title, secondaryImage, description, introduction, children, } = this.props;
 
 		return (
-			<Page>
-				<Section>
-					<Container restrict>
-						<Row>
-							<Column>
-								<h1>{ title }</h1>
-							</Column>
-						</Row>
+			<BlankPage>
+				<h1>{ title }</h1>
+				
+				{
+					secondaryImage && 
+					(
+						<SecondaryImage src = { secondaryImage.file.url } />
+					)
+				}
 
-						<Row>
-							<Column>
-								{
-									secondaryImage && 
-									(
-										<SecondaryImage src = { secondaryImage.file.url } />
-									)
-								}
+				<div><em>{ description }</em></div>
 
-								<div><em>{ description }</em></div>
+				{ introduction &&
+					<div
+						dangerouslySetInnerHTML = { {
+							__html: marked(
+								introduction.introduction,
+							),
+						} }
+					/>
+				}
 
-								{ introduction &&
-									<div
-										dangerouslySetInnerHTML = { {
-											__html: marked(
-												introduction,
-											),
-										} }
-									/>
-								}
-
-								{ this.props.children }
-							</Column>
-						</Row>
-					</Container>
-				</Section>
-			</Page>
+				{ children }
+			</BlankPage>
 		);
 	}
 };
 
 GenericPage.propTypes = {
-	content: PropTypes.any,
+	children: PropTypes.any,
 	description: PropTypes.any,
+	introduction: PropTypes.any,
 	secondaryImage: PropTypes.any,
 	title: PropTypes.any,
 };
 
-export { GenericPage, };
+export default GenericPage;

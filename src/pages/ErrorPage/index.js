@@ -6,7 +6,7 @@ import React from "react";
 
 // ----------------------
 
-export const ErrorPage = () => (
+const ErrorPage = () => (
 	<Page>
 		<Section>
 			<Container>
@@ -21,3 +21,5 @@ export const ErrorPage = () => (
 		</Section>
 	</Page>
 );
+
+export default ErrorPage;
