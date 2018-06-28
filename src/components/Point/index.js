@@ -1,9 +1,8 @@
-import { Section, Container, Row, Column, } from "../toolbox";
+import { Section, Container, Row, Column, Button, Image, } from "../toolbox";
 import PropTypes from "prop-types";
 import React from "react";
 
 const Point = ( { title, text, image, cta, reverse, }, ) => {
-
 	return (
 		<Section>
 			<Container restrict>
@@ -13,11 +12,15 @@ const Point = ( { title, text, image, cta, reverse, }, ) => {
 
 						<p>{ text }</p>
 
-						<a href = { cta.link }>{ cta.text }</a>
+						<Button 
+							to = { cta.link }
+							text = { cta.text }
+							outline = "black"
+						/>
 					</Column>
 
 					<Column>
-						<img src = { image } alt = "Alt text"/>
+						<Image src = { image } alt = "Alt text"/>
 					</Column>
 				</Row>
 			</Container>

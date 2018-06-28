@@ -1,6 +1,5 @@
 import * as mixins from "codogo-utility-functions";
 
-
 import styled, { css, } from "styled-components";
 import PropTypes from "prop-types";
 import React from "react";
@@ -10,6 +9,7 @@ import { Icon, } from "../Images";
 // --------------------------------------------------
 
 export const ButtonWrapper = styled.div`
+	margin-top: 0.5em;
 	align-items: center;
 	cursor: pointer;
 	display: inline-flex;
@@ -20,7 +20,7 @@ export const ButtonWrapper = styled.div`
 	padding: 0 1em;
 	transition: 0.1s linear background;
 
-	${ props => (props.margin ? "margin: 0.3em;" : "") };
+	${ props => props.margin && "margin: 0.3em;" };
 
 	&:hover,
 	&:visited,
@@ -29,7 +29,7 @@ export const ButtonWrapper = styled.div`
 	}
 
 	${ ({ outline, color, hoverColor, }) =>
-		outline || true
+		outline
 			? css`
 					color: ${ color };
 					border: 1.5px solid ${ color };
@@ -57,19 +57,34 @@ export const ButtonWrapper = styled.div`
 			` };
 `;
 
-const IconButton = props => {
-	return (
-		<MaybeLink to = { props.to } href = { props.href } target = { props.target }>
-			<ButtonWrapper { ...props }>
-				{props.icon ? (
-					<Icon type = { props.icon } size = "1.2em" marginRight = "0.4em" />
-				) : null}
+const Button = ( { children, href, target, text, to, ...props }, ) => (
+	<MaybeLink to = { to } href = { href } target = { target }>
+		<ButtonWrapper { ...props }>
+			{ text || children }
+		</ButtonWrapper>
+	</MaybeLink>
+);
 
-				<span>{props.text || props.children}</span>
-			</ButtonWrapper>
-		</MaybeLink>
-	);
+Button.propTypes = {
+	children: PropTypes.any,
+	href: PropTypes.any,
+	icon: PropTypes.any,
+	target: PropTypes.any,
+	text: PropTypes.any,
+	to: PropTypes.any,
 };
+
+const IconButton = ( { children, href, icon, target, text, to, ...props }, ) => (
+	<MaybeLink to = { to } href = { href } target = { target }>
+		<ButtonWrapper { ...props }>
+			{icon ? (
+				<Icon type = { icon } size = "1.2em" marginRight = "0.4em" />
+			) : null}
+
+			<span>{ text || children }</span>
+		</ButtonWrapper>
+	</MaybeLink>
+);
 
 IconButton.propTypes = {
 	children: PropTypes.any,
@@ -80,4 +95,4 @@ IconButton.propTypes = {
 	to: PropTypes.any,
 };
 
-export const Button = IconButton;
+export { Button, IconButton, };

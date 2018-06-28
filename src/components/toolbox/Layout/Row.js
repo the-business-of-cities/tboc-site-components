@@ -1,8 +1,6 @@
 import * as mixins from "codogo-utility-functions";
 
-import styled, { css, } from "styled-components";
-import PropTypes from "prop-types";
-import React from "react";
+import styled from "styled-components";
 
 // --------------------------------------------------
 
@@ -14,6 +12,7 @@ const Row = styled.div`
 	justify-content: center;
 	padding-bottom: 1em;
 	width: 100%;
+	align-items: center;
 
 	${ props => props.reverse && "flex-direction: row-reverse" };
 

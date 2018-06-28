@@ -7,6 +7,13 @@ import R from "ramda";
 
 // --------------------------------------------------
 
+const Image = styled.img`
+	width: 100%;
+	height: auto;
+`;
+
+// --------------------------------------------------
+
 const SecondaryImageWrapper = styled.div`
 	img {
 		width: 100%;
@@ -29,12 +36,7 @@ const SecondaryImage = ( props ) => (
 
 // --------------------------------------------------
 
-export const FullWidthImg = styled.img`
-	width: 100%;
-	height: auto;
-`;
-
-export const SmartImg = styled.div`
+const SmartImage = styled.div`
 	${ props =>
 		props.height && props.width
 			? props.height <= props.width || props.unlimitedHeight
@@ -58,13 +60,15 @@ export const SmartImg = styled.div`
 	margin-left: auto;
 `;
 
+// --------------------------------------------------
+
 const IconWrapper = styled.i`
 	font-size: ${ props => props.size || "1em" };
 	margin-right: ${ props => props.marginRight || 0 };
 	margin-left: ${ props => props.marginLeft || 0 };
 `;
 
-export const Icon = props => (
+const Icon = props => (
 	<IconWrapper className = { `fa fa-${ props.type }` } { ...props } />
 );
 
@@ -72,7 +76,7 @@ export const Icon = props => (
 
 const bgTint = 0.3;
 
-export const Bg = styled.div`
+const Background = styled.div`
 	${ props =>
 		props.image
 			? `
@@ -86,3 +90,5 @@ export const Bg = styled.div`
 			: "" };
 	${ props => (props.color ? `background-color: ${ props.color };` : "") };
 `;
+
+export { Image, SmartImage, SecondaryImage, Icon, Background, };

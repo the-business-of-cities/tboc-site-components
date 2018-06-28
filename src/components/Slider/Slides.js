@@ -8,12 +8,12 @@ import Slide from "./Slide";
 
 // --------------------------------------------------
 
-const Slides = ( { sliderContents, }, ) => (
+const Slides = ( { sliderContents, mobile, }, ) => (
 	<Carousel
 		autoplay
 		dragging
 		renderBottomCenterControls = { () => null }
-		slidesToShow = { 3 }
+		slidesToShow = { mobile ? 1 : 3 }
 		width = { "100%" }
 	>
 		{ 

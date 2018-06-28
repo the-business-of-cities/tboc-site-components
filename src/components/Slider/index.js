@@ -7,15 +7,45 @@ import React from "react";
 
 // --------------------------------------------------
 
-const Slider = ( { sliderContents, }, ) => (
-	<Section>
-		<Container>
-			<Row>
-				<Slides sliderContents = { sliderContents } />
-			</Row>
-		</Container>
-	</Section>
-);
+class Slider extends React.Component {
+	constructor(props) {
+		super(props);
+		
+		this.state = { 
+			mobile: undefined, 
+		};
+
+		this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+	}
+
+	componentDidMount() {
+		this.updateWindowDimensions();
+		window.addEventListener("resize", this.updateWindowDimensions);
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener("resize", this.updateWindowDimensions);
+	}
+
+	updateWindowDimensions() {
+		this.setState( { mobile: window.innerWidth <= 788, } );
+	}
+
+	render() {
+		return (
+			<Section>
+				<Container>
+					<Row>
+						<Slides 
+							sliderContents = { this.props.sliderContents } 
+							mobile = { this.state.mobile }
+						/>
+					</Row>
+				</Container>
+			</Section>
+		);
+	}
+};
 
 const enhance = compose();
 

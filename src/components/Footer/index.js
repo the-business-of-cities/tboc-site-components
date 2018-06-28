@@ -10,8 +10,8 @@ import R from "ramda";
 
 import { theme, } from "../../styles";
 
-const Wrapper = styled.footer`
-	background-color: ${ R.path([ "theme", "footer", ]) };
+const FooterWrapper = styled.footer`
+	background-color: black;
 	position: absolute;
 	right: 0;
 	left: 0;
@@ -92,34 +92,38 @@ const socialIcons = {
 	email: "at",
 };
 
-const Footer = ({ footerText, socialLinks, }) => {
+const Footer = ( { footerText, socialLinks, } ) => {
 	return (
-		<Wrapper>
+		<FooterWrapper>
 			<Inner>
 				<Contact>{ footerText }</Contact>
 
 				<Social>
-					{ socialLinks.map( link =>
-						(<a
-							key = { `footer-${ link.type }` }
-							href = { link.link }
-							style = {
-								link.type === "phone"
-									? {
-										marginRight: "0.5em",
-										paddingRight: "0.75em",
-										borderRight:
-												"1px solid white",
-									  }
-									: undefined
-							}
-						>
-							<Icon type = { socialIcons[link.type] || link.type } />
-						</a>)
+					{ 
+						socialLinks &&
+						socialLinks.map( link =>
+						(
+							<a
+								key = { `footer-${ link.type }` }
+								href = { link.link }
+								style = {
+									link.type === "phone"
+										? {
+											marginRight: "0.5em",
+											paddingRight: "0.75em",
+											borderRight:
+													"1px solid white",
+										  }
+										: undefined
+								}
+							>
+								<Icon type = { socialIcons[link.type] || link.type } />
+							</a>
+						)
 					) }
 				</Social>
 			</Inner>
-		</Wrapper>
+		</FooterWrapper>
 	);
 };
 
