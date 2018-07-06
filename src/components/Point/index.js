@@ -6,15 +6,17 @@ const Point = ( { title, text, image, cta, reverse, }, ) => {
 	return (
 		<Row reverse = { reverse }>
 			<Column>
-				<h3>{ title }</h3>
+				{ title && <h3>{ title }</h3> }
 
-				<p>{ text }</p>
+				{ text && <p>{ text }</p> }
 
-				<Button 
-					to = { cta.link }
-					text = { cta.text }
-					outline = "black"
-				/>
+				{ cta && 
+					<Button 
+						to = { cta.link }
+						text = { cta.text }
+						outline = "black"
+					/>
+				}
 			</Column>
 
 			<Column>

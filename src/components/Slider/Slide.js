@@ -18,7 +18,7 @@ const titleLineHeight = 1.3;
 const textFontSize = 0.9;
 const textLineHeight = 1.4;
 const boxHeight =
-	2 *
+	2.5 *
 	(padding + titleFontSize * titleLineHeight + textFontSize * textLineHeight);
 
 // --------------------------------------------------
@@ -67,6 +67,7 @@ const SlideInner = styled(MaybeLink)`
 const SlideText = styled.div`
 	font-size: ${ textFontSize }em;
 	font-family: ${ theme.font.paragraph };
+	padding-top: 2em;
 
 	& p {
 		margin: 0;

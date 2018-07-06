@@ -1,17 +1,16 @@
 import { Link, } from "react-router-dom";
-
-import {
-	PageWrapper,
-	PageBody,
-	Container,
-	TextCell,
-} from "../components/toolbox";
-
-import styled from "styled-components";
-import Moment from "moment";
-import React from "react";
-
 import { theme, } from "../../styles";
+import {
+	Section,
+	Container,
+	Column,
+	Row,
+} from "../toolbox";
+
+import Moment from "moment";
+import PropTypes from "prop-types";
+import React from "react";
+import styled from "styled-components";
 
 // --------------------------------------------------
 
@@ -58,9 +57,12 @@ const Event = ({ condensed, ...event }) => {
 
 	return (
 		<tr>
-			<Cell>{event.name}</Cell>
+			<Cell>{event.title}</Cell>
+
 			<Cell>{event.role}</Cell>
+
 			<Cell>{event.location}</Cell>
+
 			<Cell>{Moment(event.date).format("Do MMMM YYYY")}</Cell>
 		</tr>
 	);
@@ -79,60 +81,65 @@ const orderEvents = (events, future) => {
 		);
 };
 
-export const Events = ({ title, html, events, }) => {
-	const pastEvents = orderEvents(events, false, true);
-	const upcomingEvents = orderEvents(events, true, false);
-
-	const PastEvents = pastEvents.map(event => <Event { ...event } condensed />);
-	const UpcomingEvents = upcomingEvents.map(event => <Event { ...event } />);
+const Events = ({ events, }) => {
+	const pastEvents = orderEvents(events, false, true).map(event => <Event { ...event.node } condensed />);
+	const upcomingEvents = orderEvents(events, true, false).map(event => <Event { ...event.node } />);
 
 	return (
-		<PageWrapper>
-			<Container>
-				<TextCell>
-					<PageBody>
-						<h1>{title}</h1>
+		<Section>
+			<Container narrow>
+				{
+					upcomingEvents &&
+					<Row>
+						<Column>
+							<h2>Upcoming events</h2>
 
-						<div
-							dangerouslySetInnerHTML = { {
-								__html: html,
-							} }
-						/>
+							<EventTable>
+								<thead>
+									<td>Event</td>
 
-						{upcomingEvents.length ? (
-							<div>
-								<h2>Upcoming events</h2>
+									<td>Role</td>
 
-								<EventTable>
-									<thead>
-										<td>Event</td>
-										<td>Role</td>
-										<td>Where</td>
-										<td>When</td>
-									</thead>
+									<td>Where</td>
 
-									{UpcomingEvents}
-								</EventTable>
-							</div>
-						) : null}
+									<td>When</td>
+								</thead>
 
-						{pastEvents.length ? (
-							<div>
-								<h2>Past events</h2>
-								<EventTable>
-									<thead>
-										<td>Event</td>
-										<td>Role</td>
-										<td>Where</td>
-										<td>When</td>
-									</thead>
-									{PastEvents}
-								</EventTable>
-							</div>
-						) : null}
-					</PageBody>
-				</TextCell>
+								{ upcomingEvents }
+							</EventTable>
+						</Column>
+					</Row>
+				}
+
+				{
+					pastEvents &&
+					<Row>
+						<Column>
+							<h2>Past events</h2>
+
+							<EventTable>
+								<thead>
+									<td>Event</td>
+
+									<td>Role</td>
+
+									<td>Where</td>
+
+									<td>When</td>
+								</thead>
+
+								{ pastEvents }
+							</EventTable>
+						</Column>
+					</Row>
+				}
 			</Container>
-		</PageWrapper>
+		</Section>
 	);
 };
+
+Events.propTypes = {
+	events: PropTypes.array,
+};
+
+export default Events;
