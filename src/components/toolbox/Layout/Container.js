@@ -18,7 +18,7 @@ const Container = styled.div`
 	justify-content: center;
 	width: 100%;
 
-	${ props => props.restrict && "max-width: 900px" };
+	${ props => props.restrict && "max-width: 1000px" };
 
 	${ props => props.narrow && "max-width: 750px" };
 

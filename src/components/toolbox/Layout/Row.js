@@ -12,12 +12,24 @@ const Row = styled.div`
 	justify-content: center;
 	width: 100%;
 	align-items: center;
+	padding: 3em;
 
-	${ props => props.reverse && "flex-direction: row-reverse" };
+	&:not(:last-child) {
+		padding-bottom: 1em;
+	}
+
+	&:not(:first-child) {
+		padding-top: 1em;
+	}
+
+	${ props => props.reverse && "flex-direction: row-reverse;" };
+	${ props => props.noPadding && "padding: 0 !important;" };
 
 	${ mixins.bp.sm.max`
 		flex-wrap: wrap;
 	` };
+
+	&
 `;
 
 export { Row, };

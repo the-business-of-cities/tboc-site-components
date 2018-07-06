@@ -10,13 +10,24 @@ const Column = styled.div`
 	align-items: flex-start;
 	display: flex;
 	flex-direction: column;
-	padding: 3em;
 	flex: 1;
+
+	&:not(:last-child) {
+		padding-left: 0.5em;
+	}
+
+	&:not(:first-child) {
+		padding-right: 0.5em;
+	}
 
 	${ mixins.bp.sm.max`
 		flex-basis: 100%;
 		padding: 1em;
 	` };
+
+	> img {
+		padding: 2em;
+	}
 `;
 
 export { Column, };

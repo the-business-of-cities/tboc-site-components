@@ -19,14 +19,15 @@ import slugify from "slugify";
 
 class ContentPage extends React.Component {
 	render () {
-		const { title, secondaryImage, description, introduction, content, children, } = this.props;
+		const { title, secondaryImage, slider, description, introduction, content, children, } = this.props;
 
 		return (
 			<GenericPage
-				title = { title }
-				secondaryImage = { secondaryImage }
 				description = { description }
 				introduction = { introduction }
+				secondaryImage = { secondaryImage }
+				slider = { slider }
+				title = { title }
 			>
 				{
 					content &&
@@ -56,6 +57,7 @@ ContentPage.propTypes = {
 	description: PropTypes.any,
 	introduction: PropTypes.any,
 	secondaryImage: PropTypes.any,
+	slider: PropTypes.element,
 	title: PropTypes.any,
 };
 

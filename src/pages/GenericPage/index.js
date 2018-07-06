@@ -1,5 +1,9 @@
 import {
 	SecondaryImage,
+	Section,
+	Container,
+	Row,
+	Column,
 } from "../../components/toolbox";
 
 import BlankPage from "../BlankPage";
@@ -13,29 +17,67 @@ import React from "react";
 
 class GenericPage extends React.Component {
 	render () {
-		const { title, secondaryImage, description, introduction, children, } = this.props;
+		const { title, secondaryImage, description, introduction, children, slider, } = this.props;
 
 		return (
-			<BlankPage>
-				<h1>{ title }</h1>
-				
+			<BlankPage
+				slider = { slider }
+			>
 				{
-					secondaryImage && 
-					(
-						<SecondaryImage src = { secondaryImage.file.url } />
-					)
+					title &&
+					<Section>
+						<Container narrow>
+							<Row>
+								<Column>
+									<h1>{ title }</h1>
+								</Column>
+							</Row>
+						</Container>
+					</Section>
 				}
 
-				<div><em>{ description }</em></div>
+				{
+					secondaryImage && 
+					<Section>
+						<Container>
+							<Row>
+								<Column>
+									<SecondaryImage alt = { secondaryImage.description } src = { secondaryImage.file.url } />
+								</Column>
+							</Row>
+						</Container>
+					</Section>
+				}
 
-				{ introduction &&
-					<div
-						dangerouslySetInnerHTML = { {
-							__html: marked(
-								introduction.introduction,
-							),
-						} }
-					/>
+				{
+					( description || introduction ) &&
+					<Section>
+						<Container narrow>
+							{
+								description &&
+								<Row>
+									<Column>
+										<div><em>{ description }</em></div>
+									</Column>
+								</Row>
+							}
+						
+							{ 
+								introduction &&
+								<Row>
+									<Column>
+										<div
+											dangerouslySetInnerHTML = { {
+												__html: marked(
+													introduction,
+												),
+											} }
+										/>
+									</Column>
+								</Row>
+							}
+						</Container>
+					</Section>
 				}
 
 				{ children }
@@ -49,6 +91,7 @@ GenericPage.propTypes = {
 	description: PropTypes.any,
 	introduction: PropTypes.any,
 	secondaryImage: PropTypes.any,
+	slider: PropTypes.element,
 	title: PropTypes.any,
 };
 

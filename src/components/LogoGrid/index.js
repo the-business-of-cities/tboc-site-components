@@ -10,7 +10,7 @@ import styled from "styled-components";
 const logosPerRow = {
 	xs: 2,
 	sm: 3,
-	md: 3,
+	md: 4,
 	lg: 4,
 };
 

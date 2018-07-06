@@ -15,6 +15,10 @@ const Section = styled.div`
 	justify-content: center;
 	width: 100%;
 
+	&:nth-child(2n) {
+		background-color: #fafafa;
+	}
+
 	${ mixins.bp.sm.max`
 		flex-wrap: wrap;
 	` };

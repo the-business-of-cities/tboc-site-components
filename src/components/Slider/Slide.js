@@ -25,7 +25,7 @@ const boxHeight =
 
 const SlideWrapper = styled.div`
 	width: 100%;
-	height: 30vh;
+	height: 40vh;
 `;
 
 const SlideTitle = styled.div`
@@ -57,6 +57,10 @@ const SlideInner = styled(MaybeLink)`
 	&:hover {
 		color: #eee;
 		height: ${ boxHeight }em;
+	}
+
+	&:visited {
+		color: #fff !important;
 	}
 `;
 

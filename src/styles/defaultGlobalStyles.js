@@ -6,8 +6,6 @@ import theme from "./theme";
 
 const defaultGlobalStyles = ( customTheme ) => {
 	const activeTheme = customTheme || theme;
-	
-	const textMargins = mixins.objectMap(activeTheme.font.size, (key, val) => val + " 0");
 
 	return css`
 		*, *:before, *:after {
@@ -37,11 +35,13 @@ const defaultGlobalStyles = ( customTheme ) => {
 		a:visited,
 		a:active {
 			text-decoration: none;
+			color: black;
 			color: currentColor;
 		}
 
-		p, h1, h2, h3, h4 {
-			${ mixins.bpEach("margin", textMargins) }
+		h1, h2, h3, h4 {
+			${ mixins.bpEach( "margin-top", activeTheme.font.size, ) }
+			${ mixins.bpEach( "margin-bottom", activeTheme.font.size, ) }
 		}
 
 		img {
@@ -56,6 +56,8 @@ const defaultGlobalStyles = ( customTheme ) => {
 		}
 
 		p {
+			${ mixins.bpEach("margin-bottom", activeTheme.font.size) }
+
 			a,
 			a:hover,
 			a:visited,
@@ -75,7 +77,7 @@ const defaultGlobalStyles = ( customTheme ) => {
 		}
 
 		ul, ol, li {
-			${ mixins.bpEach("margin", textMargins) };
+			${ mixins.bpEach("margin-bottom", activeTheme.font.size) };
 		}
 
 		ul, ol, li {

@@ -35,7 +35,7 @@ class Slider extends React.Component {
 		return (
 			<Section>
 				<Container>
-					<Row>
+					<Row noPadding>
 						<Slides 
 							sliderContents = { this.props.sliderContents } 
 							mobile = { this.state.mobile }

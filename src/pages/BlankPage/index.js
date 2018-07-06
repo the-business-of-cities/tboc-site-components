@@ -11,32 +11,21 @@ import React from "react";
 
 class BlankPage extends React.Component {
 	render () {
-		const { children, slider, } = this.props;
+		const { children, slider, introduction, content, } = this.props;
 
 		return (
 			<Page>
-				{
-					slider &&
-					slider
-				}
+				{ slider }
 
-				<Section>
-					<Container restrict>
-						<Row>
-							<Column>
-								{ children }
-							</Column>
-						</Row>
-					</Container>
-				</Section>
+				{ children }
 			</Page>
 		);
 	}
 };
 
 BlankPage.propTypes = {
-	children: PropTypes.any,
-	slider: PropTypes.any,
+	children: PropTypes.array,
+	slider: PropTypes.element,
 };
 
 export default BlankPage;

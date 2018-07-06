@@ -10,29 +10,15 @@ import R from "ramda";
 const Image = styled.img`
 	width: 100%;
 	height: auto;
+	object-fit: contain;
 `;
 
 // --------------------------------------------------
 
-const SecondaryImageWrapper = styled.div`
-	img {
-		width: 100%;
-		max-height: 1em;
-	}
+const SecondaryImage = styled.img`
+	width: 100%;
+	object-fix: contain;
 `;
-
-const SecondaryImageDiv = styled.div`
-	${ mixins.bgImage };
-	padding-top: 15em;
-
-	${ mixins.bp.sm.min`padding-top: 20em;` };
-`;
-
-const SecondaryImage = ( props ) => (
-	<SecondaryImageWrapper>
-		<SecondaryImageDiv src = { props.src } />
-	</SecondaryImageWrapper>
-);
 
 // --------------------------------------------------
 
