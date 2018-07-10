@@ -34,7 +34,7 @@ class ContentPage extends React.Component {
 					content.map( (section, i) => (
 						<Point
 							cta = { {
-								link: `/${ slugify(section.ctaTarget.title, { lower: true, }) }`,
+								link: `/${ section.ctaTarget && slugify(section.ctaTarget.title, { lower: true, }) }`,
 								text: section.ctaText,
 							} }
 							image = { section.image.file.url }

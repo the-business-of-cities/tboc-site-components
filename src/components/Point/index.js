@@ -1,6 +1,11 @@
 import { Row, Column, Button, Image, } from "../toolbox";
 import PropTypes from "prop-types";
 import React from "react";
+import styled from "styled-components";
+
+const PointImage = styled(Image)`
+	max-height: 40vh;
+`;
 
 const Point = ( { title, text, image, cta, reverse, }, ) => {
 	return (
@@ -20,7 +25,7 @@ const Point = ( { title, text, image, cta, reverse, }, ) => {
 			</Column>
 
 			<Column>
-				<Image src = { image } alt = "Alt text"/>
+				<PointImage src = { image } alt = "Alt text"/>
 			</Column>
 		</Row>
 	);

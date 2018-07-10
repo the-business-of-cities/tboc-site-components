@@ -19,11 +19,13 @@ const colors = {
 	linkHover: "#4D6491",
 	nav: {
 		background: "#002B4E",
-		alt: "#fff",
+		alt: "#333",
 	},
-	footer: "#002B4E",
-	bg: "#ffe4ca",
-	bgdark: "#E4C1A3",
+	footer: "#333",
+	bg: {
+		light: "#ffe4ca",
+		medium: "#E4C1A3",
+	},
 	grey: "rgba(0,0,0,0.2)",
 	lines: "rgba(0,0,0,0.2)",
 	borders: "rgba(0,0,0,0.2)",

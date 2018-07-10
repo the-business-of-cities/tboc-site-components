@@ -11,7 +11,7 @@ import R from "ramda";
 import { theme, } from "../../styles";
 
 const FooterWrapper = styled.footer`
-	background-color: black;
+	background-color: ${ theme.colors.footer };
 	position: absolute;
 	right: 0;
 	left: 0;
@@ -92,35 +92,38 @@ const socialIcons = {
 	email: "at",
 };
 
-const Footer = ( { footerText, socialLinks, } ) => {
+const Footer = ( { footerText, footerLinks, socialLinks, } ) => {
 	return (
 		<FooterWrapper>
 			<Inner>
 				<Contact>{ footerText }</Contact>
 
+				<div>{
+					footerLinks.map( link => <div>{link.title}</div>)
+				}</div>
+
 				<Social>
 					{ 
 						socialLinks &&
 						socialLinks.map( link =>
-						(
-							<a
-								key = { `footer-${ link.type }` }
-								href = { link.link }
-								style = {
-									link.type === "phone"
-										? {
-											marginRight: "0.5em",
-											paddingRight: "0.75em",
-											borderRight:
-													"1px solid white",
-										  }
-										: undefined
-								}
-							>
-								<Icon type = { socialIcons[link.type] || link.type } />
-							</a>
-						)
-					) }
+							(
+								<a
+									key = { `footer-${ link.type }` }
+									href = { link.link }
+									style = {
+										link.type === "phone" ? 
+											{
+												marginRight: "0.5em",
+												paddingRight: "0.75em",
+												borderRight: "1px solid white",
+											} :
+											undefined
+									}
+								>
+									<Icon type = { socialIcons[link.type] || link.type } />
+								</a>
+							)
+						) }
 				</Social>
 			</Inner>
 		</FooterWrapper>
@@ -128,8 +131,8 @@ const Footer = ( { footerText, socialLinks, } ) => {
 };
 
 Footer.propTypes = {
-	footerText: PropTypes.object,
-	socialLinks: PropTypes.object,
+	footerText: PropTypes.string,
+	socialLinks: PropTypes.array,
 };
 
 export default Footer;

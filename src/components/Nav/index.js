@@ -15,8 +15,7 @@ import { theme, } from "../../styles";
 // --------------------------------------------------
 
 const NavWrapper = styled.nav`
-	background-color: ${ props => props.theme.colors.nav.alt };
-	background: black;
+	background-color: ${ props => props.theme.colors.nav.background };
 	color: white;
 	left: 0;
 	right: 0;
@@ -41,7 +40,7 @@ const Overlay = styled.div`
 	${ mixins.contained() };
 	${ ({ open, }) => open || true ? mixins.shadow(1) : "" };
 	transition: 0.3s all ease-out;
-	background-color: ${ props => props.theme.colors.bg };
+	background-color: ${ props => props.theme.colors.bg.medium };
 `;
 
 const BurgerWrapper = styled.div`

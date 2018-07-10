@@ -11,6 +11,7 @@ import Moment from "moment";
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
+import slugify from "slugify";
 
 // --------------------------------------------------
 
@@ -34,7 +35,7 @@ const EventTable = styled.table`
 	tr:hover,
 	tr:active {
 		cursor: pointer;
-		background-color: ${ theme.colors.bgdark };
+		background-color: ${ theme.colors.bg.medium };
 	}
 
 	td {
@@ -51,7 +52,7 @@ const EventTable = styled.table`
 const Event = ({ condensed, ...event }) => {
 	const Cell = ({ children, }) => (
 		<td>
-			<Link to = { `/events/${ event.slug }` }>{children}</Link>
+			<Link to = { `/events/${ slugify(event.title.toLowerCase()) }` }>{children}</Link>
 		</td>
 	);
 

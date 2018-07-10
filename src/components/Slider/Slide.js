@@ -34,7 +34,7 @@ const SlideTitle = styled.div`
 	font-family: ${ theme.font.heading };
 	display: block;
 	line-height: ${ titleLineHeight };
-	max-height: ${ 2 * titleLineHeight }em;
+	height: ${ 2 * titleLineHeight }em;
 	overflow: hidden;
 
 	${ SlideInner }:hover & {
@@ -43,7 +43,7 @@ const SlideTitle = styled.div`
 `;
 
 const SlideInner = styled(MaybeLink)`
-	background-color: #000;
+	background-color: ${ props => props.theme.colors.bg.dark };
 	bottom: 0;
 	color: #fff;
 	display: block;
@@ -89,7 +89,7 @@ const SlideText = styled.div`
 				background: linear-gradient(
 					to right,
 					transparent,
-					#000 50%
+					${ props => props.theme.colors.bg.dark } 50%
 				);
 			}
 		}

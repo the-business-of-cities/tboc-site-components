@@ -21,7 +21,7 @@ const LinksWrapper = styled.div`
 
 	${ mixins.xs`
 		background-color: ${ props => props.theme.colors.nav.background };
-		top: ${ theme.dimensions.nav.height.xs };
+		top: ${ props => theme.dimensions.nav.height.xs };
 		transform: translateY(${ props => (props.open ? 0 : -110) }%);
 		transition: 0.3s all ease-out;
 

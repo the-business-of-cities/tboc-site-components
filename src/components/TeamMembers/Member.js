@@ -1,5 +1,5 @@
 import * as mixins from "codogo-utility-functions";
-import { Icon, Image,} from "../toolbox";
+import { Icon, Image, } from "../toolbox";
 
 import styled from "styled-components";
 import PropTypes from "prop-types";
