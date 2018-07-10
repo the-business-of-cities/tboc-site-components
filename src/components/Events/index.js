@@ -21,7 +21,7 @@ const EventTable = styled.table`
 	font-size: 0.7em;
 
 	thead {
-		border-bottom: ${ theme.colors.grey } 2px solid;
+		border-bottom: ${ props => props.theme.colors.grey } 2px solid;
 	}
 
 	thead td {
@@ -29,13 +29,13 @@ const EventTable = styled.table`
 	}
 
 	tr {
-		border-bottom: ${ theme.colors.grey } 1px solid;
+		border-bottom: ${ props => props.theme.colors.grey } 1px solid;
 	}
 
 	tr:hover,
 	tr:active {
 		cursor: pointer;
-		background-color: ${ theme.colors.bg.medium };
+		background-color: ${ props => props.theme.colors.bg.medium };
 	}
 
 	td {
@@ -69,22 +69,22 @@ const Event = ({ condensed, ...event }) => {
 	);
 };
 
-const orderEvents = (events, future) => {
-	return events
-		.sort((a, b) => {
-			return Moment(a.date).diff(Moment(b.date));
-		})
-		.filter(
-			event =>
-				future
-					? Moment(event.date).diff(Moment()) >= 0
-					: Moment(event.date).diff(Moment()) < 0,
-		);
-};
-
 const Events = ({ events, }) => {
-	const pastEvents = orderEvents(events, false, true).map(event => <Event { ...event.node } condensed />);
-	const upcomingEvents = orderEvents(events, true, false).map(event => <Event { ...event.node } />);
+	events.sort((a, b) => {
+		return Moment(a.date).diff(Moment(b.date));
+	});
+
+	const pastEvents = events.filter(
+		event => Moment(event.node.date).diff(Moment()) < 0
+	).map(event => (
+		<Event { ...event.node } key = { `${ slugify(event.node.title.toLowerCase()) }-${ event.node.date }` } condensed />
+	) );
+
+	const upcomingEvents = events.filter(
+		event => Moment(event.node.date).diff(Moment()) >= 0
+	).map(event => (
+		<Event { ...event.node } key = { `${ slugify(event.node.title.toLowerCase()) }-${ event.node.date }` } />
+	) );
 
 	return (
 		<Section>
@@ -96,17 +96,19 @@ const Events = ({ events, }) => {
 							<h2>Upcoming events</h2>
 
 							<EventTable>
-								<thead>
-									<td>Event</td>
+								<tbody>
+									<tr>
+										<th>Event</th>
 
-									<td>Role</td>
+										<th>Role</th>
 
-									<td>Where</td>
+										<th>Where</th>
 
-									<td>When</td>
-								</thead>
+										<th>When</th>
+									</tr>
 
-								{ upcomingEvents }
+									{ upcomingEvents }
+								</tbody>
 							</EventTable>
 						</Column>
 					</Row>
@@ -119,17 +121,19 @@ const Events = ({ events, }) => {
 							<h2>Past events</h2>
 
 							<EventTable>
-								<thead>
-									<td>Event</td>
+								<tbody>
+									<tr>
+										<th>Event</th>
 
-									<td>Role</td>
+										<th>Role</th>
 
-									<td>Where</td>
+										<th>Where</th>
 
-									<td>When</td>
-								</thead>
+										<th>When</th>
+									</tr>
 
-								{ pastEvents }
+									{ pastEvents }
+								</tbody>
 							</EventTable>
 						</Column>
 					</Row>

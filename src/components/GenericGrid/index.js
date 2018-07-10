@@ -1,8 +1,10 @@
 import { MaybeLink, } from "../toolbox";
+import * as mixins from "codogo-utility-functions";
 
-import marked from "marked";
 import PropTypes from "prop-types";
+import R from "ramda";
 import React from "react";
+import marked from "marked";
 import slugify from "slugify";
 import styled from "styled-components";
 
@@ -17,14 +19,37 @@ const boxHeight =
 	2.5 *
 	(padding + titleFontSize * titleLineHeight + textFontSize * textLineHeight);
 
-// --------------------------------------------------
+const entryColumns = {
+	xs: 2,
+	sm: 3,
+	md: 4,
+	lg: 4,
+};
 
-const SlideWrapper = styled.div`
+const gridColumns = R.map(n => `repeat(${ n }, 1fr)`)(entryColumns);
+
+const EntryContainer = styled.div`
+	display: grid;
+	${ mixins.bpEach("grid-template-columns", gridColumns) };
+	grid-gap: 2em;
+	margin-bottom: 2em;
 	width: 100%;
-	height: 40vh;
 `;
 
-const SlideInner = styled(MaybeLink)`
+const EntryWrapper = styled.a`
+	display: flex;
+	width: 100%;
+	position: relative;
+	overflow: hidden;
+`;
+
+const EntryImage = styled.img`
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+`;
+
+const EntryInner = styled(MaybeLink)`
 	background-color: ${ props => props.theme.colors.bg.dark };
 	bottom: 0;
 	color: #fff;
@@ -46,7 +71,8 @@ const SlideInner = styled(MaybeLink)`
 	}
 `;
 
-const SlideTitle = styled.div`
+
+const EntryTitle = styled.div`
 	font-weight: bold;
 	font-size: ${ titleFontSize }em;
 	font-family: ${ props => props.theme.font.heading };
@@ -54,13 +80,9 @@ const SlideTitle = styled.div`
 	line-height: ${ titleLineHeight };
 	height: ${ 2 * titleLineHeight }em;
 	overflow: hidden;
-
-	${ SlideInner }:hover & {
-		text-decoration: underline;
-	}
 `;
 
-const SlideText = styled.div`
+const EntryText = styled.div`
 	font-size: ${ textFontSize }em;
 	font-family: ${ props => props.theme.font.paragraph };
 	padding-top: 2em;
@@ -92,46 +114,44 @@ const SlideText = styled.div`
 	}
 `;
 
-const SlideImage = styled.img`
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	position: absolute;
-`;
-
 // --------------------------------------------------
 
-const Slide = ( { title, image, description, } ) => {
-	const slug = slugify( title );
-
+const GenericGrid = ( { entries, slug, } ) => {
 	return (
-		<SlideWrapper key = { slug }>
-			{ image &&
-				<SlideImage
-					src = { `http://res.cloudinary.com/codogo/image/fetch/h_800,c_fill,g_face,f_auto/https:${ image.file.url }` }
-					alt = { image.file.description }
-				/>
+		<EntryContainer>
+			{
+				entries.map( entry => (
+					<EntryWrapper key = { slugify( entry.node.title.toLowerCase() ) } href = { `/${ slug }/${ slugify( entry.node.title.toLowerCase() ) }` }>
+						{
+							entry.node.image &&
+							<EntryImage
+								src = { `http://res.cloudinary.com/codogo/image/fetch/h_500,c_fill,g_face,f_auto/https:${ entry.node.image.file.url }` }
+								alt = { entry.node.image.file.description }
+							/>
+						}
+
+						<EntryInner>
+							<EntryTitle>{ entry.node.title }</EntryTitle>
+
+							{
+								entry.node.description &&
+								<EntryText
+									dangerouslySetInnerHTML = { {
+										__html: marked(entry.node.description),
+									} }
+								/>
+							}
+						</EntryInner>
+					</EntryWrapper>
+				) )
 			}
-
-			<SlideInner to = { slug } href = { slug }>
-				<SlideTitle>{ title }</SlideTitle>
-
-				{ description && (
-					<SlideText
-						dangerouslySetInnerHTML = { {
-							__html: marked(description),
-						} }
-					/>
-				) }
-			</SlideInner>
-		</SlideWrapper>
+		</EntryContainer>
 	);
 };
 
-Slide.propTypes = {
-	description: PropTypes.string,
-	image: PropTypes.object,
-	title: PropTypes.string,
+GenericGrid.propTypes = {
+	entries: PropTypes.array.isRequired,
+	slug: PropTypes.string,
 };
 
-export default Slide;
+export default GenericGrid;

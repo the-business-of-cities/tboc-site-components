@@ -4,7 +4,7 @@ import * as mixins from "codogo-utility-functions";
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
-import R from "ramda";
+import slugify from "slugify";
 
 // --------------------------------------------------
 
@@ -48,6 +48,14 @@ const FooterSection = styled.div`
 		width: 100%;
 		padding: 4px;
 	` };
+`;
+
+const FooterLinks = styled.div`
+	display: flex;
+
+	> a {
+		margin: 0 0.5em;
+	}	
 `;
 
 const Contact = styled(FooterSection)`
@@ -98,9 +106,11 @@ const Footer = ( { footerText, footerLinks, socialLinks, } ) => {
 			<Inner>
 				<Contact>{ footerText }</Contact>
 
-				<div>{
-					footerLinks.map( link => <div>{link.title}</div>)
-				}</div>
+				<FooterLinks>
+					{
+						footerLinks.map( link => <a href = { slugify(link.title.toLowerCase()) }>{link.title}</a>)
+					}
+				</FooterLinks>
 
 				<Social>
 					{ 

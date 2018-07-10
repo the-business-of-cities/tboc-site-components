@@ -4,10 +4,10 @@ import React from "react";
 
 // --------------------------------------------------
 
-const News = ( { news, } ) => <GenericGrid entries = { news } slug = "news"/>;
+const Jobs = ( { jobs, } ) => <GenericGrid entries = { jobs } slug = "jobs"/>;
 
-News.propTypes = {
-	news: PropTypes.array.isRequired,
+Jobs.propTypes = {
+	jobs: PropTypes.array.isRequired,
 };
 
-export default News;
+export default Jobs;
