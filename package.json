@@ -15,6 +15,7 @@
     "gatsby-link": "^1.6.41",
     "masonry-layout": "^4.2.1",
     "nuka-carousel": "^4.1.0",
+    "pre-commit": "^1.2.2",
     "ramda": "^0.25.0",
     "react": "^16.3.2",
     "react-addons-transition-group": "^15.6.2",
@@ -39,6 +40,9 @@
   "files": [
     "lib"
   ],
+  "pre-commit": [
+    "deploy"
+  ],
   "keywords": [
     "the business of cities"
   ],
@@ -46,6 +50,7 @@
   "scripts": {
     "build": "mcclowes-scripts build",
     "watch": "mcclowes-scripts watch",
+    "deploy": "rm -rf lib && mcclowes-scripts build",
     "format": "mcclowes-scripts format"
   }
 }
