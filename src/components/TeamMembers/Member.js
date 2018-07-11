@@ -73,7 +73,7 @@ const TeamMember = ( { member, }) => {
 		website,
 	} = member;
 
-	return (
+	return member && (
 		<TeamMemberWrapper>
 			<PrimaryDetails>
 				<MemberImage src = { image && image.file.url } />

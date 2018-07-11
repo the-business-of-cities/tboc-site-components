@@ -1,5 +1,5 @@
 import * as mixins from "codogo-utility-functions";
-import { Icon, Section, Column, Row, Container, } from "../toolbox";
+import { Section, Column, Row, Container, } from "../toolbox";
 
 import styled from "styled-components";
 import PropTypes from "prop-types";
@@ -21,14 +21,16 @@ const TeamMembersWrapper = styled.div`
 // --------------------------------------------------
 
 const TeamMembers = ( { members, }) => {
-	return (
+	console.log(members);
+
+	return members && (
 		<Section>
 			<Container>
 				<Row>
 					<Column>
 						<TeamMembersWrapper>
 							{
-								members.map( member => <TeamMember member = { member.node }/>)
+								members.map( member => <TeamMember member = { member.node || member }/>)
 							}
 						</TeamMembersWrapper>
 					</Column>
