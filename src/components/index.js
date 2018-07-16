@@ -1,3 +1,4 @@
+export { default as Banner, } from "./Banner";
 export { default as Events, } from "./Events";
 export { default as Footer, } from "./Footer";
 export { default as Head, } from "./Head";

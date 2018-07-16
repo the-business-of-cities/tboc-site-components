@@ -17,11 +17,12 @@ import React from "react";
 
 class GenericPage extends React.Component {
 	render () {
-		const { title, secondaryImage, description, introduction, children, slider, } = this.props;
+		const { title, image, secondaryImage, description, introduction, children, slider, } = this.props;
 
 		return (
 			<BlankPage
 				slider = { slider }
+				image = { image }
 			>
 				{
 					title &&
@@ -90,7 +91,8 @@ GenericPage.propTypes = {
 	children: PropTypes.any,
 	description: PropTypes.any,
 	introduction: PropTypes.any,
-	secondaryImage: PropTypes.any,
+	image: PropTypes.object,
+	secondaryImage: PropTypes.object,
 	slider: PropTypes.element,
 	title: PropTypes.any,
 };

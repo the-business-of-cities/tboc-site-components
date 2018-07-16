@@ -20,10 +20,10 @@ const boxHeight =
 	(padding + titleFontSize * titleLineHeight + textFontSize * textLineHeight);
 
 const entryColumns = {
-	xs: 2,
-	sm: 3,
-	md: 4,
-	lg: 4,
+	xs: 1,
+	sm: 2,
+	md: 3,
+	lg: 3,
 };
 
 const gridColumns = R.map(n => `repeat(${ n }, 1fr)`)(entryColumns);
@@ -47,6 +47,7 @@ const EntryImage = styled.img`
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+	padding-bottom: ${ 2 * titleLineHeight }em;
 `;
 
 const EntryInner = styled(MaybeLink)`

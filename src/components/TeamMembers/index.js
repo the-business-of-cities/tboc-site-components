@@ -21,8 +21,6 @@ const TeamMembersWrapper = styled.div`
 // --------------------------------------------------
 
 const TeamMembers = ( { members, }) => {
-	console.log(members);
-
 	return members && (
 		<Section>
 			<Container>

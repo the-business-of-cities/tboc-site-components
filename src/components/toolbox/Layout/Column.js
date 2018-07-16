@@ -28,6 +28,8 @@ const Column = styled.div`
 	> img {
 		padding: 2em;
 	}
+
+	${ props => props.center && "align-items: center;" };
 `;
 
 export { Column, };

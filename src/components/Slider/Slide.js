@@ -105,7 +105,7 @@ const Slide = ( { title, image, description, } ) => {
 	const slug = slugify( title );
 
 	return (
-		<SlideWrapper key = { slug }>
+		<SlideWrapper>
 			{ image &&
 				<SlideImage
 					src = { `http://res.cloudinary.com/codogo/image/fetch/h_800,c_fill,g_face,f_auto/https:${ image.file.url }` }
