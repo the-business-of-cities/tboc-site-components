@@ -102,10 +102,22 @@ const LinkWrapper = styled.div`
 `;
 
 const StyledLink = styled(Link)`
-	color: ${ props => props.theme.colors.logo1 };
+	color: ${ props => props.theme.colors.link };
 
 	${ mixins.xs`${ buttonStyle[0] }` };
 	${ mixins.bp.sm.min`${ buttonStyle[1] }` };
+`;
+
+const StyledDropdownLink = styled(StyledLink)`
+	background: ${ props => props.theme.colors.bg.light };
+	&,
+	a {
+		color: ${ props => props.theme.colors.link } !important;
+
+		&:hover {
+			color: ${ props => props.theme.colors.linkHover } !important;
+		}
+	}
 `;
 
 const DropdownLinks = styled.div`
@@ -113,7 +125,9 @@ const DropdownLinks = styled.div`
 		padding-left: 1em;
 		font-size: 0.9em;
 		opacity: 0.67;
-	` } ${ mixins.bp.sm.min`
+	` };
+
+	${ mixins.bp.sm.min`
 		display: none;
 		background: ${ R.pipe(R.path([ "theme", "nav", ]), mixins.lightenColor) };
 		position: absolute;
@@ -153,18 +167,18 @@ const Links = ({ links, close, open, }) => (
 							</StyledLink>
 
 							{ 
-								false && (
+								link.dropdown && (
 									<DropdownLinks>
 										{link.dropdown
-											.map(({ title, path, }) => (
-												<LinkWrapper key = { path }>
-													<StyledLink
-														to = { path }
+											.map(({ content, to, }) => (
+												<LinkWrapper key = { to }>
+													<StyledDropdownLink
+														to = { to }
 														activeClassName = "active"
 														exact
 													>
-														{title}
-													</StyledLink>
+														{ content }
+													</StyledDropdownLink>
 												</LinkWrapper>
 											))}
 									</DropdownLinks>

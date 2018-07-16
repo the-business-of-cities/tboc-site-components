@@ -29,7 +29,7 @@ const Column = styled.div`
 		padding: 2em;
 	}
 
-	${ props => props.center && "align-items: center;" };
+	${ props => props.center && "align-items: center; text-align: center;" };
 `;
 
 export { Column, };

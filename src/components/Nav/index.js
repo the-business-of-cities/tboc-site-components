@@ -25,10 +25,6 @@ const NavWrapper = styled.nav`
 
 	${ mixins.bp.xs.min`${ mixins.shadow(0) }` } 
 	${ props => mixins.bpEither("height", props.theme.dimensions.nav.height) }
-
-	& a {
-		color: white !important;
-	}
 `;
 
 const MobileStuff = styled.div`
