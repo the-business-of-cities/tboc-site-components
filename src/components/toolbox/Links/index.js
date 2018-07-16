@@ -29,6 +29,7 @@ MaybeLink.propTypes = {
 	className: PropTypes.any,
 	href: PropTypes.any,
 	target: PropTypes.any,
+	theme: PropTypes.object,
 	to: PropTypes.any,
 };
 

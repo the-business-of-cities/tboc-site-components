@@ -11,7 +11,7 @@ import React from "react";
 
 class BlankPage extends React.Component {
 	render () {
-		const { children, sliderContents, banner, introduction, } = this.props;
+		const { children, sliderContents, banner, } = this.props;
 
 		return (
 			<Page>
@@ -32,7 +32,6 @@ class BlankPage extends React.Component {
 BlankPage.propTypes = {
 	banner: PropTypes.object,
 	children: PropTypes.array,
-	introduction: PropTypes.any,
 	sliderContents: PropTypes.array,
 };
 

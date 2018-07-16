@@ -26,7 +26,9 @@ class GenericPage extends React.Component {
 			>
 				{
 					title &&
-					<Section>
+					<Section
+						image = { image }
+					>
 						<Container narrow>
 							<Row>
 								<Column>
@@ -91,7 +93,7 @@ GenericPage.propTypes = {
 	children: PropTypes.any,
 	description: PropTypes.any,
 	introduction: PropTypes.any,
-	image: PropTypes.object,
+	image: PropTypes.string,
 	secondaryImage: PropTypes.object,
 	slider: PropTypes.element,
 	title: PropTypes.any,

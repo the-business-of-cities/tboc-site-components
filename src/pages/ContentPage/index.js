@@ -1,14 +1,9 @@
 import {
-	Page, Section, Container, Row, Column, SecondaryImage,
-} from "../../components/toolbox";
-
-import {
 	Point,
 } from "../../components/Point";
 
 
 import GenericPage from "../GenericPage";
-import marked from "marked";
 import PropTypes from "prop-types";
 import React from "react";
 import slugify from "slugify";
@@ -19,7 +14,16 @@ import slugify from "slugify";
 
 class ContentPage extends React.Component {
 	render () {
-		const { title, secondaryImage, slider, description, introduction, content, children, } = this.props;
+		const { 
+			children, 
+			content,
+			description,
+			image,
+			introduction,
+			secondaryImage,
+			slider,
+			title,
+		} = this.props;
 
 		return (
 			<GenericPage
@@ -28,6 +32,7 @@ class ContentPage extends React.Component {
 				secondaryImage = { secondaryImage }
 				slider = { slider }
 				title = { title }
+				image = { image }
 			>
 				{
 					content &&
@@ -55,6 +60,7 @@ ContentPage.propTypes = {
 	children: PropTypes.any,
 	content: PropTypes.any,
 	description: PropTypes.any,
+	image: PropTypes.string,
 	introduction: PropTypes.any,
 	secondaryImage: PropTypes.any,
 	slider: PropTypes.element,

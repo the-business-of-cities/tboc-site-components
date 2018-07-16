@@ -7,6 +7,17 @@ import slugify from "slugify";
 // --------------------------------------------------
 
 
+const colorMap = ( i, colors, ) => {
+	if( i % 3 === 0 ) {
+		return colors.tertiary;
+	} else if( i % 2 === 0 ) {
+		return colors.secondary; 
+	} else {
+		return colors.primary;
+	}
+};
+
+
 // --------------------------------------------------
 
 const Slides = ( { sliderContents, mobile, }, ) => {
@@ -17,13 +28,14 @@ const Slides = ( { sliderContents, mobile, }, ) => {
 			slidesToShow = { mobile ? 1 : 3 }
 		>
 			{ 
-				sliderContents.map( ( ( slide, ) => {
+				sliderContents.map( ( ( slide, i ) => {
 					return (
 						<Slide
 							key = { `slider-slide-${ slugify(slide.title.toLowerCase()) }` } 
 							title = { slide.title } 
 							image = { slide.image } 
 							description = { slide.description } 
+							colorCount = { i + 1 }
 						/> 
 					);
 				}), ) 

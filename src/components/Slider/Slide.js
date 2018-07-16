@@ -15,7 +15,8 @@ const textFontSize = 0.9;
 const textLineHeight = 1.4;
 const boxHeight =
 	2.5 *
-	(padding + titleFontSize * titleLineHeight + textFontSize * textLineHeight);
+	( padding + titleFontSize * titleLineHeight + textFontSize * textLineHeight );
+const slideInnerHeight = 2 * ( padding + titleLineHeight ) + 0.4;
 
 // --------------------------------------------------
 
@@ -29,12 +30,16 @@ const SlideInner = styled(MaybeLink)`
 	bottom: 0;
 	color: #fff;
 	display: block;
-	height: 5em;
+	height: ${ slideInnerHeight }em;
 	left: 0;
 	padding: ${ padding }em;
 	position: absolute;
 	right: 0;
 	transition-duration: 0.5s;
+	background-color: ${ 
+		props => (props.colorCount % 3 === 0) ? 
+		props.theme.colors.tertiary : 
+		( ( props.colorCount + 1 ) % 3 === 0 ? props.theme.colors.secondary : props.theme.colors.primary ) };
 
 	&:hover {
 		color: #eee;
@@ -85,7 +90,12 @@ const SlideText = styled.div`
 				background: linear-gradient(
 					to right,
 					transparent,
-					${ props => props.theme.colors.bg.dark } 50%
+					${ 
+						props => props.colorCount % 3 === 0 ? 
+						props.theme.colors.tertiary : 
+						( ( props.colorCount + 1 ) % 3 === 0 ? props.theme.colors.secondary : props.theme.colors.primary ) 
+					}
+					50%
 				);
 			}
 		}
@@ -97,27 +107,30 @@ const SlideImage = styled.img`
 	height: 100%;
 	object-fit: cover;
 	position: absolute;
+	padding-bottom: ${ slideInnerHeight };
 `;
 
 // --------------------------------------------------
 
-const Slide = ( { title, image, description, } ) => {
+const Slide = ( { title, image, description, colorCount, } ) => {
 	const slug = slugify( title );
 
 	return (
 		<SlideWrapper>
-			{ image &&
+			{ 
+				image &&
 				<SlideImage
-					src = { `http://res.cloudinary.com/codogo/image/fetch/h_800,c_fill,g_face,f_auto/https:${ image.file.url }` }
+					src = { `http://res.cloudinary.com/codogo/image/fetch/c_imagga_scale,w_800,h_600,c_fill,g_face,f_auto/https:${ image.file.url }` }
 					alt = { image.file.description }
 				/>
 			}
 
-			<SlideInner to = { slug } href = { slug }>
+			<SlideInner to = { slug } href = { slug } colorCount = { colorCount }>
 				<SlideTitle>{ title }</SlideTitle>
 
 				{ description && (
-					<SlideText
+					<SlideText 
+						colorCount = { colorCount }
 						dangerouslySetInnerHTML = { {
 							__html: marked(description),
 						} }
@@ -129,6 +142,7 @@ const Slide = ( { title, image, description, } ) => {
 };
 
 Slide.propTypes = {
+	colorCount: PropTypes.any,
 	description: PropTypes.string,
 	image: PropTypes.object,
 	title: PropTypes.string,

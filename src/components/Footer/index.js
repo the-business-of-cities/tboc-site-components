@@ -108,7 +108,7 @@ const Footer = ( { footerText, footerLinks, socialLinks, } ) => {
 
 				<FooterLinks>
 					{
-						footerLinks.map( link => <a href = { slugify(link.title.toLowerCase()) }>{link.title}</a>)
+						footerLinks.map( link => <a key = { slugify(link.title.toLowerCase()) } href = { slugify(link.title.toLowerCase()) }>{link.title}</a>)
 					}
 				</FooterLinks>
 
@@ -118,7 +118,7 @@ const Footer = ( { footerText, footerLinks, socialLinks, } ) => {
 						socialLinks.map( link =>
 							(
 								<a
-									key = { `footer-${ link.type }` }
+									key = { `footer-${ link.type }-${ link.link }` }
 									href = { link.link }
 									style = {
 										link.type === "phone" ? 

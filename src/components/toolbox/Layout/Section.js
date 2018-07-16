@@ -1,8 +1,6 @@
 import * as mixins from "codogo-utility-functions";
 
-import styled, { css, } from "styled-components";
-import PropTypes from "prop-types";
-import React from "react";
+import styled from "styled-components";
 
 // --------------------------------------------------
 
@@ -14,6 +12,8 @@ const Section = styled.div`
 	flex-direction: row;
 	justify-content: center;
 	width: 100%;
+	background-image: ${ props => props.image && `url(http://res.cloudinary.com/codogo/image/fetch/w_1500,c_fill,g_face,f_auto,o_30/https:${ props.image })` };
+	background-size: cover;
 
 	&:nth-child(2n) {
 		background-color: #fafafa;

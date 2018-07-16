@@ -76,14 +76,14 @@ const TeamMember = ( { member, }) => {
 	return member && (
 		<TeamMemberWrapper>
 			<PrimaryDetails>
-				<MemberImage src = { image && image.file.url } />
+				{ image && <MemberImage src = { `http://res.cloudinary.com/codogo/image/fetch/c_imagga_scale,w_600,h_800,c_fill,g_face,f_auto/https:${ image.file.url }` } /> }
 			
 				<div>
-					<Name>{ name }</Name>
+					{ name && <Name>{ name }</Name> }
 
-					<Role>{ role }</Role>
+					{ role && <Role>{ role }</Role> }
 
-					{ 
+					{
 						(email || linkedin || website || twitter ) &&
 						(
 							<Links>

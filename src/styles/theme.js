@@ -13,7 +13,14 @@ const breakpoints = {
 	lg: { min: lg, max: 100000, },
 };
 
+const palette = {
+	primary: "#666",
+	secondary: "#888",
+	tertiary: "#bbb",
+};
+
 const colors = {
+	...palette,
 	text: "#444",
 	link: "#405378",
 	linkHover: "#4D6491",
