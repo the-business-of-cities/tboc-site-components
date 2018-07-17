@@ -79,28 +79,17 @@ const Social = styled(FooterSection)`
 	margin: 0 -0.25em;
 	order: 1;
 
-	a {
-		color: white;
-		margin: 0 0.25em;
-
-		i,
-		&:visited {
-			color: white !important;
-		}
-
+	> a {
 		&:hover {
-			color: #ddd;
+			opacity: 0.7;
 		}
 	}
 `;
 
-const socialIcons = {
-	newsletter: "envelope",
-	podcasts: "podcast",
-	email: "at",
-};
-
 const Footer = ( { footerText, footerLinks, socialLinks, } ) => {
+	console.log("icon", Icon);
+
+
 	return (
 		<FooterWrapper>
 			<Inner>
@@ -130,7 +119,7 @@ const Footer = ( { footerText, footerLinks, socialLinks, } ) => {
 											undefined
 									}
 								>
-									<Icon type = { socialIcons[link.type] || link.type } />
+									<Icon icon = { link.type } />
 								</a>
 							)
 						) }
@@ -141,6 +130,7 @@ const Footer = ( { footerText, footerLinks, socialLinks, } ) => {
 };
 
 Footer.propTypes = {
+	footerLinks: PropTypes.array,
 	footerText: PropTypes.string,
 	socialLinks: PropTypes.array,
 };

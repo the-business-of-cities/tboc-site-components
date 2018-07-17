@@ -25,8 +25,8 @@ const colors = {
 	link: "#405378",
 	linkHover: "#4D6491",
 	nav: {
-		background: "#002B4E",
-		alt: "#333",
+		background: "#333",
+		alt: "#002B4E",
 	},
 	footer: "#333",
 	bg: {

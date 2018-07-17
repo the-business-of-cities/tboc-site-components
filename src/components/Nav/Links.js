@@ -1,15 +1,14 @@
 import styled, { css, } from "styled-components";
 import * as mixins from "codogo-utility-functions";
-
+import { theme, } from "../../styles";
 
 import R from "ramda";
 import PropTypes from "prop-types";
 import React from "react";
 import Link from "gatsby-link";
+import Dropdown from "./Dropdown";
 
 // --------------------------------------------------
-
-import { theme, } from "../../styles";
 
 const LinksWrapper = styled.div`
 	align-items: center;
@@ -48,48 +47,11 @@ const LinksContainer = styled.div`
 	` };
 `;
 
-const buttonStyle = [
-	css`
-		display: block;
-		padding: 0.9em ${ theme.dimensions.nav.margin.xs };
-		font-size: 0.9em;
-		content: ${ R.pipe(R.path([ "theme", "nav", ])) };
-		line-height: 1;
-
-		&.active {
-			font-weight: bold;
-			background-color: ${ R.pipe(R.path([ "theme", "nav", ]), color =>
-		mixins.lightenColor(color, 0.1),
-	) };
-		}
-	`,
-
-	`
-		display: inline-block;
-		height: ${ theme.dimensions.nav.linksHeight };
-		line-height: ${ theme.dimensions.nav.linksHeight };
-		padding: 0 0.75em;
-		font-size: 0.8em;
-		text-transform: uppercase;
-
-		&.active {
-			background-color: rgba(255,255,255,0.3);
-		}
-
-		&:not(.active):hover {
-			background-color: rgba(255,255,255,0.1);
-		}
-	`,
-];
-
 const LinkWrapper = styled.div`
 	position: relative;
 
 	${ mixins.xs`
 		border-top: 1px solid;
-		${ R.pipe(R.path([ "theme", "nav", ]), color =>
-		mixins.darkenColor(color, 0.2),
-	) };
 	` };
 
 	${ mixins.bp.sm.min`
@@ -104,42 +66,34 @@ const LinkWrapper = styled.div`
 const StyledLink = styled(Link)`
 	color: ${ props => props.theme.colors.link };
 
-	${ mixins.xs`${ buttonStyle[0] }` };
-	${ mixins.bp.sm.min`${ buttonStyle[1] }` };
-`;
-
-const StyledDropdownLink = styled(StyledLink)`
-	background: ${ props => props.theme.colors.bg.light };
-	&,
-	a {
-		color: ${ props => props.theme.colors.link } !important;
-
-		&:hover {
-			color: ${ props => props.theme.colors.linkHover } !important;
-		}
-	}
-`;
-
-const DropdownLinks = styled.div`
 	${ mixins.xs`
-		padding-left: 1em;
+		display: block;
+		padding: 0.9em ${ theme.dimensions.nav.margin.xs };
 		font-size: 0.9em;
-		opacity: 0.67;
-	` };
+		line-height: 1;
+
+		&.active {
+			font-weight: bold;
+			background-color: ${ props => mixins.lightenColor(props.theme.colors.nav.background) };
+		}
+	` }
 
 	${ mixins.bp.sm.min`
-		display: none;
-		background: ${ R.pipe(R.path([ "theme", "nav", ]), mixins.lightenColor) };
-		position: absolute;
-		top: ${ theme.dimensions.nav.linksHeight };
-		left: 0;
-		width: 22em;
+		display: inline-block;
+		height: ${ theme.dimensions.nav.linksHeight };
+		line-height: ${ theme.dimensions.nav.linksHeight };
+		padding: 0 0.75em;
+		font-size: 0.8em;
+		text-transform: uppercase;
 
-		a {
-			display: block;
-			border: 0;
+		&.active {
+			background-color: ${ props => mixins.lightenColor(props.theme.colors.nav.background) };
 		}
-	` };
+
+		&:not(.active):hover {
+			background-color: ${ props => mixins.lightenColor(props.theme.colors.nav.background, 0.1) };
+		}
+	` }
 `;
 
 const DropdownArrow = styled.span`
@@ -167,22 +121,7 @@ const Links = ({ links, close, open, }) => (
 							</StyledLink>
 
 							{ 
-								link.dropdown && (
-									<DropdownLinks>
-										{link.dropdown
-											.map(({ content, to, }) => (
-												<LinkWrapper key = { to }>
-													<StyledDropdownLink
-														to = { to }
-														activeClassName = "active"
-														exact
-													>
-														{ content }
-													</StyledDropdownLink>
-												</LinkWrapper>
-											))}
-									</DropdownLinks>
-								)
+								link.dropdown && <Dropdown links = { link.dropdown } />
 							}
 						</LinkWrapper>
 					);

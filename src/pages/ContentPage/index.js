@@ -42,7 +42,8 @@ class ContentPage extends React.Component {
 								link: `/${ section.ctaTarget && slugify(section.ctaTarget.title, { lower: true, }) }`,
 								text: section.ctaText,
 							} }
-							image = { section.image.file.url }
+							image = { section.image }
+							bgImage = { section.backgroundImage.file.url }
 							text = { section.content.content }
 							reverse = { i % 2 === 0 }
 							{ ...section }

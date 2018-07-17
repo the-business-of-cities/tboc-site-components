@@ -1,7 +1,6 @@
 import { compose, withState, withHandlers, } from "recompose";
-
+import { theme, } from "../../styles";
 import * as mixins from "codogo-utility-functions";
-
 
 import Links from "./Links";
 import Logo from "./Logo";
@@ -9,8 +8,6 @@ import Burger from "./Burger";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import React from "react";
-
-import { theme, } from "../../styles";
 
 // --------------------------------------------------
 

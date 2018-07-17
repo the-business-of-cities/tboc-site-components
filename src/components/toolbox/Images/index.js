@@ -48,18 +48,6 @@ const SmartImage = styled.div`
 
 // --------------------------------------------------
 
-const IconWrapper = styled.i`
-	font-size: ${ props => props.size || "1em" };
-	margin-right: ${ props => props.marginRight || 0 };
-	margin-left: ${ props => props.marginLeft || 0 };
-`;
-
-const Icon = props => (
-	<IconWrapper className = { `fa fa-${ props.type }` } { ...props } />
-);
-
-// --------------------------------------------------
-
 const bgTint = 0.3;
 
 const Background = styled.div`
@@ -77,4 +65,4 @@ const Background = styled.div`
 	${ props => (props.color ? `background-color: ${ props.color };` : "") };
 `;
 
-export { Image, SmartImage, SecondaryImage, Icon, Background, };
+export { Image, SmartImage, SecondaryImage, Background, };

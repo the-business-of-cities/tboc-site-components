@@ -14,7 +14,6 @@ export const ButtonWrapper = styled.div`
 	cursor: pointer;
 	display: inline-flex;
 	flex-direction: row;
-	height: 2.6em;
 	justify-content: center;
 	line-height: 1;
 	padding: 0 1em;

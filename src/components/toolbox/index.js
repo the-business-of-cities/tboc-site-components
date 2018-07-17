@@ -1,6 +1,7 @@
 export * from "./Boxes";
 export * from "./Buttons";
 export * from "./Grid";
+export * from "./Icons";
 export * from "./Images";
 export * from "./Links";
 export * from "./Layout";
