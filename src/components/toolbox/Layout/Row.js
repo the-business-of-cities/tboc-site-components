@@ -28,8 +28,6 @@ const Row = styled.div`
 	${ mixins.bp.sm.max`
 		flex-wrap: wrap;
 	` };
-
-	&
 `;
 
 export { Row, };

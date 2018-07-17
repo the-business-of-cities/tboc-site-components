@@ -12,6 +12,14 @@ const Column = styled.div`
 	flex-direction: column;
 	flex: 1;
 
+	&:first-child {
+		flex: 7;
+	}
+
+	&:last-child {
+		flex: 5;
+	}
+
 	&:not(:last-child) {
 		padding-left: 0.5em;
 	}

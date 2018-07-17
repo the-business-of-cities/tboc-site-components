@@ -30,6 +30,8 @@ const colors = {
 	},
 	footer: "#333",
 	bg: {
+		white: "#fff",
+		lighter: "#fafafa",
 		light: "#ffe4ca",
 		medium: "#E4C1A3",
 	},
