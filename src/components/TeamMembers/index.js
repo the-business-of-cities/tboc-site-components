@@ -5,6 +5,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import React from "react";
 import TeamMember from "./Member";
+import slugify from "slugify";
 
 // --------------------------------------------------
 
@@ -28,7 +29,13 @@ const TeamMembers = ( { members, }) => {
 					<Column>
 						<TeamMembersWrapper>
 							{
-								members.map( member => <TeamMember member = { member.node || member }/>)
+								members.map( 
+									member => 
+									<TeamMember 
+										key = { slugify( member.name || member.node.name, { lower: true, } )  } 
+										member = { member.node || member }
+									/>
+								)
 							}
 						</TeamMembersWrapper>
 					</Column>

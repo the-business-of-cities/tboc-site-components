@@ -26,7 +26,7 @@ const SlideWrapper = styled.div`
 `;
 
 const SlideInner = styled(MaybeLink)`
-	background-color: ${ props => props.theme.colors.bg.dark };
+	background-color: ${ props => props.theme.colors.background.dark };
 	bottom: 0;
 	color: #fff;
 	display: block;
@@ -113,7 +113,7 @@ const SlideImage = styled.img`
 // --------------------------------------------------
 
 const Slide = ( { title, image, description, colorCount, } ) => {
-	const slug = slugify( title );
+	const slug = slugify( title, { lower: true, });
 
 	return (
 		<SlideWrapper>
@@ -125,7 +125,7 @@ const Slide = ( { title, image, description, colorCount, } ) => {
 				/>
 			}
 
-			<SlideInner to = { slug } href = { slug } colorCount = { colorCount }>
+			<SlideInner to = { "publications/" + slug } href = { "publications/" + slug } colorCount = { colorCount }>
 				<SlideTitle>{ title }</SlideTitle>
 
 				{ description && (

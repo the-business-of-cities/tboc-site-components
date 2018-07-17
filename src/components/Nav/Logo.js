@@ -20,7 +20,7 @@ const LogoWrapper = styled.div`
 	justify-content: center;
 
 	${ mixins.bp.sm.min`
-		bottom: ${ theme.dimensions.nav.linksHeight };
+		bottom: ${ props => props.theme.dimensions.nav.linksHeight };
 	` };
 `;
 
@@ -28,8 +28,8 @@ const LogoContainer = styled.div`
 	display: flex;
 	width: 100%;	
 	height: 100%;
-	max-width: ${ theme.breakpoints.lg.min }px;
-	padding: 0 ${ theme.dimensions.nav.margin.xs };
+	max-width: ${ props => props.theme.breakpoints.lg.min }px;
+	padding: 0 ${ props => props.theme.dimensions.nav.margin.xs };
 `;
 
 const IndexLink = props => <Link to = "/" { ...props } />;

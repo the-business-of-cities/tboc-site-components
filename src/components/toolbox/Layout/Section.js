@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 const Section = styled.div`
 	align-items: center;
-	background-color: ${ props => props.theme.colors.bg.white };
+	background-color: ${ props => props.theme.colors.background.white };
 	display: flex;
 	flex-basis: 100%;
 	flex-direction: row;
@@ -16,7 +16,7 @@ const Section = styled.div`
 	background-size: cover;
 
 	&:nth-child(2n) {
-		background-color: ${ props => props.theme.colors.bg.lighter };
+		background-color: ${ props => props.theme.colors.background.lighter };
 	}
 
 	${ mixins.bp.sm.max`

@@ -33,7 +33,7 @@ const StyledLink = styled(Link)`
 
 	${ mixins.xs`
 		display: block;
-		padding: 0.9em ${ theme.dimensions.nav.margin.xs };
+		padding: 0.9em ${ props => props.theme.dimensions.nav.margin.xs };
 		font-size: 0.9em;
 		line-height: 1;
 
@@ -45,8 +45,8 @@ const StyledLink = styled(Link)`
 
 	${ mixins.bp.sm.min`
 		display: inline-block;
-		height: ${ theme.dimensions.nav.linksHeight };
-		line-height: ${ theme.dimensions.nav.linksHeight };
+		height: ${ props => props.theme.dimensions.nav.linksHeight };
+		line-height: ${ props => props.theme.dimensions.nav.linksHeight };
 		padding: 0 0.75em;
 		font-size: 0.8em;
 		text-transform: uppercase;
@@ -63,7 +63,7 @@ const StyledLink = styled(Link)`
 
 const StyledDropdownLink = styled(StyledLink)`
 	${ mixins.bp.md.min`
-		background: ${ props => props.theme.colors.bg.light };
+		background: ${ props => props.theme.colors.background.light };
 
 		&,
 		a {
@@ -90,7 +90,7 @@ const DropdownLinks = styled.div`
 		display: none;
 		background: ${ R.pipe(R.path([ "theme", "nav", ]), mixins.lightenColor) };
 		position: absolute;
-		top: ${ theme.dimensions.nav.linksHeight };
+		top: ${ props => props.theme.dimensions.nav.linksHeight };
 		left: 0;
 		width: 22em;
 

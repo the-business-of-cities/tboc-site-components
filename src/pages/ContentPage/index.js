@@ -1,7 +1,6 @@
 import {
 	Point,
-} from "../../components/Point";
-
+} from "../../components";
 
 import GenericPage from "../GenericPage";
 import PropTypes from "prop-types";
@@ -38,15 +37,16 @@ class ContentPage extends React.Component {
 					content &&
 					content.map( (section, i) => (
 						<Point
+							bgImage = { section.backgroundImage && ( section.backgroundImage.file.url || section.backgroundImage ) }
 							cta = { {
 								link: `/${ section.ctaTarget && slugify(section.ctaTarget.title, { lower: true, }) }`,
 								text: section.ctaText,
 							} }
 							image = { section.image }
-							bgImage = { section.backgroundImage && ( section.backgroundImage.file.url || section.backgroundImage ) }
-							text = { section.content.content }
+							key = { `point-${ slugify( section.title, { lower: true, } ) }` }
 							reverse = { i % 2 === 0 }
-							{ ...section }
+							text = { section.content.content }
+							title = { section.title }
 						/>
 					) )
 				}

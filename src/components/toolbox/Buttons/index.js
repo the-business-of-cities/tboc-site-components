@@ -16,7 +16,7 @@ export const ButtonWrapper = styled.div`
 	flex-direction: row;
 	justify-content: center;
 	line-height: 1;
-	padding: 0 1em;
+	padding: 1em;
 	transition: 0.1s linear background;
 
 	${ props => props.margin && "margin: 0.3em;" };

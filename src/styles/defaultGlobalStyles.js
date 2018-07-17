@@ -20,7 +20,7 @@ const defaultGlobalStyles = ( customTheme ) => {
 		}
 
 		body {
-			background-color: ${ activeTheme.colors.bg.mediumer };
+			background-color: ${ activeTheme.colors.background.medium };
 			font-family: ${ activeTheme.font.family };
 			${ mixins.bpEach("font-size", activeTheme.font.size) }
 			color: ${ activeTheme.colors.text };
@@ -94,13 +94,13 @@ const defaultGlobalStyles = ( customTheme ) => {
 				content: '';
 				display: block;
 				width: 5em;
-				border-bottom: 0.4em solid ${ activeTheme.colors.bg.medium };
+				border-bottom: 0.4em solid ${ activeTheme.colors.background.medium };
 			}
 		}
 
 		hr {
 			border: 0;
-			border-top: 0.4em solid ${ activeTheme.colors.bg.medium };
+			border-top: 0.4em solid ${ activeTheme.colors.background.medium };
 			margin: 2em 0;
 		}
 	`;

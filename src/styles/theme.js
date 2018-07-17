@@ -29,7 +29,7 @@ const colors = {
 		alt: "#002B4E",
 	},
 	footer: "#333",
-	bg: {
+	background: {
 		white: "#fff",
 		lighter: "#fafafa",
 		light: "#ffe4ca",

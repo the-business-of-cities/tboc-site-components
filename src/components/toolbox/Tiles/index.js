@@ -27,7 +27,7 @@ export const TileInner = styled.div`
 `;
 
 export const TileContent = styled.div`
-	background: ${ theme.colors.bg.medium };
+	background: ${ props => props.theme.colors.background.medium };
 	margin-top: -2em;
 	left: 0;
 	margin-right: 1.5em;

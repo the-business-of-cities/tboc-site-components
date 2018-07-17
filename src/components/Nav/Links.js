@@ -12,11 +12,12 @@ import Dropdown from "./Dropdown";
 
 const LinksWrapper = styled.div`
 	align-items: center;
+	color: ${ props => props.theme.colors.link };
+	justify-content: center;
 	left: 0;
 	margin: auto;
 	position: absolute;
 	right: 0;
-	justify-content: center;
 
 	${ mixins.xs`
 		background-color: ${ props => props.theme.colors.nav.background };
@@ -30,7 +31,7 @@ const LinksWrapper = styled.div`
 	${ mixins.bp.sm.min`
 		display: flex;
 		bottom: 0;
-		height: ${ theme.dimensions.nav.linksHeight };
+		height: ${ props => props.theme.dimensions.nav.linksHeight };
 	` };
 `;
 
@@ -38,12 +39,12 @@ const LinksContainer = styled.div`
 	display: flex;
 	bottom: 0;
 	width: 100%;
-	max-width: ${ theme.breakpoints.lg.min }px;
+	max-width: ${ props => props.theme.breakpoints.lg.min }px;
 	flex-direction: column;
 
 	${ mixins.bp.sm.min`
 		flex-direction: row;
-		padding: 0 ${ theme.dimensions.nav.margin.xs };
+		padding: 0 ${ props => props.theme.dimensions.nav.margin.xs };
 	` };
 `;
 
@@ -51,10 +52,13 @@ const LinkWrapper = styled.div`
 	position: relative;
 
 	${ mixins.xs`
+		color: ${ props => props.theme.colors.background.white };
 		border-top: 1px solid;
 	` };
 
 	${ mixins.bp.sm.min`
+		color: ${ props => props.theme.colors.nav.alt };
+
 		&:hover {
 			> div {
 				display: block;
@@ -64,11 +68,9 @@ const LinkWrapper = styled.div`
 `;
 
 const StyledLink = styled(Link)`
-	color: ${ props => props.theme.colors.link };
-
 	${ mixins.xs`
 		display: block;
-		padding: 0.9em ${ theme.dimensions.nav.margin.xs };
+		padding: 0.9em ${ props => props.theme.dimensions.nav.margin.xs };
 		font-size: 0.9em;
 		line-height: 1;
 
@@ -80,8 +82,8 @@ const StyledLink = styled(Link)`
 
 	${ mixins.bp.sm.min`
 		display: inline-block;
-		height: ${ theme.dimensions.nav.linksHeight };
-		line-height: ${ theme.dimensions.nav.linksHeight };
+		height: ${ props => props.theme.dimensions.nav.linksHeight };
+		line-height: ${ props => props.theme.dimensions.nav.linksHeight };
 		padding: 0 0.75em;
 		font-size: 0.8em;
 		text-transform: uppercase;

@@ -10,6 +10,7 @@ const Burger = props => (
 	<Wrapper { ...props }>
 		<Bottom { ...props }>
 			<Top { ...props } />
+
 			<Middle { ...props } />
 		</Bottom>
 	</Wrapper>
@@ -20,7 +21,6 @@ Burger.defaultProps = {
 	layerWidth: 30,
 	layerHeight: 3,
 	layerSpacing: 6,
-	color: "#000",
 	borderRadius: 4,
 	transitionDuration: 0.4,
 };
@@ -36,7 +36,7 @@ const Wrapper = styled.div`
 const Bar = styled.div`
 	width: ${ props => props.layerWidth }px;
 	height: ${ props => props.layerHeight }px;
-	background-color: ${ props => props.color };
+	background-color: ${ props => props.theme.colors.nav.background };
 	border-radius: ${ props => props.borderRadius }px;
 	position: absolute;
 	transition-property: transform;

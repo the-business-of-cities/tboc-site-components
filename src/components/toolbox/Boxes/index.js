@@ -53,13 +53,13 @@ const TextInner = styled.div`
 `;
 
 const Title = styled.div`
-	font-family: ${ theme.font.heading };
+	font-family: ${ props => props.theme.font.heading };
 	font-weight: bold;
 	font-size: 1.1em;
 `;
 
 const Text = styled.div`
-	font-family: ${ theme.font.paragraph };
+	font-family: ${ props => props.theme.font.paragraph };
 	font-size: 0.9em;
 `;
 

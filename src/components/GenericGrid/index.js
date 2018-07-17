@@ -51,7 +51,7 @@ const EntryImage = styled.img`
 `;
 
 const EntryInner = styled(MaybeLink)`
-	background-color: ${ props => props.theme.colors.bg.dark };
+	background-color: ${ props => props.theme.colors.background.dark };
 	bottom: 0;
 	color: #fff;
 	display: block;
@@ -108,7 +108,7 @@ const EntryText = styled.div`
 				background: linear-gradient(
 					to right,
 					transparent,
-					${ props => props.theme.colors.bg.dark } 50%
+					${ props => props.theme.colors.background.dark } 50%
 				);
 			}
 		}

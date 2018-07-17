@@ -35,7 +35,7 @@ const EventTable = styled.table`
 	tr:hover,
 	tr:active {
 		cursor: pointer;
-		background-color: ${ props => props.theme.colors.bg.medium };
+		background-color: ${ props => props.theme.colors.background.medium };
 	}
 
 	td {
@@ -52,7 +52,7 @@ const EventTable = styled.table`
 const Event = ({ condensed, ...event }) => {
 	const Cell = ({ children, }) => (
 		<td>
-			<Link to = { `/events/${ slugify(event.title.toLowerCase()) }` }>{children}</Link>
+			<Link to = { `/events/${ slugify(event.title, { lower: true, } ) }` }>{children}</Link>
 		</td>
 	);
 
@@ -77,13 +77,13 @@ const Events = ({ events, }) => {
 	const pastEvents = events.filter(
 		event => Moment(event.node.date).diff(Moment()) < 0
 	).map(event => (
-		<Event { ...event.node } key = { `${ slugify(event.node.title.toLowerCase()) }-${ event.node.date }` } condensed />
+		<Event { ...event.node } key = { `${ slugify(event.node.title, { lower: true, } ) }-${ event.node.date }` } condensed />
 	) );
 
 	const upcomingEvents = events.filter(
 		event => Moment(event.node.date).diff(Moment()) >= 0
 	).map(event => (
-		<Event { ...event.node } key = { `${ slugify(event.node.title.toLowerCase()) }-${ event.node.date }` } />
+		<Event { ...event.node } key = { `${ slugify(event.node.title, { lower: true, } ) }-${ event.node.date }` } />
 	) );
 
 	return (

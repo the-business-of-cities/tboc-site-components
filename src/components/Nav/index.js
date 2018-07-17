@@ -33,7 +33,7 @@ const Overlay = styled.div`
 	${ mixins.contained() };
 	${ ({ open, }) => open || true ? mixins.shadow(1) : "" };
 	transition: 0.3s all ease-out;
-	background-color: ${ props => props.theme.colors.bg.medium };
+	background-color: ${ props => props.theme.colors.background.medium };
 `;
 
 const BurgerWrapper = styled.div`

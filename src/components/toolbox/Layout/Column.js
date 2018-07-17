@@ -12,14 +12,6 @@ const Column = styled.div`
 	flex-direction: column;
 	flex: 1;
 
-	&:first-child {
-		flex: 7;
-	}
-
-	&:last-child {
-		flex: 5;
-	}
-
 	&:not(:last-child) {
 		padding-left: 0.5em;
 	}
@@ -29,13 +21,23 @@ const Column = styled.div`
 	}
 
 	${ mixins.bp.sm.max`
-		flex-basis: 100%;
+		flex-basis: 100% !important;
 		padding: 1em;
 	` };
 
-	> img {
-		padding: 2em;
-	}
+	${ mixins.bp.sm.min`
+		&:first-child {
+			flex: 7;
+		}
+
+		&:last-child {
+			flex: 5;
+		}
+
+		> img {
+			padding: 2em;
+		}
+	` }
 
 	${ props => props.center && "align-items: center; text-align: center;" };
 `;

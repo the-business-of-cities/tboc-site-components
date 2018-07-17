@@ -11,7 +11,7 @@ import slugify from "slugify";
 import { theme, } from "../../styles";
 
 const FooterWrapper = styled.footer`
-	background-color: ${ theme.colors.footer };
+	background-color: ${ props => props.theme.colors.footer };
 	position: absolute;
 	right: 0;
 	left: 0;
@@ -27,7 +27,7 @@ const Inner = styled.div`
 	display: flex;
 	justify-content: space-between;
 	color: white;
-	max-width: ${ theme.breakpoints.lg.min }px;
+	max-width: ${ props => props.theme.breakpoints.lg.min }px;
 	margin: 0 auto;
 
 	${ mixins.xs`
@@ -51,7 +51,12 @@ const FooterSection = styled.div`
 `;
 
 const FooterLinks = styled.div`
-	display: flex;
+	text-align: center;
+
+	${ mixins.xs`
+		width: 100%;
+		padding: 4px;
+	` };
 
 	> a {
 		margin: 0 0.5em;
@@ -87,9 +92,6 @@ const Social = styled(FooterSection)`
 `;
 
 const Footer = ( { footerText, footerLinks, socialLinks, } ) => {
-	console.log("icon", Icon);
-
-
 	return (
 		<FooterWrapper>
 			<Inner>
@@ -97,7 +99,7 @@ const Footer = ( { footerText, footerLinks, socialLinks, } ) => {
 
 				<FooterLinks>
 					{
-						footerLinks.map( link => <a key = { slugify(link.title.toLowerCase()) } href = { slugify(link.title.toLowerCase()) }>{link.title}</a>)
+						footerLinks.map( link => <a key = { slugify(link.title, { lower: true, } ) } href = { slugify(link.title.toLowerCase()) }>{link.title}</a>)
 					}
 				</FooterLinks>
 

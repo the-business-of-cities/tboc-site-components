@@ -31,7 +31,7 @@ const Slides = ( { sliderContents, mobile, }, ) => {
 				sliderContents.map( ( ( slide, i ) => {
 					return (
 						<Slide
-							key = { `slider-slide-${ slugify(slide.title.toLowerCase()) }` } 
+							key = { `slider-slide-${ slugify(slide.title, { lower: true, } ) }` } 
 							title = { slide.title } 
 							image = { slide.image } 
 							description = { slide.description } 
