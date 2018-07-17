@@ -43,7 +43,7 @@ class ContentPage extends React.Component {
 								text: section.ctaText,
 							} }
 							image = { section.image }
-							bgImage = { section.backgroundImage && section.backgroundImage.file.url }
+							bgImage = { section.backgroundImage && ( section.backgroundImage.file.url || section.backgroundImage ) }
 							text = { section.content.content }
 							reverse = { i % 2 === 0 }
 							{ ...section }
