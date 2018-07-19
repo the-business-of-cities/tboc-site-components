@@ -61,23 +61,24 @@ class ContentPage extends React.Component {
 
 				{ children }
 
-				{ console.log(partners)}
-
-				<Section>
-					<Container>
-						<Row restrict>
-							<Column>
-								{
-									partners.map( category => category && 
-										<PartnerCategory 
-											category = { category } 
-											key = { category.title }
-										/> )
-								}
-							</Column>
-						</Row>
-					</Container>
-				</Section>
+				{
+					partners &&
+					<Section>
+						<Container>
+							<Row restrict>
+								<Column>
+									{
+										partners.map( category => category && 
+											<PartnerCategory 
+												category = { category } 
+												key = { category.title }
+											/> )
+									}
+								</Column>
+							</Row>
+						</Container>
+					</Section>
+				}
 			</GenericPage>
 		);
 	}
