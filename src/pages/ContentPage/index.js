@@ -1,5 +1,10 @@
 import {
 	Point,
+	Section,
+	Container,
+	Row,
+	Column,
+	PartnerCategory
 } from "../../components";
 
 import GenericPage from "../GenericPage";
@@ -8,6 +13,8 @@ import React from "react";
 import slugify from "slugify";
 
 // --------------------------------------------------
+
+
 
 // --------------------------------------------------
 
@@ -19,6 +26,7 @@ class ContentPage extends React.Component {
 			description,
 			image,
 			introduction,
+			partners,
 			secondaryImage,
 			slider,
 			title,
@@ -52,6 +60,24 @@ class ContentPage extends React.Component {
 				}
 
 				{ children }
+
+				{ console.log(partners)}
+
+				<Section>
+					<Container>
+						<Row restrict>
+							<Column>
+								{
+									partners.map( category => category && 
+										<PartnerCategory 
+											category = { category } 
+											key = { category.title }
+										/> )
+								}
+							</Column>
+						</Row>
+					</Container>
+				</Section>
 			</GenericPage>
 		);
 	}
@@ -64,8 +90,9 @@ ContentPage.propTypes = {
 	image: PropTypes.string,
 	introduction: PropTypes.any,
 	secondaryImage: PropTypes.any,
+	partners: PropTypes.array,
 	slider: PropTypes.element,
-	title: PropTypes.any,
+	title: PropTypes.string,
 };
 
 export default ContentPage;
