@@ -118,10 +118,21 @@ const EntryText = styled.div`
 // --------------------------------------------------
 
 const GenericGrid = ( { entries, slug, } ) => {
+	if (entries[0].node.publishingDate) {
+		entries
+			.sort(function(a, b) {
+				return (
+					new Date(b.node.publishingDate) -
+					new Date(a.node.publishingDate)
+				);
+			});
+	};
+
 	return (
 		<EntryContainer>
 			{
-				entries.map( entry => (
+				entries
+				.map( entry => (
 					<EntryWrapper key = { slugify( entry.node.title.toLowerCase() ) } href = { `/${ slug }/${ slugify( entry.node.title.toLowerCase() ) }` }>
 						{
 							entry.node.image &&
