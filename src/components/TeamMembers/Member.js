@@ -26,10 +26,11 @@ const Role = styled.p`
 	font-weight: bold;
 `;
 
-const Links = styled.p`
+const Links = styled.div`
 	font-size: 1.2em;
+
 	a {
-		margin-right: 0.5em;
+		margin-right: 0.25em;
 	}
 `;
 
@@ -66,7 +67,7 @@ const TeamMember = ( { member, }) => {
 		description,
 		email,
 		image,
-		linkedin,
+		linkedIn,
 		name,
 		role,
 		twitter,
@@ -84,30 +85,30 @@ const TeamMember = ( { member, }) => {
 					{ role && <Role>{ role }</Role> }
 
 					{
-						(email || linkedin || website || twitter ) &&
+						(email || linkedIn || website || twitter ) &&
 						(
 							<Links>
-								{(email || true) && (
-									<a href = { email }>
-										<Icon type = "envelope-o" />
+								{ email && (
+									<a href = { `mailto:${ email }` }>
+										<Icon icon = "envelope" />
 									</a>
 								)}
 
-								{(linkedin || true) && (
-									<a href = { twitter }>
-										<Icon type = "linkedin" />
+								{ linkedIn && (
+									<a href = { `${ linkedIn }` }>
+										<Icon icon = "linkedin" />
 									</a>
 								)}
 
-								{website && (
+								{ website && (
 									<a href = { website }>
-										<Icon type = "link" />
+										<Icon icon = "link" />
 									</a>
 								)}
 
-								{twitter && (
-									<a href = { twitter }>
-										<Icon type = "twitter" />
+								{ twitter && (
+									<a href = { `https://www.twitter.com/${ twitter }` }>
+										<Icon icon = "twitter" />
 									</a>
 								)}
 							</Links>
