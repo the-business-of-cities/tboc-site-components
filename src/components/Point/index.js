@@ -1,4 +1,5 @@
 import { Section, Container, Row, Column, Button, Image, } from "../toolbox";
+import { Video, } from "../Video";
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
@@ -27,7 +28,13 @@ const Point = ( { title, text, image, cta, reverse, bgImage, }, ) => {
 					</Column>
 
 					<Column>
-						{ image && <PointImage src = { image.file.url } alt = { image.file.description }/> }
+						{ 
+							image && (
+								String(image.file.contentType).match("video\/.*") !== null ?
+									<Video video = { image.file.url }/> :
+									<PointImage src = { image.file.url } alt = { image.description }/>
+								)
+						}
 					</Column>
 				</Row>
 			</Container>

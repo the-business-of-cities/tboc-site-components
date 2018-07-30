@@ -138,7 +138,7 @@ const GenericGrid = ( { entries, slug, } ) => {
 							entry.node.image &&
 							<EntryImage
 								src = { `http://res.cloudinary.com/codogo/image/fetch/c_imagga_scale,w_800,h_600,c_fill,g_face,f_auto/https:${ entry.node.image.file.url }` }
-								alt = { entry.node.image.file.description }
+								alt = { entry.node.image.description }
 							/>
 						}
 
