@@ -53,7 +53,7 @@ class ContentPage extends React.Component {
 							image = { section.image }
 							key = { `point-${ slugify( section.title, { lower: true, } ) }` }
 							reverse = { i % 2 === 0 }
-							text = { section.content.content }
+							text = { section.content && section.content.content }
 							title = { section.title }
 						/>
 					) )
