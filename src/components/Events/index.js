@@ -71,7 +71,7 @@ const Event = ({ condensed, ...event }) => {
 
 const Events = ({ events, }) => {
 	events.sort((a, b) => {
-		return Moment(a.date).diff(Moment(b.date));
+		return Moment(a.node.date).diff(Moment(b.node.date)) < 0 ? 1 : -1;
 	});
 
 	const pastEvents = events.filter(

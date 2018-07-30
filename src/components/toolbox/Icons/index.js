@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { faLinkedin, faFacebook, faTwitter, faYoutube, } from "@fortawesome/free-brands-svg-icons";
-import { envelope, link, } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faLink, } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon, } from "@fortawesome/react-fontawesome";
 
 const iconMap = {
@@ -9,18 +9,19 @@ const iconMap = {
 	facebook: faFacebook,
 	twitter: faTwitter,
 	youtube: faYoutube,
-	link: link,
-	envelope: envelope,
+	link: faLink,
+	envelope: faEnvelope,
 };
 
-const _Icon = styled(FontAwesomeIcon)`
+const AwesomeIcon = styled(FontAwesomeIcon)`
 	margin: 0.5em;
 `;
 
-const Icon = ( props ) => (
-	<_Icon 
-		icon = { iconMap[ props.icon ] }
-	/>
-);
+const Icon = ( props ) => {
+	return iconMap[ props.icon ] &&
+		<AwesomeIcon 
+			icon = { iconMap[ props.icon ] }
+		/>;
+};
 
 export { Icon, };

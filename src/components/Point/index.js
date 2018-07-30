@@ -19,11 +19,13 @@ const Point = ( { title, text, image, cta, reverse, bgImage, }, ) => {
 						{ text && <p>{ text }</p> }
 
 						{ cta && 
-							<Button 
-								to = { cta.link }
-								text = { cta.text }
-								outline = "black"
-							/>
+							(( cta.link && cta.text) &&
+								<Button 
+									to = { cta.link }
+									text = { cta.text }
+									outline = "black"
+								/>
+							)
 						}
 					</Column>
 
@@ -33,7 +35,7 @@ const Point = ( { title, text, image, cta, reverse, bgImage, }, ) => {
 								String(image.file.contentType).match("video\/.*") !== null ?
 									<Video video = { image.file.url }/> :
 									<PointImage src = { image.file.url } alt = { image.description }/>
-								)
+							)
 						}
 					</Column>
 				</Row>
