@@ -9,6 +9,9 @@ const PointImage = styled(Image)`
 `;
 
 const Point = ( { title, text, image, cta, reverse, bgImage, }, ) => {
+
+	console.log(image);
+	
 	return (
 		<Section image = { bgImage }>
 			<Container restrict>
