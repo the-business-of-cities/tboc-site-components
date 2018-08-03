@@ -9,6 +9,10 @@ const PointImage = styled(Image)`
 	max-height: 40vh;
 `;
 
+const PointContent = styled.div`
+	font-size: 0.9em;
+`;
+
 const Point = ( { title, text, image, cta, reverse, bgImage, videoUrl, }, ) => {
 	return (
 		<Section image = { bgImage }>
@@ -18,7 +22,7 @@ const Point = ( { title, text, image, cta, reverse, bgImage, videoUrl, }, ) => {
 						{ title && <h3>{ title }</h3> }
 
 						{ text && 
-							<div
+							<PointContent
 								dangerouslySetInnerHTML = { {
 									__html: marked(
 										text,
@@ -44,7 +48,7 @@ const Point = ( { title, text, image, cta, reverse, bgImage, videoUrl, }, ) => {
 							image && (
 								String(image.file.contentType).match("video\/.*") !== null ?
 									<Video video = { image.file.url }/> :
-									<PointImage src = { image.file.url } alt = { image.description }/>
+									<MaybeLink to = { cta.link }><PointImage src = { image.file.url } alt = { image.description }/></MaybeLink>
 							)
 						}
 

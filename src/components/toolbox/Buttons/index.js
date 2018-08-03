@@ -39,6 +39,10 @@ export const ButtonWrapper = styled.div`
 					&:active {
 						color: ${ color };
 					}
+
+					&:hover {
+						opacity: 0.7;
+					}
 			  `
 			: `
 				color: white;

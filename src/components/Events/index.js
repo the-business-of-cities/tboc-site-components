@@ -1,10 +1,9 @@
-import { Link, } from "react-router-dom";
-import { theme, } from "../../styles";
 import {
 	Section,
 	Container,
 	Column,
 	Row,
+	MaybeLink,
 } from "../toolbox";
 
 import Moment from "moment";
@@ -52,7 +51,7 @@ const EventTable = styled.table`
 const Event = ({ condensed, ...event }) => {
 	const Cell = ({ children, }) => (
 		<td>
-			<Link to = { `/events/${ slugify(event.title, { lower: true, } ) }` }>{children}</Link>
+			<MaybeLink to = { event.link || `/events/${ slugify(event.title, { lower: true, } ) }` }>{children}</MaybeLink>
 		</td>
 	);
 
@@ -68,6 +67,12 @@ const Event = ({ condensed, ...event }) => {
 		</tr>
 	);
 };
+
+Event.propTypes = {
+	event: PropTypes.object,
+};
+
+// --------------------------------------------------
 
 const Events = ({ events, }) => {
 	events.sort((a, b) => {

@@ -28,17 +28,14 @@ const Column = styled.div`
 	${ mixins.bp.sm.min`
 		&:first-child {
 			flex: 1;
-
-			p {
-				font-size: 0.9em;
-			}
 		}
 
 		&:last-child {
 			flex: 1;
 		}
 
-		> img {
+		> img,
+		> a > img {
 			padding: 2em;
 		}
 	` }
