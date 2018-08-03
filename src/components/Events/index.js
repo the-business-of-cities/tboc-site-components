@@ -51,7 +51,7 @@ const EventTable = styled.table`
 const Event = ({ condensed, ...event }) => {
 	const Cell = ({ children, }) => (
 		<td>
-			<MaybeLink to = { event.link || `/events/${ slugify(event.title, { lower: true, } ) }` }>{children}</MaybeLink>
+			<MaybeLink href = { event.link } to = { !event.link && `/events/${ slugify(event.title, { lower: true, } ) }` }>{children}</MaybeLink>
 		</td>
 	);
 

@@ -10,6 +10,7 @@ export { default as Point, } from "./Point";
 export { default as Publications, } from "./Publications";
 export { default as Slider, } from "./Slider";
 export { default as TeamMembers, } from "./TeamMembers";
+export { default as Testimonial, } from "./Testimonial";
 export { Video, parseVideoUrl, } from "./Video";
 
 export * from "./toolbox";

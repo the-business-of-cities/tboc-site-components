@@ -2,6 +2,7 @@ import LogoGrid from "../LogoGrid";
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
+import slugify from "slugify";
 
 // --------------------------------------------------
 
@@ -22,7 +23,7 @@ const PartnerCategory = ( { category, } ) => {
 				logos = { 
 					category.partner.map(partner => ({
 						image: partner.image,
-						link: partner.website,
+						link: `partners/${ slugify( partner.name, { lower: true, } ) }`,
 					}))
 				}
 			/>
