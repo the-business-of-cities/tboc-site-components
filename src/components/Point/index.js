@@ -1,17 +1,15 @@
-import { Section, Container, Row, Column, Button, Image, } from "../toolbox";
+import { Section, Container, Row, Column, Button, Image, MaybeLink, } from "../toolbox";
 import { Video, } from "../Video";
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
+import marked from "marked";
 
 const PointImage = styled(Image)`
 	max-height: 40vh;
 `;
 
-const Point = ( { title, text, image, cta, reverse, bgImage, }, ) => {
-
-	console.log(image);
-	
+const Point = ( { title, text, image, cta, reverse, bgImage, videoUrl, }, ) => {
 	return (
 		<Section image = { bgImage }>
 			<Container restrict>
@@ -19,7 +17,16 @@ const Point = ( { title, text, image, cta, reverse, bgImage, }, ) => {
 					<Column>
 						{ title && <h3>{ title }</h3> }
 
-						{ text && <p>{ text }</p> }
+						{ text && 
+							<div
+								dangerouslySetInnerHTML = { {
+									__html: marked(
+										text,
+									),
+								} }
+							/> 
+						}
+
 
 						{ cta && 
 							(( cta.link && cta.text) &&
@@ -39,6 +46,10 @@ const Point = ( { title, text, image, cta, reverse, bgImage, }, ) => {
 									<Video video = { image.file.url }/> :
 									<PointImage src = { image.file.url } alt = { image.description }/>
 							)
+						}
+
+						{
+							( !image && videoUrl ) && <Video videoUrl = { videoUrl }/>
 						}
 					</Column>
 				</Row>
@@ -60,6 +71,7 @@ Point.propTypes = {
 	reverse: PropTypes.bool,
 	text: PropTypes.string,
 	title: PropTypes.string,
+	videoUrl: PropTypes.string,
 };
 
 export default Point;

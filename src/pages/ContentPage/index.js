@@ -55,6 +55,7 @@ class ContentPage extends React.Component {
 							reverse = { i % 2 === 0 }
 							text = { section.content && section.content.content }
 							title = { section.title }
+							videoUrl = { section.videoUrl }
 						/>
 					) )
 				}
