@@ -1,5 +1,4 @@
-import * as mixins from "codogo-utility-functions";
-import { Section, Column, Row, Container, } from "../toolbox";
+import { Section, Column, Row, Container, Image, } from "../toolbox";
 
 import styled from "styled-components";
 import PropTypes from "prop-types";
@@ -8,25 +7,39 @@ import marked from "marked";
 
 // --------------------------------------------------
 
+const MemberImage = styled(Image)`
+	max-width: 250px;
+	max-height: 250px;
+	flex-basis: 50%;
+	display: flex;
+	flex: 1;
+	object-position: top left;
+	align-self: flex-end;
+`;
+
 // --------------------------------------------------
 
-const Testimonial = ( { testimonial, }) => {
-	return testimonial && (
+const Testimonial = ( { image, quote, quotee, }) => {
+	return (
 		<Section>
-			<Container>
+			<Container narrow>
 				<Row>
 					<Column>
-						{ testimonial.quote.quote && 
+						{ quote.quote && 
 							<div
 								dangerouslySetInnerHTML = { {
 									__html: marked(
-										testimonial.quote.quote,
+										quote.quote,
 									),
 								} }
 							/> 
 						}
 
-						{ testimonial.quotee }
+						{ quotee }
+					</Column>
+
+					<Column>
+						{ image && <MemberImage src = { `http://res.cloudinary.com/codogo/image/fetch/c_imagga_scale,w_600,h_800,c_fill,g_face,f_auto/https:${ image.file.url }` } /> }
 					</Column>
 				</Row>
 			</Container>
@@ -35,7 +48,9 @@ const Testimonial = ( { testimonial, }) => {
 };
 
 Testimonial.propTypes = {
-	testimonial: PropTypes.object,
+	image: PropTypes.object,
+	quote: PropTypes.object,
+	quotee: PropTypes.any,
 };
 
 export default Testimonial;

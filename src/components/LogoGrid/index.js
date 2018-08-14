@@ -7,18 +7,11 @@ import styled from "styled-components";
 
 // --------------------------------------------------
 
-const logosPerRow = {
-	xs: 2,
-	sm: 3,
-	md: 4,
-	lg: 4,
-};
-
-const gridColumns = R.map(n => `repeat(${ n }, 1fr)`)(logosPerRow);
+const gridColumns = (logosPerRow) => { return R.map(n => `repeat(${ n }, 1fr)`)(logosPerRow) };
 
 const LogoGridWrapper = styled.div`
 	display: grid;
-	${ mixins.bpEach("grid-template-columns", gridColumns) } grid-gap: 2em;
+	${ props => mixins.bpEach("grid-template-columns", gridColumns(props.logosPerRow)) } grid-gap: 2em;
 	margin-bottom: 2em;
 `;
 
@@ -43,9 +36,9 @@ const LogoImage = styled.div`
 
 // --------------------------------------------------
 
-const LogoGrid = ( { logos, } ) => {
+const LogoGrid = ( { logos, logosPerRow, } ) => {
 	return logos && (
-		<LogoGridWrapper>
+		<LogoGridWrapper logosPerRow = { logosPerRow }>
 			{
 				logos.map( ( { image, link, } ) => 
 					image && (
@@ -64,8 +57,18 @@ const LogoGrid = ( { logos, } ) => {
 	);
 };
 
+LogoGrid.defaultProps = {
+	logosPerRow: {
+		xs: 2,
+		sm: 3,
+		md: 4,
+		lg: 4,
+	},
+};
+
 LogoGrid.propTypes = {
 	logos: PropTypes.array.isRequired,
+	logosPerRow: PropTypes.object.isRequired,
 };
 
 export default LogoGrid;

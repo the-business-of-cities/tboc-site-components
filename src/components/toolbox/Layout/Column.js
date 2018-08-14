@@ -23,6 +23,7 @@ const Column = styled.div`
 	${ mixins.bp.sm.max`
 		flex-basis: 100% !important;
 		padding: 1em;
+		
 	` };
 
 	${ mixins.bp.sm.min`

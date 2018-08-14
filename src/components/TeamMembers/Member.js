@@ -1,5 +1,11 @@
 import * as mixins from "codogo-utility-functions";
 import { Icon, Image, } from "../toolbox";
+import {
+    Accordion,
+    AccordionItem,
+    AccordionItemTitle,
+    AccordionItemBody,
+} from 'react-accessible-accordion';
 
 import styled from "styled-components";
 import PropTypes from "prop-types";
@@ -41,7 +47,7 @@ const PrimaryDetails = styled.div`
 	grid-template-columns: 1fr 1fr;
 	padding-bottom: 0.5em;
 	grid-column-gap: 1em;
-  	grid-row-gap: 1em;
+	grid-row-gap: 1em;
 
 	> div {
 		flex-basis: 50%;
@@ -60,79 +66,118 @@ const MemberImage = styled(Image)`
 	object-position: top left;
 `;
 
+const Toggle = styled.div`
+	font-weight: bold;
+	margin: 0.5em 0;
+	cursor: pointer;
+`;
+
 // --------------------------------------------------
 
-const TeamMember = ( { member, }) => {
-	const {
-		description,
-		email,
-		image,
-		linkedIn,
-		name,
-		role,
-		twitter,
-		website,
-	} = member;
+class TeamMember extends React.Component {
+	constructor(props) {
+		super(props);
 
-	return member && (
-		<TeamMemberWrapper>
-			<PrimaryDetails>
-				{ image && <MemberImage src = { `http://res.cloudinary.com/codogo/image/fetch/c_imagga_scale,w_600,h_800,c_fill,g_face,f_auto/https:${ image.file.url }` } /> }
-			
-				<div>
-					{ name && <Name>{ name }</Name> }
+		this.state = {
+			showDescription: false,
+		};
 
-					{ role && <Role>{ role }</Role> }
+		this.toggleDescription = this.toggleDescription.bind(this);
+	}
 
-					{
-						(email || linkedIn || website || twitter ) &&
-						(
-							<Links>
-								{ email && (
-									<a href = { `mailto:${ email }` }>
-										<Icon icon = "envelope" />
-									</a>
-								)}
+	toggleDescription() {
+		this.setState( { showDescription: !this.state.showDescription, } );
+	}
 
-								{ linkedIn && (
-									<a href = { `${ linkedIn }` }>
-										<Icon icon = "linkedin" />
-									</a>
-								)}
+	render () {
+		const {
+			description,
+			extendedDescription,
+			email,
+			image,
+			linkedIn,
+			name,
+			role,
+			twitter,
+			website,
+		} = this.props.member;
 
-								{ website && (
-									<a href = { website }>
-										<Icon icon = "link" />
-									</a>
-								)}
+		console.log(this.props.member);
 
-								{ twitter && (
-									<a href = { `https://www.twitter.com/${ twitter }` }>
-										<Icon icon = "twitter" />
-									</a>
-								)}
-							</Links>
-						)
-					}
-				</div>
-			</PrimaryDetails>
+		return this.props.member && (
+			<TeamMemberWrapper>
+				<PrimaryDetails>
+					{ image && <MemberImage src = { `http://res.cloudinary.com/codogo/image/fetch/c_imagga_scale,w_600,h_800,c_fill,g_face,f_auto/https:${ image.file.url }` } /> }
+				
+					<div>
+						{ name && <Name>{ name }</Name> }
 
-			{
-				description &&
-				<Description
-					dangerouslySetInnerHTML = { {
-						__html: description.description,
-					} }
-				/>
-			}
-		</TeamMemberWrapper>
-	);
+						{ role && <Role>{ role }</Role> }
+
+						{
+							(email || linkedIn || website || twitter ) &&
+							(
+								<Links>
+									{ email && (
+										<a href = { `mailto:${ email }` }>
+											<Icon icon = "envelope" />
+										</a>
+									)}
+
+									{ linkedIn && (
+										<a href = { `${ linkedIn }` }>
+											<Icon icon = "linkedin" />
+										</a>
+									)}
+
+									{ website && (
+										<a href = { website }>
+											<Icon icon = "link" />
+										</a>
+									)}
+
+									{ twitter && (
+										<a href = { `https://www.twitter.com/${ twitter }` }>
+											<Icon icon = "twitter" />
+										</a>
+									)}
+								</Links>
+							)
+						}
+
+						{ 
+							description &&
+							<div>{ description.description }</div>
+						}
+
+						{
+							extendedDescription &&
+								<Toggle onClick = { this.toggleDescription }>
+									{ this.state.showDescription ? "Read less..." : "Read more..." }
+								</Toggle>
+						}
+					</div>
+				</PrimaryDetails>
+
+				{
+					extendedDescription &&
+					this.state.showDescription &&
+						<Description
+							dangerouslySetInnerHTML = { {
+								__html: extendedDescription.extendedDescription,
+							} }
+						/>
+				}
+			</TeamMemberWrapper>
+		);
+	}
 };
 
 TeamMember.propTypes = {
 	member: PropTypes.shape({
-		description: PropTypes.any,
+		description: PropTypes.string,
 		email: PropTypes.any,
+		extendedDescription: PropTypes.string,
 		image: PropTypes.any,
 		linkedin: PropTypes.any,
 		name: PropTypes.any,

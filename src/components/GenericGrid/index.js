@@ -117,13 +117,19 @@ const EntryText = styled.div`
 
 // --------------------------------------------------
 
-const GenericGrid = ( { entries, slug, } ) => {
-	if (entries[0].node.publishingDate) {
+const GenericGrid = ( props ) => {
+	let { entries, slug, } = props;
+
+	entries = entries.map( entry => {
+		return entry.node || entry;
+	});
+
+	if (entries[0].publishingDate) {
 		entries
 			.sort(function(a, b) {
 				return (
-					new Date(b.node.publishingDate) -
-					new Date(a.node.publishingDate)
+					new Date(b.publishingDate) -
+					new Date(a.publishingDate)
 				);
 			});
 	};
@@ -133,23 +139,23 @@ const GenericGrid = ( { entries, slug, } ) => {
 			{
 				entries
 				.map( entry => (
-					<EntryWrapper key = { slugify( entry.node.title.toLowerCase() ) } href = { `/${ slug }/${ slugify( entry.node.title.toLowerCase() ) }` }>
+					<EntryWrapper key = { slugify( entry.title.toLowerCase() ) } href = { `/${ slug }/${ slugify( entry.title.toLowerCase() ) }` }>
 						{
-							entry.node.image &&
+							entry.image &&
 							<EntryImage
-								src = { `http://res.cloudinary.com/codogo/image/fetch/c_imagga_scale,w_800,h_600,c_fill,g_face,f_auto/https:${ entry.node.image.file.url }` }
-								alt = { entry.node.image.description }
+								src = { `http://res.cloudinary.com/codogo/image/fetch/c_imagga_scale,w_800,h_600,c_fill,g_face,f_auto/https:${ entry.image.file.url }` }
+								alt = { entry.image.description }
 							/>
 						}
 
 						<EntryInner>
-							<EntryTitle>{ entry.node.title }</EntryTitle>
+							<EntryTitle>{ entry.title }</EntryTitle>
 
 							{
-								entry.node.description &&
+								entry.description &&
 								<EntryText
 									dangerouslySetInnerHTML = { {
-										__html: marked(entry.node.description),
+										__html: marked(entry.description),
 									} }
 								/>
 							}

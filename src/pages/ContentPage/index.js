@@ -4,7 +4,7 @@ import {
 	Container,
 	Row,
 	Column,
-	PartnerCategory
+	PartnerCategory,
 } from "../../components";
 
 import GenericPage from "../GenericPage";
