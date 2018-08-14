@@ -45,16 +45,17 @@ const Point = ( { title, text, image, cta, reverse, bgImage, videoUrl, }, ) => {
 
 					<Column>
 						{ 
-							( image && String(image.file.contentType).match("video\/.*") !== null ) && <Video video = { image.file.url }/> :
+							( image && String(image.file.contentType).match("video\/.*") !== null ) &&  
+							<Video video = { image.file.url }/>
 						}
 
 						{ 	
-							( image && String(image.file.contentType).match("video\/.*") === null ) && 
-								( 
-									cta.link ? 
+							( image && String(image.file.contentType).match("video\/.*") === null ) &&
+							( 
+								cta.link ? 
 									<MaybeLink to = { cta.link }><PointImage src = { image.file.url } alt = { image.description }/></MaybeLink> : 
 									<PointImage src = { image.file.url } alt = { image.description }/> 
-								)
+							)
 						}
 
 						{
