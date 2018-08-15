@@ -25,7 +25,7 @@ const Testimonial = ( { image, quote, quotee, }) => {
 			<Container narrow>
 				<Row>
 					<Column>
-						{ quote.quote && 
+						{ quote && 
 							<div
 								dangerouslySetInnerHTML = { {
 									__html: marked(
