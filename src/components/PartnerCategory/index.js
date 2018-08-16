@@ -19,14 +19,16 @@ const PartnerCategory = ( { category, } ) => {
 		<CategoryWrapper>
 			<h2>{ category.title }</h2>
 
-			<LogoGrid
-				logos = { 
-					category.partner.map(partner => ({
-						image: partner.image,
-						link: `partners/${ slugify( partner.name, { lower: true, } ) }`,
-					}))
-				}
-			/>
+			{ category.partner &&
+				<LogoGrid
+					logos = { 
+						category.partner.map(partner => ({
+							image: partner.image,
+							link: `partners/${ slugify( partner.name, { lower: true, } ) }`,
+						}))
+					}
+				/>
+			}
 		</CategoryWrapper>
 	);
 };
