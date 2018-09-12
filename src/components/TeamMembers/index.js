@@ -11,12 +11,12 @@ import slugify from "slugify";
 
 const TeamMembersWrapper = styled.div`
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr;
 	grid-column-gap: 2em;
   	grid-row-gap: 2em;
 
-  	${ mixins.bp.sm.only` grid-template-columns: 1fr 1fr; ` }
-  	${ mixins.bp.xs.only` grid-template-columns: 1fr; ` }
+  	${ mixins.bp.lg.only`grid-template-columns: 1fr 1fr 1fr;` }
+  	${ mixins.bp.xs.only`grid-template-columns: 1fr;` }
 `;
 
 // --------------------------------------------------

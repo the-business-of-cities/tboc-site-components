@@ -1,15 +1,10 @@
 import * as mixins from "codogo-utility-functions";
 import { Icon, Image, } from "../toolbox";
-import {
-    Accordion,
-    AccordionItem,
-    AccordionItemTitle,
-    AccordionItemBody,
-} from 'react-accessible-accordion';
 
-import styled from "styled-components";
+import marked from "marked";
 import PropTypes from "prop-types";
 import React from "react";
+import styled from "styled-components";
 
 // --------------------------------------------------
 
@@ -102,8 +97,6 @@ class TeamMember extends React.Component {
 			website,
 		} = this.props.member;
 
-		console.log(this.props.member);
-
 		return this.props.member && (
 			<TeamMemberWrapper>
 				<PrimaryDetails>
@@ -164,7 +157,7 @@ class TeamMember extends React.Component {
 					this.state.showDescription &&
 						<Description
 							dangerouslySetInnerHTML = { {
-								__html: extendedDescription.extendedDescription,
+								__html: marked(extendedDescription.extendedDescription),
 							} }
 						/>
 				}
@@ -179,7 +172,7 @@ TeamMember.propTypes = {
 		email: PropTypes.any,
 		extendedDescription: PropTypes.string,
 		image: PropTypes.any,
-		linkedin: PropTypes.any,
+		linkedIn: PropTypes.any,
 		name: PropTypes.any,
 		role: PropTypes.any,
 		twitter: PropTypes.any,

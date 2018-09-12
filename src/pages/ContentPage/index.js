@@ -91,8 +91,8 @@ ContentPage.propTypes = {
 	description: PropTypes.any,
 	image: PropTypes.string,
 	introduction: PropTypes.any,
-	secondaryImage: PropTypes.any,
 	partners: PropTypes.array,
+	secondaryImage: PropTypes.any,
 	slider: PropTypes.element,
 	title: PropTypes.string,
 };
