@@ -34,9 +34,16 @@ const defaultGlobalStyles = ( customTheme ) => {
 		a:hover,
 		a:visited,
 		a:active {
-			text-decoration: none;
 			color: black;
 			color: currentColor;
+			font-weight: bold;
+			text-decoration: none;
+
+			color: ${ activeTheme.colors.link };
+
+			&:hover {
+				color: ${ activeTheme.colors.linkHover };				
+			}
 		}
 
 		h1, h2, h3, h4 {

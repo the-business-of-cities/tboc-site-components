@@ -1,10 +1,11 @@
 import { Icon, } from "../toolbox";
 import * as mixins from "codogo-utility-functions";
 
+import Link from "gatsby-link";
 import PropTypes from "prop-types";
 import React from "react";
-import styled from "styled-components";
 import slugify from "slugify";
+import styled from "styled-components";
 
 // --------------------------------------------------
 
@@ -99,7 +100,7 @@ const Footer = ( { footerText, footerLinks, socialLinks, } ) => {
 
 				<FooterLinks>
 					{
-						footerLinks.map( link => <a key = { slugify(link.title, { lower: true, } ) } href = { slugify(link.title.toLowerCase()) }>{link.title}</a>)
+						footerLinks.map( link => <Link key = { slugify(link.title, { lower: true, } ) } to = { slugify(link.title.toLowerCase()) }>{link.title}</Link>)
 					}
 				</FooterLinks>
 

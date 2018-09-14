@@ -1,7 +1,9 @@
 import { Section, Container, Row, Column, Button, Image, MaybeLink, } from "../toolbox";
 import { Video, } from "../Video";
+
 import PropTypes from "prop-types";
 import React from "react";
+import slugify from "slugify";
 import styled from "styled-components";
 import marked from "marked";
 
@@ -15,7 +17,7 @@ const PointContent = styled.div`
 
 const Point = ( { title, text, image, cta, reverse, bgImage, videoUrl, }, ) => {
 	return (
-		<Section image = { bgImage }>
+		<Section image = { bgImage } id = { slugify(title, { lower: true, }, ) }>
 			<Container restrict>
 				<Row reverse = { reverse }>
 					<Column>
@@ -30,7 +32,6 @@ const Point = ( { title, text, image, cta, reverse, bgImage, videoUrl, }, ) => {
 								} }
 							/> 
 						}
-
 
 						{ cta && 
 							(( cta.link && cta.text) &&

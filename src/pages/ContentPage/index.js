@@ -43,21 +43,26 @@ class ContentPage extends React.Component {
 			>
 				{
 					content &&
-					content.map( (section, i) => (
-						<Point
-							bgImage = { section.backgroundImage && ( section.backgroundImage.file.url || section.backgroundImage ) }
-							cta = { {
-								link: `/${ section.ctaTarget && slugify(section.ctaTarget.title, { lower: true, }) }`,
-								text: section.ctaText,
-							} }
-							image = { section.image }
-							key = { `point-${ slugify( section.title, { lower: true, } ) }` }
-							reverse = { i % 2 === 0 }
-							text = { section.content && section.content.content }
-							title = { section.title }
-							videoUrl = { section.videoUrl }
-						/>
-					) )
+					content.map( (section, i) => {
+						const link = (section.ctaUrl && section.ctaUrl) || (section.ctaTarget && section.ctaTarget.title);
+						const cta = {
+							link: `/${ link && slugify(link, { lower: true, }) }`,
+							text: section.ctaText,
+						};
+
+						return (
+							<Point
+								bgImage = { section.backgroundImage && ( section.backgroundImage.file.url || section.backgroundImage ) }
+								cta = { cta }
+								image = { section.image }
+								key = { `point-${ slugify( section.title, { lower: true, } ) }` }
+								reverse = { i % 2 === 0 }
+								text = { section.content && section.content.content }
+								title = { section.title }
+								videoUrl = { section.videoUrl }
+							/>
+						);
+					} )
 				}
 
 				{ children }

@@ -36,12 +36,34 @@ const EntryContainer = styled.div`
 	width: 100%;
 `;
 
-const EntryWrapper = styled.a`
+const EntryWrapperLink = styled(MaybeLink)`
 	display: flex;
 	width: 100%;
 	position: relative;
 	overflow: hidden;
 `;
+
+const EntryWrapper = ( props ) => {
+	return (
+		props.externalUrl ?
+			<EntryWrapperLink 
+				href = { props.externalUrl }
+			>
+				{props.children}
+			</EntryWrapperLink> :
+			<EntryWrapperLink 
+				to = { props.internalUrl }
+			>
+				{props.children}
+			</EntryWrapperLink>
+	);
+};
+
+EntryWrapper.propTypes = {
+	children: PropTypes.array,
+	externalUrl: PropTypes.string,
+	internalUrl: PropTypes.string,
+};
 
 const EntryImage = styled.img`
 	width: 100%;
@@ -138,30 +160,34 @@ const GenericGrid = ( props ) => {
 		<EntryContainer>
 			{
 				entries
-				.map( entry => (
-					<EntryWrapper key = { slugify( entry.title.toLowerCase() ) } href = { `/${ slug }/${ slugify( entry.title.toLowerCase() ) }` }>
-						{
-							entry.image &&
-							<EntryImage
-								src = { `http://res.cloudinary.com/codogo/image/fetch/c_imagga_scale,w_800,h_600,c_fill,g_face,f_auto/https:${ entry.image.file.url }` }
-								alt = { entry.image.description }
-							/>
-						}
-
-						<EntryInner>
-							<EntryTitle>{ entry.title }</EntryTitle>
-
+					.map( entry => (
+						<EntryWrapper 
+							key = { slugify( entry.title.toLowerCase() ) } 
+							internalUrl = { `/${ slug }/${ slugify( entry.title.toLowerCase() ) }` }
+							externalUrl = { entry.externalUrl }
+						>
 							{
-								entry.description &&
-								<EntryText
-									dangerouslySetInnerHTML = { {
-										__html: marked(entry.description),
-									} }
+								entry.image &&
+								<EntryImage
+									src = { `http://res.cloudinary.com/codogo/image/fetch/c_imagga_scale,w_800,h_600,c_fill,g_face,f_auto/https:${ entry.image.file.url }` }
+									alt = { entry.image.description }
 								/>
 							}
-						</EntryInner>
-					</EntryWrapper>
-				) )
+
+							<EntryInner>
+								<EntryTitle>{ entry.title }</EntryTitle>
+
+								{
+									entry.description &&
+									<EntryText
+										dangerouslySetInnerHTML = { {
+											__html: marked(entry.description),
+										} }
+									/>
+								}
+							</EntryInner>
+						</EntryWrapper>
+					) )
 			}
 		</EntryContainer>
 	);
