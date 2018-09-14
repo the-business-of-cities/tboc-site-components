@@ -36,6 +36,7 @@ const Slides = ( { sliderContents, mobile, }, ) => {
 							image = { slide.image } 
 							description = { slide.description } 
 							colorCount = { i + 1 }
+							externalUrl = {slide.externalUrl }
 						/> 
 					);
 				}), ) 

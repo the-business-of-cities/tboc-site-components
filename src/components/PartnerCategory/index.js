@@ -24,7 +24,7 @@ const PartnerCategory = ( { category, } ) => {
 					logos = { 
 						category.partner.map(partner => ({
 							image: partner.image,
-							link: `partners/${ slugify( partner.name, { lower: true, } ) }`,
+							link: `/partners/${ slugify( partner.name, { lower: true, } ) }`,
 						}))
 					}
 				/>

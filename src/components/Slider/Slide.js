@@ -125,7 +125,11 @@ const Slide = ( { title, image, description, colorCount, } ) => {
 				/>
 			}
 
-			<SlideInner to = { "publications/" + slug } href = { "publications/" + slug } colorCount = { colorCount }>
+			<SlideInner 
+				to = { `/publications/${ slug }` } 
+				href = { `/publications/${ slug }` } 
+				colorCount = { colorCount }
+			>
 				<SlideTitle>{ title }</SlideTitle>
 
 				{ description && (
