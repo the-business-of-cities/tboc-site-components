@@ -38,12 +38,6 @@ const defaultGlobalStyles = ( customTheme ) => {
 			color: currentColor;
 			font-weight: bold;
 			text-decoration: none;
-
-			color: ${ activeTheme.colors.link };
-
-			&:hover {
-				color: ${ activeTheme.colors.linkHover };				
-			}
 		}
 
 		h1, h2, h3, h4 {
@@ -65,17 +59,21 @@ const defaultGlobalStyles = ( customTheme ) => {
 		p {
 			${ mixins.bpEach("margin-bottom", activeTheme.font.size) }
 
-			a,
-			a:hover,
-			a:visited,
-			a:active {
-				text-decoration: underline;
-				font-weight: bold;
-			}
+			a {
+				&,
+				&:hover,
+				&:visited,
+				&:active {
+					text-decoration: underline;
+					font-weight: bold;
+					color: ${ activeTheme.colors.link };
+				}
 
-			a:hover,
-			a:active {
-				opacity: 0.7;
+				&:hover,
+				&:active {
+					color: ${ activeTheme.colors.linkHover };
+					opacity: 0.7;
+				}
 			}
 
 			img {
