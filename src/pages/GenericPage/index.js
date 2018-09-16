@@ -17,7 +17,16 @@ import React from "react";
 
 class GenericPage extends React.Component {
 	render () {
-		const { title, image, secondaryImage, description, introduction, children, slider, } = this.props;
+		const { 
+			children,
+			description,
+			image,
+			introduction,
+			secondaryImage,
+			slider,
+			subtitle,
+			title,
+		} = this.props;
 
 		return (
 			<BlankPage
@@ -32,7 +41,9 @@ class GenericPage extends React.Component {
 						<Container narrow>
 							<Row>
 								<Column>
-									<h1>{ title }</h1>
+									{ title && <h1>{ title }</h1> }
+
+									{ subtitle &&  <p>{ subtitle }</p> }
 								</Column>
 							</Row>
 						</Container>
@@ -53,32 +64,33 @@ class GenericPage extends React.Component {
 				}
 
 				{
-					( description || introduction ) &&
+					description &&
 					<Section>
 						<Container narrow>
-							{
-								description &&
-								<Row>
-									<Column>
-										<div><em>{ description }</em></div>
-									</Column>
-								</Row>
-							}
-						
-							{ 
-								introduction &&
-								<Row>
-									<Column>
-										<div
-											dangerouslySetInnerHTML = { {
-												__html: marked(
-													introduction,
-												),
-											} }
-										/>
-									</Column>
-								</Row>
-							}
+							<Row>
+								<Column>
+									<div><em>{ description }</em></div>
+								</Column>
+							</Row>
+						</Container>
+					</Section>
+				}
+
+				{
+					introduction &&
+					<Section>
+						<Container narrow>
+							<Row>
+								<Column>
+									<div
+										dangerouslySetInnerHTML = { {
+											__html: marked(
+												introduction,
+											),
+										} }
+									/>
+								</Column>
+							</Row>
 						</Container>
 					</Section>
 				}
@@ -92,10 +104,11 @@ class GenericPage extends React.Component {
 GenericPage.propTypes = {
 	children: PropTypes.any,
 	description: PropTypes.any,
-	introduction: PropTypes.any,
 	image: PropTypes.string,
+	introduction: PropTypes.any,
 	secondaryImage: PropTypes.object,
 	slider: PropTypes.element,
+	subtitle: PropTypes.any,
 	title: PropTypes.any,
 };
 

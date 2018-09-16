@@ -163,7 +163,7 @@ const GenericGrid = ( props ) => {
 					.map( entry => (
 						<EntryWrapper 
 							key = { slugify( entry.title.toLowerCase() ) } 
-							internalUrl = { `/${ slug }/${ slugify( entry.title.toLowerCase() ) }` }
+							internalUrl = { `/${ slug }/${ slugify( entry.title, { lower: true, } ) }` }
 							externalUrl = { entry.externalUrl }
 						>
 							{
@@ -175,7 +175,7 @@ const GenericGrid = ( props ) => {
 							}
 
 							<EntryInner>
-								<EntryTitle>{ entry.title }</EntryTitle>
+								{ entry.title && <EntryTitle>{ entry.title }</EntryTitle> }
 
 								{
 									entry.description &&

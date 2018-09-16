@@ -6,8 +6,25 @@ import { VimeoWrapper, } from "./VimeoWrapper";
 import React from "react";
 import Vimeo from "react-vimeo";
 import YouTube from "react-youtube";
+import styled from "styled-components";
 
 // --------------------------------------------------
+
+const ResponsiveYouTubeWrapper = styled.div`
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
+	width: 100%;
+
+	span {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+`;
 
 // --------------------------------------------------
 
@@ -20,7 +37,12 @@ export const Video = ({ videoUrl, video, }) => {
 				<Vimeo videoId = { parsedVideoUrl.id } />
 			</VimeoWrapper>
 		) : (
-			<YouTube videoId = { parsedVideoUrl.id } />
+			<ResponsiveYouTubeWrapper>
+				<YouTube 
+					videoId = { parsedVideoUrl.id } 
+					opts={{ height: "100%", width: "100%", }}
+				/>
+			</ResponsiveYouTubeWrapper>
 		);
 	} else {
 		return (

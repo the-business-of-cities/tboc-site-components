@@ -29,18 +29,22 @@ class ContentPage extends React.Component {
 			partners,
 			secondaryImage,
 			slider,
+			subtitle,
 			title,
 		} = this.props;
 
 		return (
 			<GenericPage
 				description = { description }
+				image = { image }
 				introduction = { introduction }
 				secondaryImage = { secondaryImage }
 				slider = { slider }
+				subtitle = { subtitle }
 				title = { title }
-				image = { image }
 			>
+				{ console.log(content)}
+
 				{
 					content &&
 					content.map( (section, i) => {
@@ -99,6 +103,7 @@ ContentPage.propTypes = {
 	partners: PropTypes.array,
 	secondaryImage: PropTypes.any,
 	slider: PropTypes.element,
+	subtitle: PropTypes.any,
 	title: PropTypes.string,
 };
 

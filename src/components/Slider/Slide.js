@@ -60,7 +60,7 @@ const SlideTitle = styled.div`
 	height: ${ 2 * titleLineHeight }em;
 	overflow: hidden;
 
-	${ SlideInner }:hover & {
+	${ SlideInner }:hover {
 		text-decoration: underline;
 	}
 `;
@@ -112,22 +112,38 @@ const SlideImage = styled.img`
 
 // --------------------------------------------------
 
-const Slide = ( { title, image, description, colorCount, } ) => {
-	const slug = slugify( title, { lower: true, });
+const Slide = ( { colorCount, slide, } ) => {
+	const { 
+		title,
+		image,
+		description,
+		externalUrl,
+		__typename,
+	} = slide;
+
+	let slug = __typename.toLowerCase().split("contentful")[1];
+	slug = slug.endsWith("s") ? slug : `${ slug }s`;
+
+	const internalUrl = `/${ slug }/${ slugify( slide.title, { lower: true, } ) }`;
 
 	return (
 		<SlideWrapper>
 			{ 
 				image &&
-				<SlideImage
-					src = { `http://res.cloudinary.com/codogo/image/fetch/c_imagga_scale,w_800,h_600,c_fill,g_face,f_auto/https:${ image.file.url }` }
-					alt = { image.description }
-				/>
+				<MaybeLink
+					href = { externalUrl }
+					to = { internalUrl } 
+				>
+					<SlideImage
+						src = { `http://res.cloudinary.com/codogo/image/fetch/c_imagga_scale,w_800,h_600,c_fill,g_face,f_auto/https:${ image.file.url }` }
+						alt = { image.description }
+					/>
+				</MaybeLink>
 			}
 
 			<SlideInner 
-				to = { `/publications/${ slug }` } 
-				href = { `/publications/${ slug }` } 
+				href = { externalUrl }
+				to = { internalUrl } 
 				colorCount = { colorCount }
 			>
 				<SlideTitle>{ title }</SlideTitle>
@@ -147,9 +163,7 @@ const Slide = ( { title, image, description, colorCount, } ) => {
 
 Slide.propTypes = {
 	colorCount: PropTypes.any,
-	description: PropTypes.string,
-	image: PropTypes.object,
-	title: PropTypes.string,
+	slide: PropTypes.object,
 };
 
 export default Slide;

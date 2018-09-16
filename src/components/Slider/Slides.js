@@ -32,11 +32,8 @@ const Slides = ( { sliderContents, mobile, }, ) => {
 					return (
 						<Slide
 							key = { `slider-slide-${ slugify(slide.title, { lower: true, } ) }` } 
-							title = { slide.title } 
-							image = { slide.image } 
-							description = { slide.description } 
 							colorCount = { i + 1 }
-							externalUrl = {slide.externalUrl }
+							slide = { slide }
 						/> 
 					);
 				}), ) 
