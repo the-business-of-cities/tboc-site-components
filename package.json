@@ -19,6 +19,7 @@
     "fontawesome": "^4.7.2",
     "gatsby-link": "^1.6.46",
     "masonry-layout": "^4.2.2",
+    "mcclowes-scripts": "^0.5.3",
     "nuka-carousel": "^4.3.11",
     "pre-commit": "^1.2.2",
     "ramda": "^0.25.0",
@@ -35,7 +36,6 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "eslint": "^4.19.1",
-    "mcclowes-scripts": "^0.3.6",
     "prettier": "^1.14.2",
     "prop-types": "^15.6.2"
   },
