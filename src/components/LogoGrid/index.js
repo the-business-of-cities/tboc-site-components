@@ -45,7 +45,7 @@ const LogoGrid = ( { logos, logosPerRow, } ) => {
 						<LogoWrapper key = { `logo-${ image.file.url }` } href = { link }>
 							<LogoInner>
 								<LogoImage
-									src = { `http://res.cloudinary.com/codogo/image/fetch/h_500,c_fill,g_face,f_auto/https:${ image &&
+									src = { `https://res.cloudinary.com/codogo/image/fetch/h_500,c_fill,g_face,f_auto/https:${ image &&
 										image.file.url }` }
 								/>
 							</LogoInner>

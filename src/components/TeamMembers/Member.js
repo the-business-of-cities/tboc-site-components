@@ -100,7 +100,7 @@ class TeamMember extends React.Component {
 		return this.props.member && (
 			<TeamMemberWrapper>
 				<PrimaryDetails>
-					{ image && <MemberImage src = { `http://res.cloudinary.com/codogo/image/fetch/c_imagga_scale,w_600,h_800,c_fill,g_face,f_auto/https:${ image.file.url }` } /> }
+					{ image && <MemberImage src = { `https://res.cloudinary.com/codogo/image/fetch/c_imagga_scale,w_600,h_800,c_fill,g_face,f_auto/https:${ image.file.url }` } /> }
 				
 					<div>
 						{ name && <Name>{ name }</Name> }

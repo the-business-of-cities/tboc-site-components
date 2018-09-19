@@ -12,7 +12,7 @@ const Section = styled.div`
 	flex-direction: row;
 	justify-content: center;
 	width: 100%;
-	background-image: ${ props => props.image && `url(http://res.cloudinary.com/codogo/image/fetch/w_1500,c_fill,g_face,f_auto,o_20/https:${ props.image })` };
+	background-image: ${ props => props.image && `url(https://res.cloudinary.com/codogo/image/fetch/w_1500,c_fill,g_face,f_auto,o_20/https:${ props.image })` };
 	background-size: cover;
 
 	&:nth-child(2n) {

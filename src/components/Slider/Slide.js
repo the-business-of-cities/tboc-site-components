@@ -135,7 +135,7 @@ const Slide = ( { colorCount, slide, } ) => {
 					to = { internalUrl } 
 				>
 					<SlideImage
-						src = { `http://res.cloudinary.com/codogo/image/fetch/c_imagga_scale,w_800,h_600,c_fill,g_face,f_auto/https:${ image.file.url }` }
+						src = { `https://res.cloudinary.com/codogo/image/fetch/c_imagga_scale,w_800,h_600,c_fill,g_face,f_auto/https:${ image.file.url }` }
 						alt = { image.description }
 					/>
 				</MaybeLink>

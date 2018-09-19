@@ -69,7 +69,15 @@ class GenericPage extends React.Component {
 						<Container narrow>
 							<Row>
 								<Column>
-									<div><em>{ description }</em></div>
+									<em>
+										<div
+											dangerouslySetInnerHTML = { {
+												__html: marked(
+													description,
+												),
+											} }
+										/>
+									</em>
 								</Column>
 							</Row>
 						</Container>
