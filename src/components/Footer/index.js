@@ -1,4 +1,4 @@
-import { Icon, } from "../toolbox";
+import { Icon, MaybeLink, } from "../toolbox";
 import * as mixins from "codogo-utility-functions";
 
 import Link from "gatsby-link";
@@ -100,7 +100,14 @@ const Footer = ( { footerText, footerLinks, socialLinks, } ) => {
 
 				<FooterLinks>
 					{
-						footerLinks.map( link => <Link key = { slugify(link.title, { lower: true, } ) } to = { slugify(link.title.toLowerCase()) }>{link.title}</Link>)
+						footerLinks.map( link => (
+							<MaybeLink 
+								key = { slugify(link.title, { lower: true, } ) } 
+								to = { `/${ slugify(link.title.toLowerCase()) }` }
+							>
+								{link.title}
+							</MaybeLink>
+						) )
 					}
 				</FooterLinks>
 
@@ -111,7 +118,7 @@ const Footer = ( { footerText, footerLinks, socialLinks, } ) => {
 							(
 								<a
 									key = { `footer-${ link.type }-${ link.link }` }
-									href = { link.link }
+									href = { ${ link.link } }
 									style = {
 										link.type === "phone" ? 
 											{
