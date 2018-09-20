@@ -118,7 +118,7 @@ const Footer = ( { footerText, footerLinks, socialLinks, } ) => {
 							(
 								<a
 									key = { `footer-${ link.type }-${ link.link }` }
-									href = { ${ link.link } }
+									href = { link.link }
 									style = {
 										link.type === "phone" ? 
 											{
