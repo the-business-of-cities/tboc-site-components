@@ -9,7 +9,11 @@ import React from "react";
 import { theme, } from "../../styles";
 
 
-const Head = ( { site, page, } ) => {
+const Head = ( props ) => {
+	const {
+		site, page,
+	} = props
+
 	const image = R.path(['image', 'url'])(page) || R.path(['homeImage', 'url'])(site)
 
 	return ( site || page ) ?
@@ -34,8 +38,8 @@ const Head = ( { site, page, } ) => {
 
 				<title>
 					{page && page.title
-						? `${ page.title } | ${ site.siteTitle }`
-						: `${ site.siteTitle } | ${ site.siteDescription }`}
+						? `${ page.title } | ${ site && site.siteTitle }`
+						: `${ site && site.siteTitle } | ${ site && site.siteDescription }`}
 				</title>
 
 				<meta

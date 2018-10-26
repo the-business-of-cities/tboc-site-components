@@ -43,8 +43,6 @@ class ContentPage extends React.Component {
 				subtitle = { subtitle }
 				title = { title }
 			>
-				{ console.log(content)}
-
 				{
 					content &&
 					content.map( (section, i) => {
