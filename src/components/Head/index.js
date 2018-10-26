@@ -1,7 +1,8 @@
+import * as R from "ramda"
+
 import Helmet from "react-helmet";
 import PropTypes from "prop-types";
 import React from "react";
-import { path } from "ramda"
 
 // --------------------------------------------------
 
@@ -9,7 +10,7 @@ import { theme, } from "../../styles";
 
 
 const Head = ( { site, page, } ) => {
-	const image = path(['image', 'url'])(page) || path(['homeImage', 'url'])(site)
+	const image = R.path(['image', 'url'])(page) || R.path(['homeImage', 'url'])(site)
 
 	return ( site || page ) ?
 		(
@@ -98,18 +99,12 @@ const Head = ( { site, page, } ) => {
 					property = "og:image"
 					content = { image }
 				/>
-
 				<meta property = "og:image:width" content = "600" />
-
 				<meta property = "og:image:height" content = "315" />
 
 				{/*Twitter Card */}
-
-				{/*<meta name = "twitter:card" content = "summary">*/}
 				<meta name = "twitter:card" content = "summary_large_image" />
-
 				<meta name = "twitter:site" content = { theme.meta.twitterUsername } />
-
 				<meta name = "twitter:creator" content = { theme.meta.twitterCreator } />
 
 				{page && page.title
@@ -158,6 +153,10 @@ const Head = ( { site, page, } ) => {
 				<meta http-equiv = "X-UA-Compatible" content = "IE=edge" />
 
 				<meta name = "viewport" content = "width=device-width, initial-scale=1" />
+
+				<title>
+					Website
+				</title>
 			</Helmet>
 		);
 };
