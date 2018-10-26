@@ -1,6 +1,7 @@
 import Helmet from "react-helmet";
 import PropTypes from "prop-types";
 import React from "react";
+import { path } from "ramda"
 
 // --------------------------------------------------
 
@@ -8,6 +9,8 @@ import { theme, } from "../../styles";
 
 
 const Head = ( { site, page, } ) => {
+	const image = path(['image', 'url'])(page) || path(['homeImage', 'url'])(site)
+
 	return ( site || page ) ?
 		(
 			<Helmet>
@@ -17,14 +20,16 @@ const Head = ( { site, page, } ) => {
 
 				<meta name = "viewport" content = "width=device-width, initial-scale=1" />
 
-				{ console.log(site, page) }
-
-				<link
-					rel = "canonical"
-					href = { `${ site.url }/${
-						page.slug ? page.slug : ""
-					}` }
-				/>
+				{
+					page && page.slug
+						? <link
+							rel = "canonical"
+							href = { `${ site.url }/${
+								page.slug ? page.slug : ""
+							}` }
+						/>
+						: null
+				}
 
 				<title>
 					{page && page.title
@@ -75,21 +80,13 @@ const Head = ( { site, page, } ) => {
 				<link
 					rel = "image_src"
 					type = "image/jpeg"
-					href = {
-						page && page.image
-							? page.image.url
-							: site.homeImage.url
-					}
+					href = { image }
 				/>
 
 				{/*180x110 Image for Linkedin */}
 				<meta
 					property = "og:image"
-					content = {
-						page && page.image
-							? page.image.url
-							: site.homeImage.url
-					}
+					content = { image }
 				/>
 
 				<meta property = "og:image:width" content = "180" />
@@ -99,11 +96,7 @@ const Head = ( { site, page, } ) => {
 				{/*600x315 Image for Facebook */}
 				<meta
 					property = "og:image"
-					content = {
-						page && page.image
-							? page.image.url
-							: site.homeImage.url
-					}
+					content = { image }
 				/>
 
 				<meta property = "og:image:width" content = "600" />
@@ -143,11 +136,7 @@ const Head = ( { site, page, } ) => {
 
 				<meta
 					name = "twitter:image:src"
-					content = {
-						page && page.image
-							? page.image.url
-							: site.homeImage.url
-					}
+					content = { image }
 				/>
 
 				{/*Analytics */}
