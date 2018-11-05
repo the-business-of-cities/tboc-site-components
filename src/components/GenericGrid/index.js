@@ -72,7 +72,7 @@ const EntryImage = styled.img`
 	padding-bottom: ${ 2 * titleLineHeight }em;
 `;
 
-const EntryInner = styled(MaybeLink)`
+const EntryInner = styled.div`
 	background-color: ${ props => props.theme.colors.background.dark };
 	bottom: 0;
 	color: #fff;
@@ -162,7 +162,7 @@ const GenericGrid = ( props ) => {
 				entries
 					.map( entry => (
 						<EntryWrapper 
-							key = { slugify( entry.title.toLowerCase() ) } 
+							key = { `entry-${slugify( entry.title.toLowerCase()) }` } 
 							internalUrl = { `/${ slug }/${ slugify( entry.title, { lower: true, } ) }` }
 							externalUrl = { entry.externalUrl }
 						>
