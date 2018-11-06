@@ -4,7 +4,7 @@ import React from "react";
 
 // --------------------------------------------------
 
-const News = ( { news, } ) => <GenericGrid entries = { news } slug = "news"/>;
+const News = ( { news, sorting, } ) => <GenericGrid sorting = { sorting } entries = { news } slug = "news"/>;
 
 News.propTypes = {
 	news: PropTypes.array.isRequired,

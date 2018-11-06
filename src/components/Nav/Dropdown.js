@@ -62,7 +62,7 @@ const StyledLink = styled(Link)`
 `;
 
 const StyledDropdownLink = styled(StyledLink)`
-	${ mixins.bp.md.min`
+	${ mixins.bp.sm.min`
 		background: ${ props => props.theme.colors.background.light };
 
 		&,
@@ -71,6 +71,7 @@ const StyledDropdownLink = styled(StyledLink)`
 
 			&:hover {
 				color: ${ props => props.theme.colors.linkHover } !important;
+				color: black !important;
 			}
 		}
 	` };

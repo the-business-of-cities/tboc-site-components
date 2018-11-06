@@ -6,71 +6,15 @@ import {
 	MaybeLink,
 } from "../toolbox";
 
+import Event from "./Event";
+import Table from "../Table";
 import Moment from "moment";
 import PropTypes from "prop-types";
 import React from "react";
-import styled from "styled-components";
 import slugify from "slugify";
+import styled from "styled-components";
 
 // --------------------------------------------------
-
-const EventTable = styled.table`
-	border-collapse: collapse;
-	width: 100%;
-	font-size: 0.7em;
-
-	thead {
-		border-bottom: ${ props => props.theme.colors.grey } 2px solid;
-	}
-
-	thead td {
-		font-size: 1.1em;
-	}
-
-	tr {
-		border-bottom: ${ props => props.theme.colors.grey } 1px solid;
-	}
-
-	tr:hover,
-	tr:active {
-		cursor: pointer;
-		background-color: ${ props => props.theme.colors.background.medium };
-	}
-
-	td {
-		padding: 0.5em 0.25em 0;
-	}
-
-	a {
-		display: block;
-	}
-`;
-
-// --------------------------------------------------
-
-const Event = ({ condensed, ...event }) => {
-	const Cell = ({ children, }) => (
-		<td>
-			<MaybeLink href = { event.link } to = { !event.link && `/events/${ slugify(event.title, { lower: true, } ) }` }>{children}</MaybeLink>
-		</td>
-	);
-
-	return (
-		<tr>
-			<Cell>{event.title}</Cell>
-
-			<Cell>{event.role}</Cell>
-
-			<Cell>{event.location}</Cell>
-
-			<Cell>{Moment(event.date).format("Do MMMM YYYY")}</Cell>
-		</tr>
-	);
-};
-
-Event.propTypes = {
-	event: PropTypes.object,
-};
 
 // --------------------------------------------------
 
@@ -102,7 +46,7 @@ const Events = ({ events, }) => {
 						<Column>
 							<h2>Upcoming events</h2>
 
-							<EventTable>
+							<Table>
 								<tbody>
 									<tr>
 										<th>Event</th>
@@ -116,7 +60,7 @@ const Events = ({ events, }) => {
 
 									{ upcomingEvents }
 								</tbody>
-							</EventTable>
+							</Table>
 						</Column>
 					</Row>
 				}
@@ -127,7 +71,7 @@ const Events = ({ events, }) => {
 						<Column>
 							<h2>Past events</h2>
 
-							<EventTable>
+							<Table>
 								<tbody>
 									<tr>
 										<th>Event</th>
@@ -141,7 +85,7 @@ const Events = ({ events, }) => {
 
 									{ pastEvents }
 								</tbody>
-							</EventTable>
+							</Table>
 						</Column>
 					</Row>
 				}

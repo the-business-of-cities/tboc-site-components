@@ -42,7 +42,6 @@ const LogoGrid = ( { logos, logosPerRow, } ) => {
 		<LogoGridWrapper logosPerRow = { logosPerRow }>
 			{
 				logos.map( ( { image, link, } ) => {
-					console.log(`logo-${ image.file.url }-${createHash(8)}`)
 					return image && (
 						<LogoWrapper key = { `logo-${ image.file.url }-${createHash(4)}` } href = { link }>
 							<LogoInner>

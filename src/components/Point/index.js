@@ -16,7 +16,6 @@ const PointContent = styled.div`
 `;
 
 const Point = ( props ) => {
-	console.log(props)
 	const { title, text, image, cta, ctaLink, ctaText, reverse, bgImage, videoUrl, } = props
 	const imageIsVideo = image && String(image.file.contentType).match("video\/.*") !== null
 
