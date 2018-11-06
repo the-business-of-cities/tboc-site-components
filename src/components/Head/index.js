@@ -138,16 +138,24 @@ const Head = ( props ) => {
 					content = { image }
 				/>
 
-				{/*Analytics */}
-				{/*Search Console */}
+				{/* Google */}
+				{/* Search Console */}
 				<meta
 					name = "google-site-verification"
 					content = { theme.meta.googleSearch }
 				/>
 
-				{/*Google analytics*/}
-
-				{/* Cookie Warning*/}
+				{/* Google analytics*/}
+				<script async src="https://www.google-analytics.com/analytics.js" />
+				<script>
+					{`
+					  window.ga=window.ga||function()
+					  {(ga.q = ga.q || []).push(arguments)}
+					  ;ga.l=+new Date; ga('create',
+					  ${ theme.meta.googleAnalytics}, 'auto'); ga('send',
+					  'pageview');
+					`}
+				</script>
 			</Helmet>
 		) :
 		(
