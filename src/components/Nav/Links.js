@@ -74,6 +74,10 @@ const StyledLink = styled(Link)`
 		font-size: 0.9em;
 		line-height: 1;
 
+		&a {
+			color: #eee;
+		}
+
 		&.active {
 			font-weight: bold;
 			background-color: ${ props => mixins.lightenColor(props.theme.colors.nav.background) };
