@@ -2,6 +2,7 @@ export { default as Banner, } from "./Banner";
 export { default as Events, } from "./Events";
 export { default as Footer, } from "./Footer";
 export { default as Head, } from "./Head";
+export { default as Jobs, } from "./Jobs";
 export { default as LogoGrid, } from "./LogoGrid";
 export { default as Nav, } from "./Nav";
 export { default as News, } from "./News";
