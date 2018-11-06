@@ -20,18 +20,10 @@ const Point = ( props ) => {
 	const { title, text, image, cta, ctaLink, ctaText, reverse, bgImage, videoUrl, } = props
 	const imageIsVideo = image && String(image.file.contentType).match("video\/.*") !== null
 
-	let fullCTA = cta
-	if(ctaLink) { 
-		fullCTA.link = ctaLink
+	const fullCTA = {
+		link: cta || ctaLink,
+		text: ctaText,
 	}
-	if(ctaText) { 
-		fullCTA.text = ctaText 
-	}
-	if(fullCTA.link === "/null") { 
-		fullCTA = null 
-	}
-
-	console.log(fullCTA) 
 
 	return (
 		<Section image = { bgImage } id = { slugify(title, { lower: true, }, ) }>
