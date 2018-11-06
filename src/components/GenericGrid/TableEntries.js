@@ -10,32 +10,32 @@ import slugify from "slugify";
 import styled from "styled-components";
 import Table from "../Table";
 
-const Cell = ({entry, slug, children}) => {
+const Cell = ({ entry, slug, children, }) => {
 	return (
 		<td>
 			<MaybeLink 
 				to = { !entry.externalUrl && `/${ slug }/${ slugify( entry.title, { lower: true, } ) }` }
 				href = { entry.externalUrl }
 			>
-					{children}
+				{children}
 			</MaybeLink>
 		</td>
-	)
+	);
 };
 
-const TableEntry = ({ slug, entry }) => {
+const TableEntry = ({ slug, entry, }) => {
 	return (
 		<tr
-			key = { `entry-${slugify( entry.title.toLowerCase()) }` } 
+			key = { `entry-${ slugify( entry.title.toLowerCase()) }` } 
 		>
-			<Cell entry={entry} slug={slug}>{ entry.title && entry.title }</Cell>
+			<Cell entry = { entry } slug = { slug }>{ entry.title && entry.title }</Cell>
 
-			<Cell entry={entry} slug={slug}>{ entry.description && entry.description } </Cell>
+			<Cell entry = { entry } slug = { slug }>{ entry.description && entry.description } </Cell>
 		</tr>
-	)
+	);
 };
 
-const TableEntries = ({ entries, slug }) => {
+const TableEntries = ({ entries, slug, }) => {
 	return (
 		<Table>
 			<tbody>
@@ -49,12 +49,12 @@ const TableEntries = ({ entries, slug }) => {
 					entries.map( (entry) => {
 						return (
 							<TableEntry slug = { slug } entry = { entry }/>
-						) 
+						); 
 					})
 				}
 			</tbody>
 		</Table>
-	)
+	);
 };
 
-export default TableEntries
+export default TableEntries;

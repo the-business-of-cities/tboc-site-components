@@ -32,10 +32,10 @@ const Events = ({ events, }) => {
 	const upcomingEvents = events.filter(
 		event => Moment(event.node.date).diff(Moment()) >= 0
 	)
-	.reverse()
-	.map(event => (
-		<Event { ...event.node } key = { `${ slugify(event.node.title, { lower: true, } ) }-${ event.node.date }` } />
-	) );
+		.reverse()
+		.map(event => (
+			<Event { ...event.node } key = { `${ slugify(event.node.title, { lower: true, } ) }-${ event.node.date }` } />
+		) );
 
 	return (
 		<Section>

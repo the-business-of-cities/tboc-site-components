@@ -40,7 +40,7 @@ export const Video = ({ videoUrl, video, }) => {
 			<ResponsiveYouTubeWrapper>
 				<YouTube 
 					videoId = { parsedVideoUrl.id } 
-					opts={{ height: "100%", width: "100%", }}
+					opts = { { height: "100%", width: "100%", } }
 				/>
 			</ResponsiveYouTubeWrapper>
 		);

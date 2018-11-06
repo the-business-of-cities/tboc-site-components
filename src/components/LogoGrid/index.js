@@ -8,7 +8,7 @@ import createHash from "hash-generator";
 
 // --------------------------------------------------
 
-const gridColumns = (logosPerRow) => { return R.map(n => `repeat(${ n }, 1fr)`)(logosPerRow) };
+const gridColumns = (logosPerRow) => { return R.map(n => `repeat(${ n }, 1fr)`)(logosPerRow); };
 
 const LogoGridWrapper = styled.div`
 	display: grid;
@@ -43,7 +43,7 @@ const LogoGrid = ( { logos, logosPerRow, } ) => {
 			{
 				logos.map( ( { image, link, } ) => {
 					return image && (
-						<LogoWrapper key = { `logo-${ image.file.url }-${createHash(4)}` } href = { link }>
+						<LogoWrapper key = { `logo-${ image.file.url }-${ createHash(4) }` } href = { link }>
 							<LogoInner>
 								<LogoImage
 									src = { `https://res.cloudinary.com/codogo/image/fetch/h_500,c_fill,g_face,f_auto/https:${ image &&
@@ -51,7 +51,7 @@ const LogoGrid = ( { logos, logosPerRow, } ) => {
 								/>
 							</LogoInner>
 						</LogoWrapper>
-					) 
+					); 
 				})
 			}
 		</LogoGridWrapper>

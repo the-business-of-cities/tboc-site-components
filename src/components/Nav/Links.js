@@ -1,5 +1,5 @@
-import styled, { css, } from "styled-components";
 import * as mixins from "codogo-utility-functions";
+import styled, { css, } from "styled-components";
 import { theme, } from "../../styles";
 
 import R from "ramda";
@@ -21,7 +21,7 @@ const LinksWrapper = styled.div`
 
 	${ mixins.xs`
 		background-color: ${ props => props.theme.colors.nav.background };
-		top: ${ props => theme.dimensions.nav.height.xs };
+		top: ${ props => props.theme.dimensions.nav.height.xs };
 		transform: translateY(${ props => (props.open ? 0 : -110) }%);
 		transition: 0.3s all ease-out;
 
@@ -113,29 +113,33 @@ const DropdownArrow = styled.span`
 
 // --------------------------------------------------
 
-const Links = ({ links, close, open, }) => (
-	<LinksWrapper open = { open }>
-		<LinksContainer>
-			{
-				links && links.map( link => {
-					return (
-						<LinkWrapper key = { link.to } onClick = { close }>
-							<StyledLink to = { link.to } activeClassName = "active" exact>
-								{ link.content } 
+const Links = (props) => {
+	const { links, close, open, } = props;
 
-								{ link.dropdown && <DropdownArrow>▼</DropdownArrow> }
-							</StyledLink>
+	return (
+		<LinksWrapper open = { open }>
+			<LinksContainer>
+				{
+					links && links.map( link => {
+						return (
+							<LinkWrapper key = { link.to } onClick = { close }>
+								<StyledLink to = { link.to } activeClassName = "active" exact>
+									{ link.content } 
 
-							{ 
-								link.dropdown && <Dropdown links = { link.dropdown } />
-							}
-						</LinkWrapper>
-					);
-				})
-			}
-		</LinksContainer>
-	</LinksWrapper>
-);
+									{ link.dropdown && <DropdownArrow>▼</DropdownArrow> }
+								</StyledLink>
+
+								{ 
+									link.dropdown && <Dropdown links = { link.dropdown } />
+								}
+							</LinkWrapper>
+						);
+					})
+				}
+			</LinksContainer>
+		</LinksWrapper>
+	);
+};
 
 Links.propTypes = {
 	close: PropTypes.func,

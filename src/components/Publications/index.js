@@ -4,7 +4,7 @@ import React from "react";
 
 // --------------------------------------------------
 
-const Publications = ( { publications, sorting } ) => <GenericGrid sorting = { sorting } entries = { publications } slug = "publications"/>;
+const Publications = ( { publications, sorting, } ) => <GenericGrid sorting = { sorting } entries = { publications } slug = "publications"/>;
 
 Publications.propTypes = {
 	publications: PropTypes.array.isRequired,

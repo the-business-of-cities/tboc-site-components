@@ -1,5 +1,3 @@
-import Moment from "moment";
-import React from "react";
 import styled from "styled-components";
 
 // --------------------------------------------------
@@ -36,4 +34,4 @@ const Table = styled.table`
 	}
 `;
 
-export default Table
+export default Table;

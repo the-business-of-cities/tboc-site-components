@@ -58,29 +58,33 @@ const enhance = compose(
 	}),
 );
 
-const Nav = ({ links, logo, open, closeMenu, toggleMenu, }) => (
-	<NavWrapper>
-		<Links 
-			close = { closeMenu } 
-			open = { open } 
-			links = { links }
-		/>
+const Nav = (props) => {
+	const { theme, links, logo, open, closeMenu, toggleMenu, } = props;
+	
+	return (
+		<NavWrapper>
+			<Links 
+				close = { closeMenu } 
+				open = { open } 
+				links = { links }
+			/>
 
-		<MobileStuff>
-			<Overlay open = { open } />
+			<MobileStuff>
+				<Overlay open = { open } />
 
-			<BurgerWrapper onClick = { toggleMenu }>
-				<Burger
-					open = { open }
-					padding = { mixins.num(theme.dimensions.nav.margin.xs) }
-					color = { theme.colors.nav.background }
-				/>
-			</BurgerWrapper>
-		</MobileStuff>
+				<BurgerWrapper onClick = { toggleMenu }>
+					<Burger
+						open = { open }
+						padding = { mixins.num(theme.dimensions.nav.margin.xs) }
+						color = { theme.colors.nav.background }
+					/>
+				</BurgerWrapper>
+			</MobileStuff>
 
-		<Logo logo = { logo }/>
-	</NavWrapper>
-);
+			<Logo logo = { logo }/>
+		</NavWrapper>
+	);
+};
 
 Nav.propTypes = {
 	closeMenu: PropTypes.func,

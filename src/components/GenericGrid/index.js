@@ -34,26 +34,26 @@ const GridWrapper = styled.div`
 	${ props => props.sorting && `
 		position: relative;
 		padding-top: 5em
-	`}
-`
+	` }
+`;
 
 // --------------------------------------------------
 
 class GenericGrid extends React.Component {
 	constructor(props) {
-		super(props)
+		super(props);
 		this.state = {
 			table: true,
 			oldest: false,
-		}
+		};
 
-		this.toggleTable = this.toggleTable.bind(this)
-		this.toggleSorting = this.toggleSorting.bind(this)
+		this.toggleTable = this.toggleTable.bind(this);
+		this.toggleSorting = this.toggleSorting.bind(this);
 	}
 
 	toggleTable() {
 		this.setState(prevState => ({
-		  table: !prevState.table
+		  table: !prevState.table,
 		}));
 	}
 
@@ -61,7 +61,7 @@ class GenericGrid extends React.Component {
 
 	toggleSorting() {
 		this.setState(prevState => ({
-		  oldest: !prevState.oldest
+		  oldest: !prevState.oldest,
 		}));
 	}
 
@@ -74,39 +74,39 @@ class GenericGrid extends React.Component {
 
 		if (entries[0].publishingDate) { // can be sorted
 			if(this.state.oldest) {
-				entries.sort((a,b) => {
+				entries.sort((a, b) => {
 					return (
 						new Date(a.publishingDate) -
 						new Date(b.publishingDate)
-					)
+					);
 				});
 			} else {
-				entries.sort((a,b) => {
+				entries.sort((a, b) => {
 					return (
 						new Date(b.publishingDate) -
 						new Date(a.publishingDate)
-					)
+					);
 				});
 			}
 		};
 
 		return (
-			<GridWrapper sorting = {sorting}>
+			<GridWrapper sorting = { sorting }>
 				{sorting && 
 					<SortingOptions>
-						<div onClick = {this.toggleTable}>{ this.state.table ? "Grid view" : "Table view" }</div>
+						<div onClick = { this.toggleTable }>{ this.state.table ? "Grid view" : "Table view" }</div>
 
-						<div onClick = {this.toggleSorting}>{ this.state.oldest ? "Newest first" : "Oldest first" }</div>
+						<div onClick = { this.toggleSorting }>{ this.state.oldest ? "Newest first" : "Oldest first" }</div>
 					</SortingOptions>
 				}
 				
 				{
 					this.state.table ?
-						<TableEntries slug = { slug } entries={entries}/> :
-						<GridEntries sorting = {sorting} entries={entries}/>
+						<TableEntries slug = { slug } entries = { entries }/> :
+						<GridEntries sorting = { sorting } entries = { entries }/>
 				}
 			</GridWrapper>
-		)
+		);
 	}
 };
 

@@ -33,4 +33,4 @@ EntryWrapper.propTypes = {
 	internalUrl: PropTypes.string,
 };
 
-export default EntryWrapper
+export default EntryWrapper;

@@ -31,10 +31,10 @@ const TeamMembers = ( { members, }) => {
 							{
 								members.map( 
 									member => 
-									<TeamMember 
-										key = { slugify( member.name || member.node.name, { lower: true, } )  } 
-										member = { member.node || member }
-									/>
+										(<TeamMember 
+											key = { slugify( member.name || member.node.name, { lower: true, } )  } 
+											member = { member.node || member }
+										/>)
 								)
 							}
 						</TeamMembersWrapper>

@@ -38,4 +38,4 @@ Event.propTypes = {
 	event: PropTypes.object,
 };
 
-export default Event
+export default Event;

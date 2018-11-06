@@ -120,7 +120,7 @@ const GridEntries = ({ entries, slug, }) => {
 				entries
 					.map( entry => (
 						<EntryWrapper 
-							key = { `entry-${slugify( entry.title.toLowerCase()) }` } 
+							key = { `entry-${ slugify( entry.title.toLowerCase()) }` } 
 							internalUrl = { `/${ slug }/${ slugify( entry.title, { lower: true, } ) }` }
 							externalUrl = { entry.externalUrl }
 						>
@@ -149,6 +149,6 @@ const GridEntries = ({ entries, slug, }) => {
 			}
 		</EntryContainer>
 	);
-}
+};
 
-export default GridEntries
+export default GridEntries;

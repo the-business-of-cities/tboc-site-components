@@ -16,13 +16,13 @@ const PointContent = styled.div`
 `;
 
 const Point = ( props ) => {
-	const { title, text, image, cta, ctaLink, ctaText, reverse, bgImage, videoUrl, } = props
-	const imageIsVideo = image && String(image.file.contentType).match("video\/.*") !== null
+	const { title, text, image, cta, ctaLink, ctaText, reverse, bgImage, videoUrl, } = props;
+	const imageIsVideo = image && String(image.file.contentType).match("video\/.*") !== null;
 
 	const fullCTA = {
 		link: cta || ctaLink,
 		text: ctaText,
-	}
+	};
 
 	return (
 		<Section image = { bgImage } id = { slugify(title, { lower: true, }, ) }>

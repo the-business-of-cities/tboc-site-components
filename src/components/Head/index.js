@@ -1,4 +1,4 @@
-import * as R from "ramda"
+import * as R from "ramda";
 
 import Helmet from "react-helmet";
 import PropTypes from "prop-types";
@@ -6,16 +6,19 @@ import React from "react";
 
 // --------------------------------------------------
 
-import { theme, } from "../../styles";
+import { theme as _theme, } from "../../styles";
 
-import ReactGA from 'react-ga';
+import ReactGA from "react-ga";
 
 const Head = ( props ) => {
 	const {
 		site, page,
-	} = props
+	} = props;
 
-	const image = R.path(['image', 'url'])(page) || R.path(['homeImage', 'url'])(site)
+	let { theme, } = props;
+	if(theme == null) { _theme; }
+
+	const image = R.path([ "image", "url", ])(page) || R.path([ "homeImage", "url", ])(site);
 
 	return ( site || page ) ?
 		(

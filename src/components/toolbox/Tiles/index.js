@@ -1,11 +1,9 @@
 import * as mixins from "codogo-utility-functions";
-
-import styled from "styled-components";
+import { theme, } from "../../../styles";
 
 import PropTypes from "prop-types";
 import React from "react";
-
-import { theme, } from "../../../styles";
+import styled from "styled-components";
 
 // --------------------------------------------------
 

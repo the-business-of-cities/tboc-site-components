@@ -37,7 +37,7 @@ const SlideInner = styled(MaybeLink)`
 	right: 0;
 	transition-duration: 0.5s;
 	background-color: ${ 
-		props => (props.colorCount % 3 === 0) ? 
+	props => (props.colorCount % 3 === 0) ? 
 		props.theme.colors.tertiary : 
 		( ( props.colorCount + 1 ) % 3 === 0 ? props.theme.colors.secondary : props.theme.colors.primary ) };
 
@@ -91,10 +91,10 @@ const SlideText = styled.div`
 					to right,
 					transparent,
 					${ 
-						props => props.colorCount % 3 === 0 ? 
-						props.theme.colors.tertiary : 
-						( ( props.colorCount + 1 ) % 3 === 0 ? props.theme.colors.secondary : props.theme.colors.primary ) 
-					}
+	props => props.colorCount % 3 === 0 ? 
+		props.theme.colors.tertiary : 
+		( ( props.colorCount + 1 ) % 3 === 0 ? props.theme.colors.secondary : props.theme.colors.primary ) 
+}
 					50%
 				);
 			}

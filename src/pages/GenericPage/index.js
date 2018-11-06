@@ -3,16 +3,16 @@ import {
 	Section,
 	Container,
 	Row,
-	Column
+	Column,
 } from "../../components/toolbox";
 
-import Head from '../../components/Head'
+import Head from "../../components/Head";
 
 import BlankPage from "../BlankPage";
 import marked from "marked";
 import PropTypes from "prop-types";
 import React from "react";
-import { withTheme } from 'styled-components';
+import { withTheme, } from "styled-components";
 
 // --------------------------------------------------
 
@@ -29,7 +29,7 @@ class GenericPage extends React.Component {
 			slider,
 			subtitle,
 			title,
-			theme
+			theme,
 		} = this.props;
 
 		return (
@@ -37,7 +37,7 @@ class GenericPage extends React.Component {
 				slider = { slider }
 				image = { image }
 			>
-				<Head page={this.props} site={theme.site} />
+				<Head page = { this.props } site = { theme.site } />
 
 				{
 					title &&

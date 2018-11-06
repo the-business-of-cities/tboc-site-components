@@ -3,7 +3,6 @@ import * as R from "ramda";
 import fetch from "node-fetch";
 import parseUrl from "url-parse";
 import parseXML from "xml-parser";
-import React from "react";
 
 export const parseVideoUrl = videoUrl => {
 	return R.contains("vimeo", videoUrl)

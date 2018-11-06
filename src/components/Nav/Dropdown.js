@@ -14,9 +14,8 @@ const LinkWrapper = styled.div`
 
 	${ mixins.xs`
 		border-top: 1px solid;
-		${ R.pipe(R.path([ "theme", "nav", ]), color =>
-		mixins.darkenColor(color, 0.2),
-	) };
+		
+		${ props => mixins.darkenColor(props.theme.nav.color, 0.2) };
 	` };
 
 	${ mixins.bp.sm.min`
@@ -89,7 +88,7 @@ const DropdownLinks = styled.div`
 
 	${ mixins.bp.sm.min`
 		display: none;
-		background: ${ R.pipe(R.path([ "theme", "nav", ]), mixins.lightenColor) };
+		background: ${ props => mixins.lightenColor(props.theme.nav.color ) };
 		position: absolute;
 		top: ${ props => props.theme.dimensions.nav.linksHeight };
 		left: 0;
