@@ -4,6 +4,7 @@ import R from "ramda";
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
+import createHash from "hash-generator";
 
 // --------------------------------------------------
 
@@ -40,9 +41,10 @@ const LogoGrid = ( { logos, logosPerRow, } ) => {
 	return logos && (
 		<LogoGridWrapper logosPerRow = { logosPerRow }>
 			{
-				logos.map( ( { image, link, } ) => 
-					image && (
-						<LogoWrapper key = { `logo-${ image.file.url }` } href = { link }>
+				logos.map( ( { image, link, } ) => {
+					console.log(`logo-${ image.file.url }-${createHash(8)}`)
+					return image && (
+						<LogoWrapper key = { `logo-${ image.file.url }-${createHash(4)}` } href = { link }>
 							<LogoInner>
 								<LogoImage
 									src = { `https://res.cloudinary.com/codogo/image/fetch/h_500,c_fill,g_face,f_auto/https:${ image &&
@@ -51,7 +53,7 @@ const LogoGrid = ( { logos, logosPerRow, } ) => {
 							</LogoInner>
 						</LogoWrapper>
 					) 
-				)
+				})
 			}
 		</LogoGridWrapper>
 	);

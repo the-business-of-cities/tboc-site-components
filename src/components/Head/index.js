@@ -8,6 +8,7 @@ import React from "react";
 
 import { theme, } from "../../styles";
 
+import ReactGA from 'react-ga';
 
 const Head = ( props ) => {
 	const {
@@ -146,16 +147,7 @@ const Head = ( props ) => {
 				/>
 
 				{/* Google analytics*/}
-				<script async src="https://www.google-analytics.com/analytics.js" />
-				<script>
-					{`
-					  window.ga=window.ga||function()
-					  {(ga.q = ga.q || []).push(arguments)}
-					  ;ga.l=+new Date; ga('create',
-					  ${ theme.meta.googleAnalytics}, 'auto'); ga('send',
-					  'pageview');
-					`}
-				</script>
+				{ theme.meta.googleAnalytics && ReactGA.initialize(theme.meta.googleAnalytics) }
 			</Helmet>
 		) :
 		(

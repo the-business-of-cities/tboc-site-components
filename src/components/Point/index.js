@@ -15,7 +15,24 @@ const PointContent = styled.div`
 	font-size: 0.9em;
 `;
 
-const Point = ( { title, text, image, cta, reverse, bgImage, videoUrl, }, ) => {
+const Point = ( props ) => {
+	console.log(props)
+	const { title, text, image, cta, ctaLink, ctaText, reverse, bgImage, videoUrl, } = props
+	const imageIsVideo = image && String(image.file.contentType).match("video\/.*") !== null
+
+	let fullCTA = cta
+	if(ctaLink) { 
+		fullCTA.link = ctaLink
+	}
+	if(ctaText) { 
+		fullCTA.text = ctaText 
+	}
+	if(fullCTA.link === "/null") { 
+		fullCTA = null 
+	}
+
+	console.log(fullCTA) 
+
 	return (
 		<Section image = { bgImage } id = { slugify(title, { lower: true, }, ) }>
 			<Container restrict>
@@ -33,36 +50,34 @@ const Point = ( { title, text, image, cta, reverse, bgImage, videoUrl, }, ) => {
 							/> 
 						}
 
-						{ cta && 
-							(( cta.link && cta.text) &&
+						{ 
+							( fullCTA && fullCTA.link && fullCTA.text ) &&
 								<Button 
-									to = { cta.link }
-									text = { cta.text }
+									to = { fullCTA.link }
+									text = { fullCTA.text }
 									outline = "black"
 								/>
-							)
 						}
 					</Column>
+					
+					{ image && 
+						<Column>
+							{ 
+								( imageIsVideo ) &&  
+								<Video video = { image.file.url }/>
+							}
 
-					<Column>
-						{ 
-							( image && String(image.file.contentType).match("video\/.*") !== null ) &&  
-							<Video video = { image.file.url }/>
-						}
-
-						{ 	
-							( image && String(image.file.contentType).match("video\/.*") === null ) &&
-							( 
-								cta.link ? 
-									<MaybeLink to = { cta.link }><PointImage src = { image.file.url } alt = { image.description }/></MaybeLink> : 
+							{ 	
+								( !imageIsVideo && fullCTA && fullCTA.link ) ? 
+									<MaybeLink to = { fullCTA.link } href = { fullCTA.link }><PointImage src = { image.file.url } alt = { image.description }/></MaybeLink> : 
 									<PointImage src = { image.file.url } alt = { image.description }/> 
-							)
-						}
+							}
 
-						{
-							( !image && videoUrl ) && <Video videoUrl = { videoUrl }/>
-						}
-					</Column>
+							{
+								( !image && videoUrl ) && <Video videoUrl = { videoUrl }/>
+							}
+						</Column>
+					}
 				</Row>
 			</Container>
 		</Section>
