@@ -16,7 +16,7 @@ const Head = ( props ) => {
 	} = props;
 
 	let { theme, } = props;
-	if(theme == null) { _theme; }
+	if(theme == null) { theme = { ..._theme} }
 
 	const image = R.path([ "image", "url", ])(page) || R.path([ "homeImage", "url", ])(site);
 
