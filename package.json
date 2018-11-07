@@ -1,7 +1,7 @@
 {
   "name": "tboc-site-components",
   "description": "Centralised package for components used across tboc family sites",
-  "version": "0.13.1",
+  "version": "0.13.2",
   "author": "Max Clayton Clowes <maxcc@me.com>",
   "main": "lib/index.js",
   "babel": {
