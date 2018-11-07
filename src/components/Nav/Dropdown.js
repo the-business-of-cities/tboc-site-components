@@ -88,7 +88,7 @@ const DropdownLinks = styled.div`
 
 	${ mixins.bp.sm.min`
 		display: none;
-		background: ${ props => mixins.lightenColor(props.theme.nav.color ) };
+		background: ${ props => mixins.lightenColor(props.theme.colors.nav.background ) };
 		position: absolute;
 		top: ${ props => props.theme.dimensions.nav.linksHeight };
 		left: 0;
