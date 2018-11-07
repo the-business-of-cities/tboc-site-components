@@ -43,7 +43,7 @@ class GenericGrid extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			table: true,
+			table: false,
 			oldest: false,
 		};
 
@@ -94,9 +94,9 @@ class GenericGrid extends React.Component {
 			<GridWrapper sorting = { sorting }>
 				{sorting && 
 					<SortingOptions>
-						<div onClick = { this.toggleTable }>{ this.state.table ? "Grid view" : "Table view" }</div>
+						<div onClick = { this.toggleTable }>{ this.state.table ? "Grid view \u25BC" : "Table view \u25BC" }</div>
 
-						<div onClick = { this.toggleSorting }>{ this.state.oldest ? "Newest first" : "Oldest first" }</div>
+						<div onClick = { this.toggleSorting }>{ this.state.oldest ? "Newest first \u25BC" : "Oldest first \u25BC" }</div>
 					</SortingOptions>
 				}
 				

@@ -15,7 +15,10 @@ const LinkWrapper = styled.div`
 	${ mixins.xs`
 		border-top: 1px solid;
 		
-		color: ${ props => mixins.darkenColor(props.theme.colors.nav.background, 0.2) };
+		&,
+		a {
+			color: ${ mixins.darkenColor('#fff', 0.2) };
+		}
 	` };
 
 	${ mixins.bp.sm.min`
