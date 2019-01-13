@@ -24,7 +24,7 @@ const Event = ({ condensed, ...event }) => {
 	return (
 		<tr>
 			<Cell>{event.title}</Cell>
-§
+
 			<Cell>{event.role}</Cell>
 
 			<Cell>{event.location}</Cell>
