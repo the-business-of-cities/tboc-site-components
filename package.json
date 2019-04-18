@@ -23,7 +23,7 @@
     "mcclowes-scripts": "^0.5.3",
     "nuka-carousel": "^4.5.4",
     "pre-commit": "^1.2.2",
-    "ramda": "^0.25.0",
+    "ramda": "^0.26.1",
     "react": "^16.8.6",
     "react-addons-transition-group": "^15.6.2",
     "react-ga": "^2.5.7",
