@@ -3,7 +3,7 @@ import * as mixins from "codogo-utility-functions";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import React from "react";
-import R from "ramda";
+import * as R from "ramda";
 
 // --------------------------------------------------
 

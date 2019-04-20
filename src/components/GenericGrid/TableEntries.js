@@ -4,7 +4,7 @@ import * as mixins from "codogo-utility-functions";
 import EntryWrapper from "./EntryWrapper";
 import marked from "marked";
 import PropTypes from "prop-types";
-import R from "ramda";
+import * as R from "ramda";
 import React from "react";
 import slugify from "slugify";
 import styled from "styled-components";
