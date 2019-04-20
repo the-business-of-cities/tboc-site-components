@@ -103,7 +103,7 @@ class GenericGrid extends React.Component {
 				{
 					this.state.table ?
 						<TableEntries slug = { slug } entries = { entries }/> :
-						<GridEntries sorting = { sorting } entries = { entries }/>
+						<GridEntries sorting = { sorting } entries = { entries } slug = { slug } />
 				}
 			</GridWrapper>
 		);
