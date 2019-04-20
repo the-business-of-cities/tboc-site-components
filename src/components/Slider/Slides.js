@@ -24,6 +24,7 @@ const Slides = ( { sliderContents, mobile, }, ) => {
 	return (
 		<Carousel
 			autoplay
+			wrapAround
 			renderBottomCenterControls = { null }
 			slidesToShow = { mobile ? 1 : 3 }
 		>
