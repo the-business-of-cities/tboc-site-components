@@ -1,6 +1,6 @@
 import * as mixins from "codogo-utility-functions";
 
-import R from "ramda";
+import * as R from "ramda";
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";

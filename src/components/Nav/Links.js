@@ -115,6 +115,7 @@ const DropdownArrow = styled.span`
 
 const Links = (props) => {
 	const { links, close, open, } = props;
+	console.log(links);
 
 	return (
 		<LinksWrapper open = { open }>
@@ -123,7 +124,7 @@ const Links = (props) => {
 					links && links.map( link => {
 						return (
 							<LinkWrapper key = { link.to } onClick = { close }>
-								<StyledLink to = { link.to } activeClassName = "active" exact>
+								<StyledLink to = { link.to } activeClassName = "active">
 									{ link.content } 
 
 									{ link.dropdown && <DropdownArrow>▼</DropdownArrow> }

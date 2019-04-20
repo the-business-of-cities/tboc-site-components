@@ -114,7 +114,6 @@ const Dropdown = ({ links, }) => (
 					<StyledDropdownLink
 						to = { to }
 						activeClassName = "active"
-						exact
 					>
 						{ content }
 					</StyledDropdownLink>

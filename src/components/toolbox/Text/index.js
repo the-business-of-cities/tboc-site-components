@@ -3,7 +3,7 @@ import * as mixins from "codogo-utility-functions";
 import styled, { css, } from "styled-components";
 import PropTypes from "prop-types";
 import React from "react";
-import R from "ramda";
+import * as R from "ramda";
 
 export const Line = styled.div`
 	height: 1.5px;
