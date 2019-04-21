@@ -54,7 +54,7 @@ const EntryContainer = styled.div`
       position: static;
       height: 100%;
       width: 100%;
-      background: #fff;
+      background: ${ props => props.theme.colors.background.white };
       color: #333;
       padding: 0.4em 1em;
 
@@ -96,7 +96,7 @@ const EntryImage = styled.img`
 const EntryInner = styled.div`
 	background-color: ${ props => props.theme.colors.background.dark };
 	bottom: 0;
-	color: #fff;
+	color: ${ props => props.theme.colors.background.white };
 	display: block;
 	height: 5em;
 	left: 0;
@@ -111,7 +111,7 @@ const EntryInner = styled.div`
 	}
 
 	&:visited {
-		color: #fff !important;
+		color: ${ props => props.theme.colors.background.white } !important;
 	}
 `;
 
