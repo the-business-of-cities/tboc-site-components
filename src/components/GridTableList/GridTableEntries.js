@@ -54,11 +54,20 @@ const EntryContainer = styled.div`
       position: static;
       height: 100%;
       width: 100%;
+      background: #fff;
+      color: #333;
+      padding: 0.4em 1em;
+
+      & p:last-child:after {
+				content: "Read more \u25B6";
+        background: linear-gradient(
+					to right,
+					transparent,
+					${ props => props.theme.colors.background.white } 50%
+				);
+      }
     }
     .text {
-      opacity: 0;
-      visibility: hidden;
-      height: 0;
       padding: 0;
     }
   }
@@ -94,7 +103,7 @@ const EntryInner = styled.div`
 	right: 0;
 	padding: ${ padding }em;
 	position: absolute;
-	transition-duration: 0.5s;
+  transition: height 0.5s;
 
 	&:hover {
 		color: #eee;
@@ -138,7 +147,7 @@ const EntryText = styled.div`
 				right: 0;
 				width: 70%;
 				height: ${ textLineHeight }em;
-				text-align: right;
+        text-align: right;
 				background: linear-gradient(
 					to right,
 					transparent,
