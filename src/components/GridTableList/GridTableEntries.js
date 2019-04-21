@@ -23,12 +23,12 @@ const boxHeight =
 
 
 const gridItemWidths = {
-  xs: 100,
-  sm: 50,
-  md: 33.33333,
-  lg: 33.33333,
+	xs: 100,
+	sm: 50,
+	md: 33.33333,
+	lg: 33.33333,
 };
-const gridColumns = R.map(n => `${n}%`)(gridItemWidths);
+const gridColumns = R.map(n => `${ n }%`)(gridItemWidths);
 
 const EntryContainer = styled.div`
 	display: block;
@@ -58,13 +58,16 @@ const EntryContainer = styled.div`
       color: #333;
       padding: 0.4em 1em;
 
-      & p:last-child:after {
-				content: "Read more \u25B6";
-        background: linear-gradient(
-					to right,
-					transparent,
-					${ props => props.theme.colors.background.white } 50%
-				);
+      p {
+        color: rgba(0,0,0,0.7);
+        &:last-child:after {
+          content: "Read more \u25B6";
+          background: linear-gradient(
+            to right,
+            transparent,
+            ${ props => props.theme.colors.background.white } 50%
+          );
+        }
       }
     }
     .text {
@@ -160,47 +163,47 @@ const EntryText = styled.div`
 
 // --------------------------------------------------
 
-const GridTableEntries = ({ entries, slug, table }) => {
+const GridTableEntries = ({ entries, slug, table, }) => {
 	return (
-    <EntryContainer className={table && 'table'}>
-      {
-        entries
-          .map( entry => (
-            <Entry className="entry">
-              <EntryWrapper
-                className = "wrapper"
-                key = { `entry-${ slugify( entry.title.toLowerCase()) }` } 
-                internalUrl = { `/${ slug }/${ slugify( entry.title, { lower: true, } ) }` }
-                externalUrl = { entry.externalUrl }
-              >
-                {
-                  entry.image &&
-                  <EntryImage
-                    className = "image"
-                    src = { `https://res.cloudinary.com/codogo/image/fetch/c_imagga_scale,w_800,h_600,c_fill,g_face,f_auto/https:${ entry.image.file.url }` }
-                    alt = { entry.image.description }
-                  />
-                }
+		<EntryContainer className = { table && "table" }>
+			{
+				entries
+					.map( entry => (
+						<Entry className = "entry">
+							<EntryWrapper
+								className = "wrapper"
+								key = { `entry-${ slugify( entry.title.toLowerCase()) }` } 
+								internalUrl = { `/${ slug }/${ slugify( entry.title, { lower: true, } ) }` }
+								externalUrl = { entry.externalUrl }
+							>
+								{
+									entry.image &&
+									<EntryImage
+										className = "image"
+										src = { `https://res.cloudinary.com/codogo/image/fetch/c_imagga_scale,w_800,h_600,c_fill,g_face,f_auto/https:${ entry.image.file.url }` }
+										alt = { entry.image.description }
+									/>
+								}
 
-                <EntryInner className = "inner">
-                  { entry.title && <EntryTitle>{ entry.title }</EntryTitle> }
+								<EntryInner className = "inner">
+									{ entry.title && <EntryTitle>{ entry.title }</EntryTitle> }
 
-                  {
-                    entry.description &&
-                    <EntryText
-                      className="text"
-                      dangerouslySetInnerHTML = { {
-                        __html: marked(entry.description),
-                      } }
-                    />
-                  }
-                </EntryInner>
-              </EntryWrapper>
-            </Entry>
-          )) 
-      }
-    </EntryContainer>
-  );
+									{
+										entry.description &&
+										<EntryText
+											className = "text"
+											dangerouslySetInnerHTML = { {
+                    		__html: marked(entry.description),
+                    	} }
+										/>
+									}
+								</EntryInner>
+							</EntryWrapper>
+						</Entry>
+					)) 
+			}
+		</EntryContainer>
+	);
 };
 
 export default GridTableEntries;
