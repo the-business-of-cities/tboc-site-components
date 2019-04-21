@@ -21,6 +21,10 @@ const TeamMemberWrapper = styled.div`
 const Name = styled.h3`
 	display: block;
 	margin-top: 0;
+
+	&::after {
+		width: 100%;
+	}
 `;
 
 const Role = styled.p`
@@ -35,7 +39,11 @@ const Links = styled.div`
 	}
 `;
 
-const Description = styled.div``;
+const Description = styled.div`
+	font-size: 0.8em;
+`;
+
+const ExtendedDescription = styled.div``;
 
 const PrimaryDetails = styled.div`
 	display: grid;
@@ -140,7 +148,7 @@ class TeamMember extends React.Component {
 
 						{ 
 							description &&
-							<div>{ description.description }</div>
+							<Description>{ description.description }</Description>
 						}
 
 						{
@@ -155,7 +163,7 @@ class TeamMember extends React.Component {
 				{
 					extendedDescription &&
 					this.state.showDescription &&
-						<Description
+						<ExtendedDescription
 							dangerouslySetInnerHTML = { {
 								__html: marked(extendedDescription.extendedDescription),
 							} }
