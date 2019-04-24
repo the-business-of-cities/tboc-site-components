@@ -53,19 +53,21 @@ const Point = ( props ) => {
 					
 					{ image && 
 						<Column>
-							{ 
+							{
 								( imageIsVideo ) &&  
 								<Video video = { image.file.url }/>
 							}
 
-							{ 	
-								( !imageIsVideo && fullCTA && fullCTA.link ) ? 
-									<MaybeLink to = { fullCTA.link } href = { fullCTA.link }><PointImage src = { image.file.url } alt = { image.description }/></MaybeLink> : 
-									<PointImage src = { image.file.url } alt = { image.description }/> 
+							{
+								( !imageIsVideo && videoUrl ) && <Video videoUrl = { videoUrl }/>
 							}
 
 							{
-								( !image && videoUrl ) && <Video videoUrl = { videoUrl }/>
+								(!videoUrl) ?
+									( fullCTA && fullCTA.link ) ? 
+										<MaybeLink to = { fullCTA.link.link } href = { fullCTA.link.link }><PointImage src = { image.file.url } alt = { image.description }/></MaybeLink> : 
+										<PointImage src = { image.file.url } alt = { image.description }/> :
+									null
 							}
 						</Column>
 					}
