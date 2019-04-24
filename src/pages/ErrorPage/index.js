@@ -21,7 +21,7 @@ const ErrorPage = () => {
 				</Container>
 			</Section>
 		</Page>
-	)
+	);
 };
 
 export default ErrorPage;

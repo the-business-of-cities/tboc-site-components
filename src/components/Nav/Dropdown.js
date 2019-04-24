@@ -17,7 +17,7 @@ const LinkWrapper = styled.div`
 		
 		&,
 		a {
-			color: ${ mixins.darkenColor('#fff', 0.2) };
+			color: ${ mixins.darkenColor("#fff", 0.2) };
 		}
 	` };
 
