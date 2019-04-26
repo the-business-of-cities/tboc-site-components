@@ -60,8 +60,6 @@ class GridTableList extends React.Component {
 		}));
 	}
 
-
-
 	toggleSorting() {
 		this.setState(prevState => ({
 		  oldest: !prevState.oldest,
@@ -103,9 +101,7 @@ class GridTableList extends React.Component {
 					</SortingOptions>
 				}
 				
-				{
-					<GridTableEntries table = { this.state.table } sorting = { sorting } entries = { entries }/>
-				}
+				<GridTableEntries table = { this.state.table } sorting = { sorting } entries = { entries } slug = { slug }/>
 			</GridWrapper>
 		);
 	}
