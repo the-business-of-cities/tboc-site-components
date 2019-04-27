@@ -2,10 +2,9 @@ import * as mixins from "codogo-utility-functions";
 import styled, { css, } from "styled-components";
 import { theme, } from "../../styles";
 
-import R from "ramda";
+import * as R from "ramda";
 import PropTypes from "prop-types";
 import React from "react";
-import Link from "gatsby-link";
 import Dropdown from "./Dropdown";
 
 // --------------------------------------------------
@@ -67,7 +66,7 @@ const LinkWrapper = styled.div`
 	` };
 `;
 
-const StyledLink = styled(Link)`
+const StyledLink = styled.div`
 	${ mixins.xs`
 		display: block;
 		padding: 0.9em ${ props => props.theme.dimensions.nav.margin.xs };
@@ -114,7 +113,7 @@ const DropdownArrow = styled.span`
 // --------------------------------------------------
 
 const Links = (props) => {
-	const { links, close, open, } = props;
+	const { links, close, open, gatsbyLink } = props;
 	console.log(links);
 
 	return (
@@ -124,14 +123,14 @@ const Links = (props) => {
 					links && links.map( link => {
 						return (
 							<LinkWrapper key = { link.to } onClick = { close }>
-								<StyledLink to = { link.to } activeClassName = "active">
+								<StyledLink as = { gatsbyLink } to = { link.to } activeClassName = "active">
 									{ link.content } 
 
 									{ link.dropdown && <DropdownArrow>▼</DropdownArrow> }
 								</StyledLink>
 
 								{ 
-									link.dropdown && <Dropdown links = { link.dropdown } />
+									link.dropdown && <Dropdown gatsbyLink = { gatsbyLink } links = { link.dropdown } />
 								}
 							</LinkWrapper>
 						);
@@ -146,6 +145,7 @@ Links.propTypes = {
 	close: PropTypes.func,
 	links: PropTypes.array,
 	open: PropTypes.bool,
+	gastbyLink: PropTypes.any,
 };
 
 export default Links;

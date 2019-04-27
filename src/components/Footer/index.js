@@ -1,7 +1,6 @@
 import { Icon, MaybeLink, } from "../toolbox";
 import * as mixins from "codogo-utility-functions";
 
-import Link from "gatsby-link";
 import PropTypes from "prop-types";
 import React from "react";
 import slugify from "slugify";

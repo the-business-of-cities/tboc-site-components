@@ -4,7 +4,7 @@ import * as mixins from "codogo-utility-functions";
 import EntryWrapper from "../GenericGrid/EntryWrapper";
 import marked from "marked";
 import PropTypes from "prop-types";
-import R from "ramda";
+import * as R from "ramda";
 import React from "react";
 import slugify from "slugify";
 import styled from "styled-components";
@@ -169,10 +169,9 @@ const GridTableEntries = ({ entries, slug, table, }) => {
 			{
 				entries
 					.map( entry => (
-						<Entry className = "entry">
+						<Entry className = "entry" key = { entry.slug } key = { `entry-${ slugify( entry.title.toLowerCase()) }` }>
 							<EntryWrapper
 								className = "wrapper"
-								key = { `entry-${ slugify( entry.title.toLowerCase()) }` } 
 								internalUrl = { `/${ slug }/${ slugify( entry.title, { lower: true, } ) }` }
 								externalUrl = { entry.externalUrl }
 							>
