@@ -31,6 +31,7 @@ class ContentPage extends React.Component {
 			slider,
 			subtitle,
 			title,
+			theme,
 		} = this.props;
 
 		return (
@@ -42,6 +43,7 @@ class ContentPage extends React.Component {
 				slider = { slider }
 				subtitle = { subtitle }
 				title = { title }
+				theme = { theme }
 			>
 				{
 					content &&

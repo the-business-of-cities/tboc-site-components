@@ -6,6 +6,7 @@ import * as R from "ramda";
 import PropTypes from "prop-types";
 import React from "react";
 import Dropdown from "./Dropdown";
+import { Link, } from "gatsby";
 
 // --------------------------------------------------
 
@@ -66,7 +67,7 @@ const LinkWrapper = styled.div`
 	` };
 `;
 
-const StyledLink = styled.div`
+const StyledLink = styled(Link)`
 	${ mixins.xs`
 		display: block;
 		padding: 0.9em ${ props => props.theme.dimensions.nav.margin.xs };
@@ -113,7 +114,7 @@ const DropdownArrow = styled.span`
 // --------------------------------------------------
 
 const Links = (props) => {
-	const { links, close, open, gatsbyLink } = props;
+	const { links, close, open } = props;
 	console.log(links);
 
 	return (
@@ -123,14 +124,14 @@ const Links = (props) => {
 					links && links.map( link => {
 						return (
 							<LinkWrapper key = { link.to } onClick = { close }>
-								<StyledLink as = { gatsbyLink } to = { link.to } activeClassName = "active">
+								<StyledLink to = { link.to } activeClassName = "active">
 									{ link.content } 
 
 									{ link.dropdown && <DropdownArrow>▼</DropdownArrow> }
 								</StyledLink>
 
 								{ 
-									link.dropdown && <Dropdown gatsbyLink = { gatsbyLink } links = { link.dropdown } />
+									link.dropdown && <Dropdown links = { link.dropdown } />
 								}
 							</LinkWrapper>
 						);

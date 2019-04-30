@@ -8,6 +8,7 @@ import Burger from "./Burger";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import React from "react";
+import { Link, } from "gatsby";
 
 // --------------------------------------------------
 
@@ -59,12 +60,11 @@ const enhance = compose(
 );
 
 const Nav = (props) => {
-	const { theme, links, logo, open, closeMenu, toggleMenu, gatsbyLink } = props;
+	const { theme, links, logo, open, closeMenu, toggleMenu } = props;
 	
 	return (
 		<NavWrapper>
 			<Links
-				gatsbyLink = { gatsbyLink }
 				close = { closeMenu } 
 				open = { open } 
 				links = { links }
@@ -82,7 +82,7 @@ const Nav = (props) => {
 				</BurgerWrapper>
 			</MobileStuff>
 
-			<Logo gatsbyLink = { gatsbyLink } logo = { logo } />
+			<Logo logo = { logo } />
 		</NavWrapper>
 	);
 };
