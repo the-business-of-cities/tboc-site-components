@@ -12,7 +12,7 @@ import React from "react";
 // --------------------------------------------------
 
 const NavWrapper = styled.nav`
-	background-color: ${ props => { console.log(props); return props.theme.colors.nav.background; }};
+	background-color: ${ props => props.theme.colors.nav.background };
 	color: white;
 	left: 0;
 	right: 0;
