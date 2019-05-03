@@ -116,7 +116,6 @@ const DropdownArrow = styled.span`
 
 const Links = (props) => {
 	const { links, close, open, GatsbyLink, } = props;
-	console.log(links);
 
 	return (
 		<LinksWrapper open = { open }>
