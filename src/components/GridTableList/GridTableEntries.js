@@ -1,4 +1,3 @@
-import { MaybeLink, } from "../toolbox";
 import * as mixins from "codogo-utility-functions";
 
 import EntryWrapper from "../GenericGrid/EntryWrapper";

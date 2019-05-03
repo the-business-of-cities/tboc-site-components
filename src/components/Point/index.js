@@ -16,7 +16,7 @@ const PointContent = styled.div`
 `;
 
 const Point = ( props ) => {
-	const { title, text, image, cta, ctaLink, ctaText, reverse, bgImage, videoUrl, } = props;
+	const { title, text, image, cta, ctaLink, ctaText, reverse, bgImage, videoUrl, GatsbyLink, } = props;
 	const imageIsVideo = image && String(image.file.contentType).match("video\/.*") !== null;
 
 	const fullCTA = {
@@ -44,6 +44,7 @@ const Point = ( props ) => {
 						{ 
 							( fullCTA && fullCTA.link && fullCTA.text ) &&
 								<Button 
+									GatsbyLink = { GatsbyLink }
 									to = { fullCTA.link }
 									text = { fullCTA.text }
 									outline = "black"
@@ -65,7 +66,7 @@ const Point = ( props ) => {
 							{
 								(!videoUrl) ?
 									( fullCTA && fullCTA.link ) ? 
-										<MaybeLink to = { fullCTA.link.link } href = { fullCTA.link.link }><PointImage src = { image.file.url } alt = { image.description }/></MaybeLink> : 
+										<MaybeLink GatsbyLink = { GatsbyLink } to = { fullCTA.link.link } href = { fullCTA.link.link }><PointImage src = { image.file.url } alt = { image.description }/></MaybeLink> : 
 										<PointImage src = { image.file.url } alt = { image.description }/> :
 									null
 							}
@@ -91,6 +92,7 @@ Point.propTypes = {
 	text: PropTypes.string,
 	title: PropTypes.string,
 	videoUrl: PropTypes.string,
+	GatsbyLink: PropTypes.any,
 };
 
 export default Point;

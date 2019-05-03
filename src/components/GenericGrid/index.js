@@ -1,4 +1,3 @@
-import { MaybeLink, } from "../toolbox";
 import * as mixins from "codogo-utility-functions";
 
 import EntryWrapper from "./EntryWrapper";
@@ -102,8 +101,8 @@ class GenericGrid extends React.Component {
 				
 				{
 					this.state.table ?
-						<TableEntries slug = { slug } entries = { entries }/> :
-						<GridEntries sorting = { sorting } entries = { entries } slug = { slug } />
+						<TableEntries GatsbyLink = { GatsbyLink } slug = { slug } entries = { entries }/> :
+						<GridEntries GatsbyLink = { GatsbyLink } sorting = { sorting } entries = { entries } slug = { slug } />
 				}
 			</GridWrapper>
 		);
@@ -113,6 +112,7 @@ class GenericGrid extends React.Component {
 GenericGrid.propTypes = {
 	entries: PropTypes.array.isRequired,
 	slug: PropTypes.string,
+	GatsbyLink: PropTypes.any,
 };
 
 export default GenericGrid;

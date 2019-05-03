@@ -123,6 +123,7 @@ GenericPage.propTypes = {
 	secondaryImage: PropTypes.object,
 	slider: PropTypes.element,
 	subtitle: PropTypes.any,
+	theme: PropTypes.any,
 	title: PropTypes.any,
 };
 

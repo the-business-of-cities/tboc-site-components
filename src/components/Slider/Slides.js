@@ -20,7 +20,7 @@ const colorMap = ( i, colors, ) => {
 
 // --------------------------------------------------
 
-const Slides = ( { sliderContents, mobile, }, ) => {
+const Slides = ( { sliderContents, mobile, GatsbyLink, }, ) => {
 	return (
 		<Carousel
 			autoplay
@@ -32,6 +32,7 @@ const Slides = ( { sliderContents, mobile, }, ) => {
 				sliderContents.map( ( ( slide, i ) => {
 					return (
 						<Slide
+							GatsbyLink = { GatsbyLink }
 							key = { `slider-slide-${ slugify(slide.title, { lower: true, } ) }` } 
 							colorCount = { i + 1 }
 							slide = { slide }
@@ -47,6 +48,7 @@ Slides.propTypes = {
 	mobile: PropTypes.bool,
 	sliderContents: PropTypes.array,
 	sliderSettings: PropTypes.object,
+	GatsbyLink: PropTypes.any,
 };
 
 export default Slides;

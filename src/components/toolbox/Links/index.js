@@ -7,7 +7,7 @@ import React from "react";
 // --------------------------------------------------
 
 const MaybeLink = ( { children, className, href, target, theme, to, GatsbyLink, }, ) => {
-	console.log(GatsbyLink);
+
 	return to && GatsbyLink ? (
 		<GatsbyLink
 			to = { to }

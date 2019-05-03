@@ -14,10 +14,10 @@ import slugify from "slugify";
 
 // --------------------------------------------------
 
-const Event = ({ condensed, ...event }) => {
+const Event = ({ condensed, GatsbyLink, ...event }) => {
 	const Cell = ({ children, }) => (
 		<td>
-			<MaybeLink href = { event.link } to = { !event.link && `/events/${ slugify(event.title, { lower: true, } ) }` }>{children}</MaybeLink>
+			<MaybeLink href = { event.link } GatsbyLink = { GatsbyLink } to = { !event.link && `/events/${ slugify(event.title, { lower: true, } ) }` }>{children}</MaybeLink>
 		</td>
 	);
 

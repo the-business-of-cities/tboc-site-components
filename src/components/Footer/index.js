@@ -91,7 +91,7 @@ const Social = styled(FooterSection)`
 	}
 `;
 
-const Footer = ( { footerText, footerLinks, socialLinks, } ) => {
+const Footer = ( { footerText, footerLinks, socialLinks, GatsbyLink } ) => {
 	return (
 		<FooterWrapper>
 			<Inner>
@@ -101,6 +101,7 @@ const Footer = ( { footerText, footerLinks, socialLinks, } ) => {
 					{
 						footerLinks.map( link => (
 							<MaybeLink 
+								GatsbyLink = { GatsbyLink }
 								key = { slugify(link.title, { lower: true, } ) } 
 								to = { `/${ slugify(link.title.toLowerCase()) }` }
 							>

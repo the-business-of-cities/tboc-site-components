@@ -11,18 +11,19 @@ const EntryWrapperLink = styled(MaybeLink)`
 	overflow: hidden;
 `;
 
-const EntryWrapper = ( props ) => {
+const EntryWrapper = ( { children, externalUrl, internalUrl, GatsbyLink } ) => {
 	return (
-		props.externalUrl ?
+		externalUrl ?
 			<EntryWrapperLink 
-				href = { props.externalUrl }
+				href = { externalUrl }
 			>
-				{props.children}
+				{children}
 			</EntryWrapperLink> :
 			<EntryWrapperLink 
-				to = { props.internalUrl }
+				GatsbyLink = { GatsbyLink }
+				to = { internalUrl }
 			>
-				{props.children}
+				{children}
 			</EntryWrapperLink>
 	);
 };
@@ -31,6 +32,7 @@ EntryWrapper.propTypes = {
 	children: PropTypes.array,
 	externalUrl: PropTypes.string,
 	internalUrl: PropTypes.string,
+	GatsbyLink: PropTypes.any,
 };
 
 export default EntryWrapper;

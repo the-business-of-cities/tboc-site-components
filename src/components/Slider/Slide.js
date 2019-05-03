@@ -112,7 +112,7 @@ const SlideImage = styled.img`
 
 // --------------------------------------------------
 
-const Slide = ( { colorCount, slide, } ) => {
+const Slide = ( { colorCount, slide, GatsbyLink, } ) => {
 	const { 
 		title,
 		image,
@@ -131,6 +131,7 @@ const Slide = ( { colorCount, slide, } ) => {
 			{ 
 				image &&
 				<MaybeLink
+					GatsbyLink = { GatsbyLink }
 					href = { externalUrl }
 					to = { internalUrl } 
 				>
@@ -142,6 +143,7 @@ const Slide = ( { colorCount, slide, } ) => {
 			}
 
 			<SlideInner 
+				GatsbyLink = { GatsbyLink }
 				href = { externalUrl }
 				to = { internalUrl } 
 				colorCount = { colorCount }
@@ -164,6 +166,7 @@ const Slide = ( { colorCount, slide, } ) => {
 Slide.propTypes = {
 	colorCount: PropTypes.any,
 	slide: PropTypes.object,
+	GatsbyLink: PropTypes.any,
 };
 
 export default Slide;

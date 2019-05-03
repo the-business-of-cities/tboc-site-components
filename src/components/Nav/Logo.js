@@ -34,12 +34,13 @@ const LogoContainer = styled.div`
 const IndexLink = props => <div to = "/" { ...props } />;
 
 const LogoLink = styled(IndexLink)`
-	a {
+	&, a {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
 		flex: 1;
 	}
+	a { height: 100%; }
 `;
 
 const LogoText = styled.div`

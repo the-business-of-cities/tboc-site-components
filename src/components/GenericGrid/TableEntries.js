@@ -10,10 +10,11 @@ import slugify from "slugify";
 import styled from "styled-components";
 import Table from "../Table";
 
-const Cell = ({ entry, slug, children, }) => {
+const Cell = ({ entry, slug, children, GatsbyLink, }) => {
 	return (
 		<td>
 			<MaybeLink 
+				GatsbyLink = { GatsbyLink }
 				to = { !entry.externalUrl && `/${ slug }/${ slugify( entry.title, { lower: true, } ) }` }
 				href = { entry.externalUrl }
 			>

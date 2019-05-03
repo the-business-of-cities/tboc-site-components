@@ -1,4 +1,3 @@
-import { MaybeLink, } from "../toolbox";
 import * as mixins from "codogo-utility-functions";
 
 import EntryWrapper from "./EntryWrapper";
@@ -113,13 +112,14 @@ const EntryText = styled.div`
 
 // --------------------------------------------------
 
-const GridEntries = ({ entries, slug, }) => {
+const GridEntries = ({ entries, slug, GatsbyLink, }) => {
 	return (
 		<EntryContainer>
 			{
 				entries
 					.map( entry => (
 						<EntryWrapper 
+							GatsbyLink = { GatsbyLink }
 							key = { `entry-${ slugify( entry.title.toLowerCase()) }` } 
 							internalUrl = { `/${ slug }/${ slugify( entry.title, { lower: true, } ) }` }
 							externalUrl = { entry.externalUrl }
