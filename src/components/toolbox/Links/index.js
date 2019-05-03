@@ -13,7 +13,7 @@ const MaybeLink = ( { children, className, href, target, theme, to, GatsbyLink, 
 			to = { to }
 			children = { children }
 			className = { className }
-		></GatsbyLink>
+		 />
 	) : (
 		<a
 			href = { href }
@@ -25,13 +25,13 @@ const MaybeLink = ( { children, className, href, target, theme, to, GatsbyLink, 
 };
 
 MaybeLink.propTypes = {
+	GatsbyLink: PropTypes.any,
 	children: PropTypes.any,
 	className: PropTypes.any,
 	href: PropTypes.any,
 	target: PropTypes.any,
 	theme: PropTypes.object,
 	to: PropTypes.any,
-	GatsbyLink: PropTypes.any,
 };
 
 export { MaybeLink, };

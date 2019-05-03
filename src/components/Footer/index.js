@@ -91,7 +91,7 @@ const Social = styled(FooterSection)`
 	}
 `;
 
-const Footer = ( { footerText, footerLinks, socialLinks, GatsbyLink } ) => {
+const Footer = ( { footerText, footerLinks, socialLinks, GatsbyLink, } ) => {
 	return (
 		<FooterWrapper>
 			<Inner>

@@ -1,3 +1,3 @@
-import * as gatsby from 'gatsby';
+import * as gatsby from "gatsby";
 
 export default gatsby;

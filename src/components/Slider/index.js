@@ -51,8 +51,8 @@ class Slider extends React.Component {
 const enhance = compose();
 
 Slider.propTypes = {
-	sliderContents: PropTypes.any,
 	GatsbyLink: PropTypes.any,
+	sliderContents: PropTypes.any,
 };
 
 export default enhance(Slider);

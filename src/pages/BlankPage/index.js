@@ -30,10 +30,10 @@ class BlankPage extends React.Component {
 };
 
 BlankPage.propTypes = {
+	GatsbyLink: PropTypes.any,
 	banner: PropTypes.object,
 	children: PropTypes.array,
 	sliderContents: PropTypes.array,
-	GatsbyLink: PropTypes.any,
 };
 
 export default BlankPage;

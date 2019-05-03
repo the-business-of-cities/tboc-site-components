@@ -45,10 +45,10 @@ const Slides = ( { sliderContents, mobile, GatsbyLink, }, ) => {
 };
 
 Slides.propTypes = {
+	GatsbyLink: PropTypes.any,
 	mobile: PropTypes.bool,
 	sliderContents: PropTypes.array,
 	sliderSettings: PropTypes.object,
-	GatsbyLink: PropTypes.any,
 };
 
 export default Slides;

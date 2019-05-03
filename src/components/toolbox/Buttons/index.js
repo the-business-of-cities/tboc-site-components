@@ -27,7 +27,7 @@ export const ButtonWrapper = styled.div`
 		color: ${ props => props.color };
 	}
 
-	${ ({ outline, color, hoverColor, GatsbyLink }) =>
+	${ ({ outline, color, hoverColor, }) =>
 		outline
 			? css`
 					color: ${ color };
@@ -60,7 +60,7 @@ export const ButtonWrapper = styled.div`
 			` };
 `;
 
-const Button = ( { children, href, target, text, to, ...props }, ) => (
+const Button = ( { children, href, target, text, to, GatsbyLink, ...props }, ) => (
 	<MaybeLink GatsbyLink = { GatsbyLink } to = { to } href = { href } target = { target } { ...props }>
 		<ButtonWrapper { ...props }>
 			{ text || children }
@@ -77,7 +77,7 @@ Button.propTypes = {
 	to: PropTypes.any,
 };
 
-const IconButton = ( { children, href, icon, target, text, to, ...props }, ) => (
+const IconButton = ( { children, href, icon, target, text, to, GatsbyLink, ...props }, ) => (
 	<MaybeLink GatsbyLink = { GatsbyLink } to = { to } href = { href } target = { target } { ...props }>
 		<ButtonWrapper { ...props }>
 			{icon ? (
@@ -90,13 +90,13 @@ const IconButton = ( { children, href, icon, target, text, to, ...props }, ) => 
 );
 
 IconButton.propTypes = {
+	GatsbyLink: PropTypes.any,
 	children: PropTypes.any,
 	href: PropTypes.any,
 	icon: PropTypes.any,
 	target: PropTypes.any,
 	text: PropTypes.any,
 	to: PropTypes.any,
-	GatsbyLink: PropTypes.any,
 };
 
 export { Button, IconButton, };

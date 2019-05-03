@@ -12,7 +12,7 @@ import React from "react";
 // --------------------------------------------------
 
 const NavWrapper = styled.nav`
-	background-color: ${ props => { console.log(props); return props.theme.colors.nav.background; }};
+	background-color: ${ props => { console.log(props); return props.theme.colors.nav.background; } };
 	color: white;
 	left: 0;
 	right: 0;
@@ -59,7 +59,7 @@ const enhance = compose(
 );
 
 const Nav = (props) => {
-	const { theme, links, logo, open, closeMenu, toggleMenu, GatsbyLink } = props;
+	const { theme, links, logo, open, closeMenu, toggleMenu, GatsbyLink, } = props;
 	
 	return (
 		<NavWrapper>

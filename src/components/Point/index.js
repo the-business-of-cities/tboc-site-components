@@ -79,6 +79,7 @@ const Point = ( props ) => {
 };
 
 Point.propTypes = {
+	GatsbyLink: PropTypes.any,
 	bgImage: PropTypes.string,
 	cta: PropTypes.shape({
 		text: PropTypes.string,
@@ -92,7 +93,6 @@ Point.propTypes = {
 	text: PropTypes.string,
 	title: PropTypes.string,
 	videoUrl: PropTypes.string,
-	GatsbyLink: PropTypes.any,
 };
 
 export default Point;

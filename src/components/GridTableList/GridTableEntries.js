@@ -162,7 +162,7 @@ const EntryText = styled.div`
 
 // --------------------------------------------------
 
-const GridTableEntries = ({ entries, slug, table, }) => {
+const GridTableEntries = ({ entries, slug, table, GatsbyLink, }) => {
 	return (
 		<EntryContainer className = { table && "table" }>
 			{
@@ -170,6 +170,7 @@ const GridTableEntries = ({ entries, slug, table, }) => {
 					.map( entry => (
 						<Entry className = "entry" key = { entry.slug } key = { `entry-${ slugify( entry.title.toLowerCase()) }` }>
 							<EntryWrapper
+								GatsbyLink = { GatsbyLink }
 								className = "wrapper"
 								internalUrl = { `/${ slug }/${ slugify( entry.title, { lower: true, } ) }` }
 								externalUrl = { entry.externalUrl }

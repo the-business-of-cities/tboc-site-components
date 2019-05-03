@@ -164,9 +164,9 @@ const Slide = ( { colorCount, slide, GatsbyLink, } ) => {
 };
 
 Slide.propTypes = {
+	GatsbyLink: PropTypes.any,
 	colorCount: PropTypes.any,
 	slide: PropTypes.object,
-	GatsbyLink: PropTypes.any,
 };
 
 export default Slide;

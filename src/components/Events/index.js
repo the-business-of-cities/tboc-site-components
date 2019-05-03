@@ -17,7 +17,7 @@ import styled from "styled-components";
 
 // --------------------------------------------------
 
-const Events = ({ events, GatsbyLink }) => {
+const Events = ({ events, GatsbyLink, }) => {
 	events.sort((a, b) => {
 		return Moment(a.node.date).diff(Moment(b.node.date)) < 0 ? 1 : -1;
 	});

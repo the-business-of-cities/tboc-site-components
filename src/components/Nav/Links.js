@@ -115,7 +115,7 @@ const DropdownArrow = styled.span`
 // --------------------------------------------------
 
 const Links = (props) => {
-	const { links, close, open, GatsbyLink } = props;
+	const { links, close, open, GatsbyLink, } = props;
 	console.log(links);
 
 	return (
@@ -147,9 +147,9 @@ const Links = (props) => {
 
 Links.propTypes = {
 	close: PropTypes.func,
+	gastbyLink: PropTypes.any,
 	links: PropTypes.array,
 	open: PropTypes.bool,
-	gastbyLink: PropTypes.any,
 };
 
 export default Links;

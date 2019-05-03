@@ -109,7 +109,7 @@ const DropdownLinks = styled.div`
 
 // --------------------------------------------------
 
-const Dropdown = ({ links, GatsbyLink }) => (
+const Dropdown = ({ links, GatsbyLink, }) => (
 	<DropdownLinks>
 		{
 			links.map(({ content, to, }) => (
