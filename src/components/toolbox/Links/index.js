@@ -6,20 +6,20 @@ import React from "react";
 
 // --------------------------------------------------
 
-const MaybeLink = (props) => {
-	return props.to ? (
-		<div
-			as= { props.gatsbyLink }
-			to = { props.to }
-			children = { props.children }
-			className = { props.className }
-		/>
+const MaybeLink = ( { children, className, href, target, theme, to, GatsbyLink, }, ) => {
+	console.log(GatsbyLink);
+	return to && GatsbyLink ? (
+		<GatsbyLink
+			to = { to }
+			children = { children }
+			className = { className }
+		></GatsbyLink>
 	) : (
 		<a
-			href = { props.href }
-			children = { props.children }
-			target = { props.target }
-			className = { props.className }
+			href = { href }
+			children = { children }
+			target = { target }
+			className = { className }
 		/>
 	);
 };
@@ -31,7 +31,7 @@ MaybeLink.propTypes = {
 	target: PropTypes.any,
 	theme: PropTypes.object,
 	to: PropTypes.any,
-	gatsbyLink: PropTypes.any,
+	GatsbyLink: PropTypes.any,
 };
 
 export { MaybeLink, };

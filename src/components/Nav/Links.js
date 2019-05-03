@@ -67,38 +67,40 @@ const LinkWrapper = styled.div`
 `;
 
 const StyledLink = styled.div`
-	${ mixins.xs`
-		display: block;
-		padding: 0.9em ${ props => props.theme.dimensions.nav.margin.xs };
-		font-size: 0.9em;
-		line-height: 1;
+	a {
+		${ mixins.xs`
+			display: block;
+			padding: 0.9em ${ props => props.theme.dimensions.nav.margin.xs };
+			font-size: 0.9em;
+			line-height: 1;
 
-		&a {
-			color: #eee;
-		}
+			&a {
+				color: #eee;
+			}
 
-		&.active {
-			font-weight: bold;
-			background-color: ${ props => mixins.lightenColor(props.theme.colors.nav.background) };
-		}
-	` }
+			&.active {
+				font-weight: bold;
+				background-color: ${ props => mixins.lightenColor(props.theme.colors.nav.background) };
+			}
+		` }
 
-	${ mixins.bp.sm.min`
-		display: inline-block;
-		height: ${ props => props.theme.dimensions.nav.linksHeight };
-		line-height: ${ props => props.theme.dimensions.nav.linksHeight };
-		padding: 0 0.75em;
-		font-size: 0.8em;
-		text-transform: uppercase;
+		${ mixins.bp.sm.min`
+			display: inline-block;
+			height: ${ props => props.theme.dimensions.nav.linksHeight };
+			line-height: ${ props => props.theme.dimensions.nav.linksHeight };
+			padding: 0 0.75em;
+			font-size: 0.8em;
+			text-transform: uppercase;
 
-		&.active {
-			background-color: ${ props => mixins.lightenColor(props.theme.colors.nav.background) };
-		}
+			&.active {
+				background-color: ${ props => mixins.lightenColor(props.theme.colors.nav.background) };
+			}
 
-		&:not(.active):hover {
-			background-color: ${ props => mixins.lightenColor(props.theme.colors.nav.background, 0.1) };
-		}
-	` }
+			&:not(.active):hover {
+				background-color: ${ props => mixins.lightenColor(props.theme.colors.nav.background, 0.1) };
+			}
+		` }
+	}
 `;
 
 const DropdownArrow = styled.span`
@@ -113,7 +115,7 @@ const DropdownArrow = styled.span`
 // --------------------------------------------------
 
 const Links = (props) => {
-	const { links, close, open, gatsbyLink } = props;
+	const { links, close, open, GatsbyLink } = props;
 	console.log(links);
 
 	return (
@@ -123,14 +125,16 @@ const Links = (props) => {
 					links && links.map( link => {
 						return (
 							<LinkWrapper key = { link.to } onClick = { close }>
-								<StyledLink as = { gatsbyLink } to = { link.to } activeClassName = "active">
-									{ link.content } 
+								<StyledLink>
+									<GatsbyLink to = { link.to } activeClassName = "active">
+										{ link.content } 
 
-									{ link.dropdown && <DropdownArrow>▼</DropdownArrow> }
+										{ link.dropdown && <DropdownArrow>▼</DropdownArrow> }
+									</GatsbyLink>
 								</StyledLink>
 
 								{ 
-									link.dropdown && <Dropdown gatsbyLink = { gatsbyLink } links = { link.dropdown } />
+									link.dropdown && <Dropdown GatsbyLink = { GatsbyLink } links = { link.dropdown } />
 								}
 							</LinkWrapper>
 						);

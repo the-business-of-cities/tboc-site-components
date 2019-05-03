@@ -19,7 +19,7 @@ const Head = ( props ) => {
 	if(theme == null) { theme = { ..._theme, }; }
 
 	const image = R.path([ "image", "url", ])(page) || R.path([ "homeImage", "url", ])(site);
-	console.log(!!(site || page), site, page);
+
 	return ( site || page ) ?
 		(
 			<Helmet>

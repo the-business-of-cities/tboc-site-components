@@ -34,10 +34,12 @@ const LogoContainer = styled.div`
 const IndexLink = props => <div to = "/" { ...props } />;
 
 const LogoLink = styled(IndexLink)`
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	flex: 1;
+	a {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		flex: 1;
+	}
 `;
 
 const LogoText = styled.div`
@@ -55,15 +57,19 @@ const LogoImage = styled.img`
 
 // --------------------------------------------------
 
-const Logo = ( { logo, gatsbyLink, }, ) => (
+const Logo = ( { logo, GatsbyLink, }, ) => (
 	<LogoWrapper>
 		<LogoContainer>
-			<LogoLink as = { gatsbyLink } to = "/">
-				{ logo.url ? (
-					<LogoImage src = {  logo.url } />
-				) : (
-					<LogoText>{  logo.text }</LogoText>
-				)}
+			<LogoLink>
+				<GatsbyLink to = "/">
+					{ 
+						logo.url ? (
+							<LogoImage src = {  logo.url } />
+						) : (
+							<LogoText>{  logo.text }</LogoText>
+						)
+					}
+				</GatsbyLink>
 			</LogoLink>
 		</LogoContainer>
 	</LogoWrapper>
