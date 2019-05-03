@@ -4,7 +4,6 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import React from "react";
 import { theme, } from "../../styles";
-import { Link, } from "gatsby";
 
 // --------------------------------------------------
 
@@ -32,7 +31,7 @@ const LogoContainer = styled.div`
 	padding: 0 ${ props => props.theme.dimensions.nav.margin.xs };
 `;
 
-const IndexLink = props => <Link to = "/" { ...props } />;
+const IndexLink = props => <div to = "/" { ...props } />;
 
 const LogoLink = styled(IndexLink)`
 	display: flex;
@@ -56,10 +55,10 @@ const LogoImage = styled.img`
 
 // --------------------------------------------------
 
-const Logo = ( { logo, }, ) => (
+const Logo = ( { logo, gatsbyLink, }, ) => (
 	<LogoWrapper>
 		<LogoContainer>
-			<LogoLink to = "/">
+			<LogoLink as = { gatsbyLink } to = "/">
 				{ logo.url ? (
 					<LogoImage src = {  logo.url } />
 				) : (

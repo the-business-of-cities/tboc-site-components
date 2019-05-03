@@ -3,13 +3,13 @@ import * as mixins from "codogo-utility-functions";
 import styled, { css, } from "styled-components";
 import PropTypes from "prop-types";
 import React from "react";
-import { Link, } from "gatsby";
 
 // --------------------------------------------------
 
 const MaybeLink = (props) => {
 	return props.to ? (
-		<Link
+		<div
+			as= { props.gatsbyLink }
 			to = { props.to }
 			children = { props.children }
 			className = { props.className }
@@ -31,6 +31,7 @@ MaybeLink.propTypes = {
 	target: PropTypes.any,
 	theme: PropTypes.object,
 	to: PropTypes.any,
+	gatsbyLink: PropTypes.any,
 };
 
 export { MaybeLink, };

@@ -8,12 +8,11 @@ import Burger from "./Burger";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import React from "react";
-import { Link, } from "gatsby";
 
 // --------------------------------------------------
 
 const NavWrapper = styled.nav`
-	background-color: ${ props => props.theme.colors.nav.background };
+	background-color: ${ props => { console.log(props); return props.theme.colors.nav.background; }};
 	color: white;
 	left: 0;
 	right: 0;
@@ -60,11 +59,12 @@ const enhance = compose(
 );
 
 const Nav = (props) => {
-	const { theme, links, logo, open, closeMenu, toggleMenu } = props;
+	const { theme, links, logo, open, closeMenu, toggleMenu, gatsbyLink } = props;
 	
 	return (
 		<NavWrapper>
 			<Links
+				gatsbyLink = { gatsbyLink }
 				close = { closeMenu } 
 				open = { open } 
 				links = { links }
@@ -82,7 +82,7 @@ const Nav = (props) => {
 				</BurgerWrapper>
 			</MobileStuff>
 
-			<Logo logo = { logo } />
+			<Logo gatsbyLink = { gatsbyLink } logo = { logo } />
 		</NavWrapper>
 	);
 };

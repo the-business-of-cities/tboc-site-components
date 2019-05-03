@@ -5,7 +5,6 @@ import { theme, } from "../../styles";
 import * as R from "ramda";
 import PropTypes from "prop-types";
 import React from "react";
-import { Link, } from "gatsby";
 
 // --------------------------------------------------
 
@@ -30,7 +29,7 @@ const LinkWrapper = styled.div`
 	` };
 `;
 
-const StyledLink = styled(Link)`
+const StyledLink = styled.div`
 	color: ${ props => props.theme.colors.link };
 
 	${ mixins.xs`
@@ -106,12 +105,13 @@ const DropdownLinks = styled.div`
 
 // --------------------------------------------------
 
-const Dropdown = ({ links, }) => (
+const Dropdown = ({ links, gatsbyLink }) => (
 	<DropdownLinks>
 		{
 			links.map(({ content, to, }) => (
 				<LinkWrapper key = { to }>
 					<StyledDropdownLink
+						as = { gatsbyLink }
 						to = { to }
 						activeClassName = "active"
 					>
