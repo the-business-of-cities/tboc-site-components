@@ -3,7 +3,6 @@ import * as mixins from "codogo-utility-functions";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import React from "react";
-import Link from "gatsby-link";
 import { theme, } from "../../styles";
 
 // --------------------------------------------------
@@ -32,13 +31,16 @@ const LogoContainer = styled.div`
 	padding: 0 ${ props => props.theme.dimensions.nav.margin.xs };
 `;
 
-const IndexLink = props => <Link to = "/" { ...props } />;
+const IndexLink = props => <div to = "/" { ...props } />;
 
 const LogoLink = styled(IndexLink)`
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	flex: 1;
+	&, a {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		flex: 1;
+	}
+	a { height: 100%; }
 `;
 
 const LogoText = styled.div`
@@ -56,15 +58,19 @@ const LogoImage = styled.img`
 
 // --------------------------------------------------
 
-const Logo = ( { logo, }, ) => (
+const Logo = ( { logo, GatsbyLink, }, ) => (
 	<LogoWrapper>
 		<LogoContainer>
-			<LogoLink to = "/">
-				{ logo.url ? (
-					<LogoImage src = {  logo.url } />
-				) : (
-					<LogoText>{  logo.text }</LogoText>
-				)}
+			<LogoLink>
+				<GatsbyLink to = "/">
+					{ 
+						logo.url ? (
+							<LogoImage src = {  logo.url } />
+						) : (
+							<LogoText>{  logo.text }</LogoText>
+						)
+					}
+				</GatsbyLink>
 			</LogoLink>
 		</LogoContainer>
 	</LogoWrapper>

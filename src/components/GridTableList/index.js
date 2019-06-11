@@ -1,4 +1,3 @@
-import { MaybeLink, } from "../toolbox";
 import * as mixins from "codogo-utility-functions";
 
 import EntryWrapper from "../GenericGrid/EntryWrapper";
@@ -6,7 +5,7 @@ import GridTableEntries from "./GridTableEntries";
 import TableEntries from "../GenericGrid/TableEntries";
 import marked from "marked";
 import PropTypes from "prop-types";
-import R from "ramda";
+import * as R from "ramda";
 import React from "react";
 import slugify from "slugify";
 import styled from "styled-components";
@@ -101,13 +100,14 @@ class GridTableList extends React.Component {
 					</SortingOptions>
 				}
 				
-				<GridTableEntries table = { this.state.table } sorting = { sorting } entries = { entries } slug = { slug }/>
+				<GridTableEntries GatsbyLink = { this.props.GatsbyLink } table = { this.state.table } sorting = { sorting } entries = { entries } slug = { slug }/>
 			</GridWrapper>
 		);
 	}
 };
 
 GridTableList.propTypes = {
+	GatsbyLink: PropTypes.any,
 	entries: PropTypes.array.isRequired,
 	slug: PropTypes.string,
 };

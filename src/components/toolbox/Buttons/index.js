@@ -60,8 +60,8 @@ export const ButtonWrapper = styled.div`
 			` };
 `;
 
-const Button = ( { children, href, target, text, to, ...props }, ) => (
-	<MaybeLink to = { to } href = { href } target = { target } { ...props }>
+const Button = ( { children, href, target, text, to, GatsbyLink, ...props }, ) => (
+	<MaybeLink GatsbyLink = { GatsbyLink } to = { to } href = { href } target = { target } { ...props }>
 		<ButtonWrapper { ...props }>
 			{ text || children }
 		</ButtonWrapper>
@@ -77,8 +77,8 @@ Button.propTypes = {
 	to: PropTypes.any,
 };
 
-const IconButton = ( { children, href, icon, target, text, to, ...props }, ) => (
-	<MaybeLink to = { to } href = { href } target = { target } { ...props }>
+const IconButton = ( { children, href, icon, target, text, to, GatsbyLink, ...props }, ) => (
+	<MaybeLink GatsbyLink = { GatsbyLink } to = { to } href = { href } target = { target } { ...props }>
 		<ButtonWrapper { ...props }>
 			{icon ? (
 				<Icon type = { icon } size = "1.2em" marginRight = "0.4em" />
@@ -90,6 +90,7 @@ const IconButton = ( { children, href, icon, target, text, to, ...props }, ) => 
 );
 
 IconButton.propTypes = {
+	GatsbyLink: PropTypes.any,
 	children: PropTypes.any,
 	href: PropTypes.any,
 	icon: PropTypes.any,

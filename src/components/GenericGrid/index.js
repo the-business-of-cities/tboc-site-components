@@ -1,4 +1,3 @@
-import { MaybeLink, } from "../toolbox";
 import * as mixins from "codogo-utility-functions";
 
 import EntryWrapper from "./EntryWrapper";
@@ -6,7 +5,7 @@ import GridEntries from "./GridEntries";
 import TableEntries from "./TableEntries";
 import marked from "marked";
 import PropTypes from "prop-types";
-import R from "ramda";
+import * as R from "ramda";
 import React from "react";
 import slugify from "slugify";
 import styled from "styled-components";
@@ -102,8 +101,8 @@ class GenericGrid extends React.Component {
 				
 				{
 					this.state.table ?
-						<TableEntries slug = { slug } entries = { entries }/> :
-						<GridEntries sorting = { sorting } entries = { entries } slug = { slug } />
+						<TableEntries GatsbyLink = { this.props.GatsbyLink } slug = { slug } entries = { entries }/> :
+						<GridEntries GatsbyLink = { this.props.GatsbyLink } sorting = { sorting } entries = { entries } slug = { slug } />
 				}
 			</GridWrapper>
 		);
@@ -111,6 +110,7 @@ class GenericGrid extends React.Component {
 };
 
 GenericGrid.propTypes = {
+	GatsbyLink: PropTypes.any,
 	entries: PropTypes.array.isRequired,
 	slug: PropTypes.string,
 };

@@ -3,7 +3,6 @@ import {
 	Container,
 	Column,
 	Row,
-	MaybeLink,
 } from "../toolbox";
 
 import Event from "./Event";
@@ -18,7 +17,7 @@ import styled from "styled-components";
 
 // --------------------------------------------------
 
-const Events = ({ events, }) => {
+const Events = ({ events, GatsbyLink, }) => {
 	events.sort((a, b) => {
 		return Moment(a.node.date).diff(Moment(b.node.date)) < 0 ? 1 : -1;
 	});
@@ -26,7 +25,7 @@ const Events = ({ events, }) => {
 	const pastEvents = events.filter(
 		event => Moment(event.node.date).diff(Moment()) < 0
 	).map(event => (
-		<Event { ...event.node } key = { `${ slugify(event.node.title, { lower: true, } ) }-${ event.node.date }` } condensed />
+		<Event { ...event.node } GatsbyLink = { GatsbyLink } key = { `${ slugify(event.node.title, { lower: true, } ) }-${ event.node.date }` } condensed />
 	) );
 
 	const upcomingEvents = events.filter(
@@ -34,7 +33,7 @@ const Events = ({ events, }) => {
 	)
 		.reverse()
 		.map(event => (
-			<Event { ...event.node } key = { `${ slugify(event.node.title, { lower: true, } ) }-${ event.node.date }` } />
+			<Event { ...event.node } GatsbyLink = { GatsbyLink } key = { `${ slugify(event.node.title, { lower: true, } ) }-${ event.node.date }` } />
 		) );
 
 	return (

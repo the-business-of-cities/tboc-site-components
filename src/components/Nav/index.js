@@ -59,11 +59,12 @@ const enhance = compose(
 );
 
 const Nav = (props) => {
-	const { theme, links, logo, open, closeMenu, toggleMenu, } = props;
+	const { theme, links, logo, open, closeMenu, toggleMenu, GatsbyLink, } = props;
 	
 	return (
 		<NavWrapper>
-			<Links 
+			<Links
+				GatsbyLink = { GatsbyLink }
 				close = { closeMenu } 
 				open = { open } 
 				links = { links }
@@ -81,7 +82,7 @@ const Nav = (props) => {
 				</BurgerWrapper>
 			</MobileStuff>
 
-			<Logo logo = { logo }/>
+			<Logo GatsbyLink = { GatsbyLink } logo = { logo } />
 		</NavWrapper>
 	);
 };

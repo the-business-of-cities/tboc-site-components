@@ -2,10 +2,9 @@ import * as mixins from "codogo-utility-functions";
 import styled, { css, } from "styled-components";
 import { theme, } from "../../styles";
 
-import R from "ramda";
+import * as R from "ramda";
 import PropTypes from "prop-types";
 import React from "react";
-import Link from "gatsby-link";
 import Dropdown from "./Dropdown";
 
 // --------------------------------------------------
@@ -67,39 +66,41 @@ const LinkWrapper = styled.div`
 	` };
 `;
 
-const StyledLink = styled(Link)`
-	${ mixins.xs`
-		display: block;
-		padding: 0.9em ${ props => props.theme.dimensions.nav.margin.xs };
-		font-size: 0.9em;
-		line-height: 1;
+const StyledLink = styled.div`
+	a {
+		${ mixins.xs`
+			display: block;
+			padding: 0.9em ${ props => props.theme.dimensions.nav.margin.xs };
+			font-size: 0.9em;
+			line-height: 1;
 
-		&a {
-			color: #eee;
-		}
+			&a {
+				color: #eee;
+			}
 
-		&.active {
-			font-weight: bold;
-			background-color: ${ props => mixins.lightenColor(props.theme.colors.nav.background) };
-		}
-	` }
+			&.active {
+				font-weight: bold;
+				background-color: ${ props => mixins.lightenColor(props.theme.colors.nav.background) };
+			}
+		` }
 
-	${ mixins.bp.sm.min`
-		display: inline-block;
-		height: ${ props => props.theme.dimensions.nav.linksHeight };
-		line-height: ${ props => props.theme.dimensions.nav.linksHeight };
-		padding: 0 0.75em;
-		font-size: 0.8em;
-		text-transform: uppercase;
+		${ mixins.bp.sm.min`
+			display: inline-block;
+			height: ${ props => props.theme.dimensions.nav.linksHeight };
+			line-height: ${ props => props.theme.dimensions.nav.linksHeight };
+			padding: 0 0.75em;
+			font-size: 0.8em;
+			text-transform: uppercase;
 
-		&.active {
-			background-color: ${ props => mixins.lightenColor(props.theme.colors.nav.background) };
-		}
+			&.active {
+				background-color: ${ props => mixins.lightenColor(props.theme.colors.nav.background) };
+			}
 
-		&:not(.active):hover {
-			background-color: ${ props => mixins.lightenColor(props.theme.colors.nav.background, 0.1) };
-		}
-	` }
+			&:not(.active):hover {
+				background-color: ${ props => mixins.lightenColor(props.theme.colors.nav.background, 0.1) };
+			}
+		` }
+	}
 `;
 
 const DropdownArrow = styled.span`
@@ -114,7 +115,7 @@ const DropdownArrow = styled.span`
 // --------------------------------------------------
 
 const Links = (props) => {
-	const { links, close, open, } = props;
+	const { links, close, open, GatsbyLink, } = props;
 
 	return (
 		<LinksWrapper open = { open }>
@@ -123,14 +124,16 @@ const Links = (props) => {
 					links && links.map( link => {
 						return (
 							<LinkWrapper key = { link.to } onClick = { close }>
-								<StyledLink to = { link.to } activeClassName = "active" exact>
-									{ link.content } 
+								<StyledLink>
+									<GatsbyLink to = { link.to } activeClassName = "active">
+										{ link.content } 
 
-									{ link.dropdown && <DropdownArrow>▼</DropdownArrow> }
+										{ link.dropdown && <DropdownArrow>▼</DropdownArrow> }
+									</GatsbyLink>
 								</StyledLink>
 
 								{ 
-									link.dropdown && <Dropdown links = { link.dropdown } />
+									link.dropdown && <Dropdown GatsbyLink = { GatsbyLink } links = { link.dropdown } />
 								}
 							</LinkWrapper>
 						);
@@ -143,6 +146,7 @@ const Links = (props) => {
 
 Links.propTypes = {
 	close: PropTypes.func,
+	gastbyLink: PropTypes.any,
 	links: PropTypes.array,
 	open: PropTypes.bool,
 };

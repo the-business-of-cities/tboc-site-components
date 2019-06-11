@@ -1,7 +1,6 @@
 import { Icon, MaybeLink, } from "../toolbox";
 import * as mixins from "codogo-utility-functions";
 
-import Link from "gatsby-link";
 import PropTypes from "prop-types";
 import React from "react";
 import slugify from "slugify";
@@ -92,7 +91,7 @@ const Social = styled(FooterSection)`
 	}
 `;
 
-const Footer = ( { footerText, footerLinks, socialLinks, } ) => {
+const Footer = ( { footerText, footerLinks, socialLinks, GatsbyLink, } ) => {
 	return (
 		<FooterWrapper>
 			<Inner>
@@ -102,6 +101,7 @@ const Footer = ( { footerText, footerLinks, socialLinks, } ) => {
 					{
 						footerLinks.map( link => (
 							<MaybeLink 
+								GatsbyLink = { GatsbyLink }
 								key = { slugify(link.title, { lower: true, } ) } 
 								to = { `/${ slugify(link.title.toLowerCase()) }` }
 							>

@@ -11,23 +11,23 @@ const EntryWrapperLink = styled(MaybeLink)`
 	overflow: hidden;
 `;
 
-const EntryWrapper = ( props ) => {
+const EntryWrapper = ( { children, externalUrl, internalUrl, GatsbyLink, } ) => {
 	return (
-		props.externalUrl ?
-			<EntryWrapperLink 
-				href = { props.externalUrl }
-			>
-				{props.children}
+		externalUrl ?
+			<EntryWrapperLink href = { externalUrl }>
+				{children}
 			</EntryWrapperLink> :
 			<EntryWrapperLink 
-				to = { props.internalUrl }
+				GatsbyLink = { GatsbyLink }
+				to = { internalUrl }
 			>
-				{props.children}
+				{children}
 			</EntryWrapperLink>
 	);
 };
 
 EntryWrapper.propTypes = {
+	GatsbyLink: PropTypes.any,
 	children: PropTypes.array,
 	externalUrl: PropTypes.string,
 	internalUrl: PropTypes.string,
